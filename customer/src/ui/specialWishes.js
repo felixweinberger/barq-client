@@ -1,16 +1,17 @@
 import React from 'react';
 import '../styles/specialWishes.css';
 
-const specialWishes = ({text, addText}) => {
-  return (
-    <div className="input">
-      <h3>Special Wishes: {text}</h3>
-      <input
+const specialWishes = ({ text, addText }) => (
+  <div className="input">
+    <h3>
+      Special Wishes:
+      { text }
+    </h3>
+    <input
       type="text"
-      onChange={(event) => addText(event)}
-      />
-    </div>
-  )
-}
+      onChange={event => addText(event)}
+    />
+  </div>
+);
 
 export default specialWishes;
