@@ -2,10 +2,10 @@
 FROM node:11
 
 # Change working dir to /app
-WORKDIR /customer
+WORKDIR /admin
 
 # Add files from current to /app
-COPY package.json /customer/package.json
+COPY package.json /admin/package.json
 
 # Install node packages
 RUN npm install
