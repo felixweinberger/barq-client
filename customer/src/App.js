@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
 
-import PrimaryButton from './ui/primaryButton';
+import Counter from './ui/counter';
 
 import './App.css';
 
 class App extends Component { // eslint-disable-line
   render() {
     return (
-      <PrimaryButton title="Checkout" onClick={() => console.log('hello')} />
+      <div className="App">
+        <Counter onClick={() => console.log('hello')} />
+      </div>
     );
   }
 }

@@ -5,6 +5,8 @@
   --primary-shadow: 0px 2px 5px 0px rgba(0,0,0,0.75);
   --secondary-shadow: 0px 2px 10px 0px rgba(122,122,122,1);
 
-  --primary-color: rgba(80, 80, 240, 1);
+  --primary-color: black;
   --primary-color-on: white;
+
+  --light-border: black;
 }
