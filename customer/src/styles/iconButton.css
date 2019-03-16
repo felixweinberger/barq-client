@@ -1,4 +1,6 @@
 .icon-button {
+  cursor: pointer;
+
   background-size: contain;
   background-color: rbga(0, 0, 0, 0.9);
   

@@ -10,3 +10,7 @@
 
   --light-border: black;
 }
+
+input {
+  touch-action: manipulation;
+}
