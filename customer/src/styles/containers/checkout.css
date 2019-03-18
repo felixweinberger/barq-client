@@ -1,0 +1,11 @@
+.checkout {
+  flex-grow: 1;
+  padding-top: var(--header-height);
+  padding-bottom: var(--footer-height);
+}
+
+.bill {
+  box-shadow: var(--primary-shadow);
+  padding: 0.5rem 1rem;
+  margin: 1rem 2rem;
+}
