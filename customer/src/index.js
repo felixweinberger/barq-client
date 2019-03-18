@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
+import { StripeProvider } from 'react-stripe-elements';
 
 import reducers from './store/reducers';
 
@@ -16,9 +17,11 @@ const store = createStore(
 );
 
 ReactDOM.render(
-  <Provider store={store}>
-    <App />
-  </Provider>,
+  <StripeProvider apiKey="pk_test_6lE722mlf3FMRUAE7oJVbhDr">
+    <Provider store={store}>
+      <App />
+    </Provider>
+  </StripeProvider>,
   document.getElementById('root'),
 );
 
