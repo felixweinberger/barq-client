@@ -3,3 +3,8 @@ export const incrementItem = (itemId, n) => ({ // eslint-disable-line import/pre
   itemId,
   n,
 });
+
+export const updateMenu = menu => ({
+  type: 'UPDATE_MENU',
+  menu,
+});

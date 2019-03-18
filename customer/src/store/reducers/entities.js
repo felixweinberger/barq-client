@@ -1,6 +1,9 @@
 import { combineReducers } from 'redux';
 
-const initialState = {};
+const initialState = {
+  order: {},
+  menu: null,
+};
 
 const order = (state = initialState, action) => {
   switch (action.type) {
@@ -18,6 +21,17 @@ const order = (state = initialState, action) => {
   }
 };
 
+const menu = (state = initialState, action) => {
+  switch (action.type) {
+    case 'UPDATE_MENU': {
+      return action.menu;
+    }
+    default: {
+      return state;
+    }
+  }
+};
+
 export default combineReducers({
-  order,
+  order, menu,
 });

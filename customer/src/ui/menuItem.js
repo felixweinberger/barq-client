@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { incrementItem as actionIncrementItem } from '../store/actions/order';
+import { incrementItem as actionIncrementItem } from '../store/actions/entities';
 
 import Text from './text';
 import IconButton from './iconButton';
@@ -35,7 +35,7 @@ const MenuItem = ({
 };
 
 const mapStateToProps = state => ({
-  order: state.order,
+  order: state.entities.order,
 });
 
 const mapDispatchToProps = dispatch => ({

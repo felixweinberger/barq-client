@@ -3,14 +3,14 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 
-import order from './store/reducers/order';
+import reducers from './store/reducers';
 
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
 const store = createStore(
-  order,
+  reducers,
   window.__REDUX_DEVTOOLS_EXTENSION__ // eslint-disable-line no-underscore-dangle
   && window.__REDUX_DEVTOOLS_EXTENSION__(), // eslint-disable-line no-underscore-dangle
 );

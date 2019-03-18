@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+
+import { updateMenu } from './store/actions/entities';
 
 import Menu from './containers/menu';
 
 import './App.css';
 
-const menu = {
+const fakeMenu = {
   _id: '123',
   categories: [
     {
@@ -83,12 +86,26 @@ const menu = {
 };
 
 class App extends Component { // eslint-disable-line
+  componentDidMount = () => {
+    this.props.updateMenu(fakeMenu);
+  }
 
   render() {
     return (
-      <Menu menu={menu} />
+      <Menu menu={this.props.menu} />
     );
   }
 }
 
-export default App;
+const mapStateToProps = state => ({
+  menu: state.entities.menu,
+});
+
+const mapDispatchToProps = dispatch => ({
+  updateMenu: menu => dispatch(updateMenu(menu)),
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(App);
