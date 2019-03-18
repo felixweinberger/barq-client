@@ -1,26 +1,42 @@
 import React from 'react';
 
+import SecondaryHead from '../ui/secondaryHead';
+import MenuItem from '../ui/menuItem';
 import Loader from '../ui/loader';
 import Logo from '../ui/logo';
-import Category from '../ui/category';
 import Footer from '../ui/footer';
 
 import '../styles/containers/menu.css';
 
-const Menu = ({ menu: { categories } }) => (
+const Menu = ({ menu, updatePage }) => (
   <div className="menu">
     {
-      !categories
+      !menu
         ? <Loader />
         : (
           <>
-            <Logo logoPath="/logo.jpg" barName="Penderels Oak" />
-            {
-              categories.map(category => (
-                <Category key={category._id} category={category} />
-              ))
-            }
-            <Footer buttonName="Checkout" onClick={() => console.log('clicked')} />
+            <Logo logoPath="/logo.jpg" barName={menu.name} />
+            <div className="menu__categories">
+              {
+                menu.map(({ name, items }) => (
+                  <div key={name} className="category">
+                    <SecondaryHead title={name} />
+                    {
+                      items.map(item => (
+                        <MenuItem
+                          key={item.name}
+                          item={item}
+                        />
+                      ))
+                    }
+                  </div>
+                ))
+              }
+            </div>
+            <Footer
+              primaryButtonName="Checkout"
+              onPrimaryClick={() => updatePage('CHECKOUT')}
+            />
           </>
         )
    }
