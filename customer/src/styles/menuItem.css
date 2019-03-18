@@ -1,0 +1,11 @@
+.menu-item {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  font-size: 2rem;
+}
+
+.menu-item__name {
+  margin-right: 1rem;
+
+}
