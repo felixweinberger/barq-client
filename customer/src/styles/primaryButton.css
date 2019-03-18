@@ -1,0 +1,21 @@
+.primaryButton {
+  display: inline-block;
+  flex: 0;
+  align-self: center;
+
+  border: none;
+  outline: none;
+  cursor: pointer;
+  border-radius: 0.25rem;
+  box-shadow: var(--primary-shadow), var(--secondary-shadow);
+
+  margin: 0.5rem;
+  padding: 0.5rem 1.5rem;
+
+  font-size: 2rem;
+  font-family: var(--sans-serif);
+
+  background: var(--primary-color);
+  color: var(--primary-color-on);
+}
+

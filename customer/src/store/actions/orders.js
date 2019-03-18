@@ -1,4 +1,5 @@
-export const incrementItem = (itemId, n) => ({
-  type : 'INCREMENT_ITEM',
-  itemId, n
-})
+export const incrementItem = (itemId, n) => ({ // eslint-disable-line import/prefer-default-export
+  type: 'INCREMENT_ITEM',
+  itemId,
+  n,
+});
