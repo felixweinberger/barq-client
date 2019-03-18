@@ -1,11 +1,12 @@
-.footer {
+.header {
   position: fixed;
-  height: var(--footer-height);
+  height: var(--header-height);
   width: 100%;
   background-color: var(--secondary-color-light);
 
-  bottom: 0;
+  top: 0;
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 1rem 2rem;
 }

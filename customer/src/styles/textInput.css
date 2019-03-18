@@ -1,3 +1,12 @@
 .input {
-  font-size: 10px;
+  font-size: 1rem;
+}
+
+.input__title {
+  margin: 0;
+}
+
+.input__input {
+  width: 100%;
+  box-shadow: var(--primary-shadow-inset);
 }
