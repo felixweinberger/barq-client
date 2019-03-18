@@ -1,108 +1,88 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import axios from 'axios';
 
-import { updateMenu } from './store/actions/entities';
+import { updateBar } from './store/actions/entities';
+import { updatePage } from './store/actions/view';
 
 import Menu from './containers/menu';
+import Checkout from './containers/checkout';
+import Pay from './containers/pay';
+import Queue from './containers/queue';
 
 import './App.css';
 
-const fakeMenu = {
-  _id: '123',
-  categories: [
-    {
-      _id: 3,
-      name: 'Happy hour!',
-      items: [
-        {
-          _id: 7,
-          name: 'Copa de Sangria Roja',
-          price: 3.5,
-          currency: 'EUR',
-        },
-        {
-          _id: 8,
-          name: 'Estrella',
-          price: 1.5,
-          currency: 'EUR',
-        },
-        {
-          _id: 9,
-          name: 'Terrible shots',
-          price: 1,
-          currency: 'EUR',
-        },
-      ],
-    },
-    {
-      _id: 1,
-      name: 'Bottled beers',
-      items: [
-        {
-          _id: 1,
-          name: 'Corona',
-          price: 3.6,
-          currency: 'EUR',
-        },
-        {
-          _id: 2,
-          name: 'Heineken',
-          price: 2.3,
-          currency: 'EUR',
-        },
-        {
-          _id: 3,
-          name: 'Fancy ass beer',
-          price: 12.3,
-          currency: 'EUR',
-        },
-      ],
-    },
-    {
-      _id: 2,
-      name: 'Wines',
-      items: [
-        {
-          _id: 4,
-          name: 'Vino tinto de la casa',
-          price: 3.5,
-          currency: 'EUR',
-        },
-        {
-          _id: 5,
-          name: 'Medium priced wine',
-          price: 5.3,
-          currency: 'EUR',
-        },
-        {
-          _id: 6,
-          name: 'Fancy ass wine',
-          price: 12.3,
-          currency: 'EUR',
-        },
-      ],
-    },
-  ],
-};
-
 class App extends Component { // eslint-disable-line
+  switch = {
+    MENU: () => <Menu updatePage={this.props.updatePage} menu={this.props.menu} />,
+    CHECKOUT: () => (
+      <Checkout
+        updatePage={this.props.updatePage}
+        totals={this.props.totals}
+        orderDetails={this.props.orderDetails}
+      />
+    ),
+    PAY: () => (
+      <Pay
+        updatePage={this.props.updatePage}
+        orderDetails={this.props.orderDetails}
+        totals={this.props.totals}
+      />
+    ),
+    QUEUE: () => <Queue />,
+  }
+
   componentDidMount = () => {
-    this.props.updateMenu(fakeMenu);
+    axios.get('https://private-anon-cdc859ad92-barq.apiary-mock.com/a791xu/menu')
+      .then((res) => {
+        console.log(res.data);
+        this.props.updateBar(res.data);
+      });
   }
 
   render() {
     return (
-      <Menu menu={this.props.menu} />
+      this.switch[this.props.page]()
     );
   }
 }
 
+const getOrderDetails = (order, catalog) => (
+  Object.entries(order).map(([itemId, quantity]) => ({ ...catalog[itemId], quantity }))
+);
+
+const getOrderTotal = (order, catalog, vatRate, tipRate) => {
+  const orderDetails = getOrderDetails(order, catalog);
+  const pretaxTotal = orderDetails.reduce((acc, cur) => acc + cur.price * cur.quantity, 0);
+  const vat = pretaxTotal * vatRate;
+  const pretipTotal = pretaxTotal + vat;
+  const tip = pretipTotal * tipRate;
+  const total = pretipTotal + tip;
+  return {
+    pretaxTotal,
+    vat,
+    tip,
+    total,
+  };
+};
+
 const mapStateToProps = state => ({
-  menu: state.entities.menu,
+  menu: state.entities.bar.menu,
+  catalog: state.entities.bar.catalog,
+  order: state.entities.order.items,
+  page: state.view.page,
+  orderDetails: getOrderDetails(state.entities.order.items, state.entities.bar.catalog),
+  totals: getOrderTotal(
+    state.entities.order.items,
+    state.entities.bar.catalog,
+    state.entities.bar.vatRate,
+    state.entities.order.tipRate,
+  ),
 });
 
 const mapDispatchToProps = dispatch => ({
-  updateMenu: menu => dispatch(updateMenu(menu)),
+  updateBar: bar => dispatch(updateBar(bar)),
+  updatePage: page => (dispatch(updatePage(page))),
 });
 
 export default connect(
