@@ -1,23 +1,23 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { incrementItem as actionIncrementItem } from '../store/actions/entities';
+import { incrementItem as actionIncrementItem } from '../../store/actions/entities';
 
-import Text from './text';
-import IconButton from './iconButton';
-import Price from './price';
+import Text from '../text';
+import IconButton from '../iconButton';
+import Price from '../price';
 import Counter from './counter';
 
-import '../styles/menuItem.css';
+import '../../styles/menuItem.css';
 
 const MenuItem = ({
   item: {
-    _id, currency, name, price,
+    currency, name, price,
   },
   order,
   incrementItem,
 }) => {
-  const number = order[_id] || 0;
+  const number = order[name] || 0;
   return (
     <div className="menu-item">
       <div className="menu-item__name">
@@ -27,8 +27,8 @@ const MenuItem = ({
       </div>
       <Counter
         count={number}
-        onAdd={() => incrementItem(_id, 1)}
-        onMinus={() => incrementItem(_id, -1)}
+        onAdd={() => incrementItem(name, 1)}
+        onMinus={() => incrementItem(name, -1)}
       />
     </div>
   );

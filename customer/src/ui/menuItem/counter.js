@@ -1,8 +1,8 @@
 import React from 'react';
 
-import IconButton from './iconButton';
+import IconButton from '../iconButton';
 
-import '../styles/counter.css';
+import '../../styles/counter.css';
 
 const Counter = ({ count, onMinus, onAdd }) => (
   <div className="counter">
