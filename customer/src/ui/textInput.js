@@ -1,5 +1,6 @@
 import React from 'react';
-import '../styles/specialWishes.css';
+
+import '../styles/textInput.css';
 
 const specialWishes = ({ text, addText }) => (
   <div className="input">

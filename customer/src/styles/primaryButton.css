@@ -7,7 +7,7 @@
   outline: none;
   cursor: pointer;
   border-radius: 0.25rem;
-  box-shadow: var(--primary-shadow), var(--secondary-shadow);
+  box-shadow: var(--primary-shadow);
 
   margin: 0.5rem;
   padding: 0.5rem 1.5rem;

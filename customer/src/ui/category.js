@@ -1,15 +1,18 @@
 import React from 'react';
 
+import SecondaryHead from './secondaryHead';
 import MenuItem from './menuItem';
 
-const Category = ({ category: { name, menuItems } }) => (
-  <div>
-    {name}
+import '../styles/category.css';
+
+const Category = ({ category: { name, items } }) => (
+  <div className="category">
+    <SecondaryHead title={name} />
     {
-      menuItems.map(menuItem => (
+      items.map(item => (
         <MenuItem
-          key={menuItem._id}
-          menuItem={menuItem}
+          key={item._id}
+          item={item}
         />
       ))
     }

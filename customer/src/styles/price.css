@@ -1,6 +1,7 @@
 .price {
   min-width: 6rem;
-  text-align: right;
-  font-family: var(--sans-serif);
+  text-align: left;
+  font-family: var(--serif);
+  font-style: italic;
   font-size: 1.5rem;
 }

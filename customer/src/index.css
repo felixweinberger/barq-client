@@ -1,14 +1,28 @@
+@import url('https://fonts.googleapis.com/css?family=Merriweather|Roboto:400,400i,700');
+
 :root {
-  --sans-serif: sans-serif;
-  --serif: serif;
+  --sans-serif: 'Roboto', sans-serif;
+  --serif: 'Meeriweather', serif;
 
   --primary-shadow: 0px 2px 5px 0px rgba(0,0,0,0.75);
   --secondary-shadow: 0px 2px 10px 0px rgba(122,122,122,1);
 
-  --primary-color: black;
-  --primary-color-on: white;
+  --primary-color: #E6AF2E;
+  --primary-color-on: #191716;
+  --secondary-color-light: #f4f4f4;
+  --secondary-color-on: #E0E2DB;
 
   --light-border: black;
+
+  --footer-height: 3rem;
+
+  margin: 0;
+  padding: 0;
+}
+
+body, #root {
+  margin: 0;
+  padding: 0;
 }
 
 input {

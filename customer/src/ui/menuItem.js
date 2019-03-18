@@ -1,37 +1,45 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { incrementItem } from '../store/actions/orders';
+import { incrementItem as actionIncrementItem } from '../store/actions/order';
 
+import Text from './text';
 import IconButton from './iconButton';
 import Price from './price';
 import Counter from './counter';
 
 import '../styles/menuItem.css';
 
-const MenuItem = (props) => {
-  const { menuItem: { name, price } } = props;
-  const number = props.orders[props.menuItem._id] || 0;
+const MenuItem = ({
+  item: {
+    _id, currency, name, price,
+  },
+  order,
+  incrementItem,
+}) => {
+  const number = order[_id] || 0;
   return (
     <div className="menu-item">
-      <span className="menu-item__name">{name}</span>
-      <IconButton iconUrl="/info.png" />
-      <Price price={price} style={{ margin: '0 0.5rem' }} />
+      <div className="menu-item__name">
+        <Text content={name} />
+        <Price price={price} currency={currency} />
+        <IconButton iconUrl="/info.png" />
+      </div>
       <Counter
         count={number}
-        onAdd={() => props.incrementItem(props.menuItem._id, 1)}
-        onMinus={() => props.incrementItem(props.menuItem._id, -1)}
+        onAdd={() => incrementItem(_id, 1)}
+        onMinus={() => incrementItem(_id, -1)}
       />
     </div>
   );
 };
 
 const mapStateToProps = state => ({
-  orders: state.orders,
+  order: state.order,
 });
 
 const mapDispatchToProps = dispatch => ({
-  incrementItem: (itemId, n) => dispatch(incrementItem(itemId, n)),
+  incrementItem: (itemId, n) => dispatch(actionIncrementItem(itemId, n)),
 });
 
 export default connect(

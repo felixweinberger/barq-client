@@ -1,9 +1,9 @@
 .icon-button {
   cursor: pointer;
   flex-shrink: 0;
-
+  
+  background-color: inherit;
   background-size: contain;
-  background-color: rbga(0, 0, 0, 0.9);
   background-repeat: no-repeat;
   background-position: center;
   
