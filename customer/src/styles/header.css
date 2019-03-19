@@ -1,0 +1,12 @@
+.header {
+  position: fixed;
+  height: var(--header-height);
+  width: 100%;
+  background-color: var(--secondary-color-light);
+
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem 2rem;
+}

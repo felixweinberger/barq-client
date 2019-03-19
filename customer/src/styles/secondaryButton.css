@@ -1,21 +1,18 @@
 .secondaryButton {
   display: inline-block;
-  flex: 0;
-  align-self: center;
+  flex: 1;
+  align-self: stretch;
 
   border: none;
   outline: none;
   cursor: pointer;
-  border-radius: 0.25rem;
-  border: var(--light-border) 1px solid;
 
-  margin: 0.5rem;
   padding: 0.5rem 1rem;
 
   font-size: 1.5rem;
   font-family: var(--sans-serif);
 
-  background: var(--primary-color-on);
-  color: var(--primary-color);
+  background: var(--secondary-color);
+  color: var(--secondary-color-on);
 }
 

@@ -1,12 +1,18 @@
 import React from 'react';
 
+import PrimaryHead from './primaryHead';
+
 import '../styles/logo.css';
 
-const Logo = ({ logo }) => (
-  <div className="wrapper">
-    <div className="logo">
-      <img src={logo} alt="logo" />
-    </div>
+const Logo = ({ logoPath, barName }) => (
+  <div className="logo">
+    <PrimaryHead title={barName} />
+    <div
+      className="logo__image"
+      style={{
+        backgroundImage: `url(${logoPath})`,
+      }}
+    />
   </div>
 );
 
