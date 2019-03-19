@@ -49,6 +49,7 @@ class PaymentForm extends Component {
 
   handleSubmit = async (e) => {
     e.preventDefault();
+    if (!this.state.button.clickable) return;
     try {
       this.setState({
         button: this.buttonStates.paying,

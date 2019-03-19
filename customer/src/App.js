@@ -14,6 +14,7 @@ import Menu from './containers/menu';
 import Checkout from './containers/checkout';
 import Pay from './containers/pay';
 import Queue from './containers/queue';
+import Closed from './containers/closed';
 
 import './App.css';
 
