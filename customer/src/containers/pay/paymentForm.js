@@ -58,17 +58,17 @@ class PaymentForm extends Component {
       if (!token) throw new Error('Failed');
       const orderData = {
         stripe: {
-          amount: this.props.totals.total,
+          amount: Number(this.props.totals.total.toFixed(2)) * 100,
           currency: 'eur',
           description: 'Drinks order',
-          source: token,
-          statement_descriptor: '',
+          source: token.id,
+          statement_descriptor: 'Drinks order',
         },
         order: {
           items: this.props.order,
         },
       };
-      const { data } = await axios.post('https://private-anon-cdc859ad92-barq.apiary-mock.com/barId/pay', orderData);
+      const { data } = await axios.post(`${window.location.pathname}/pay`, orderData);
       if (data.status === 'paid') {
         this.props.updateOrder(data);
         this.setState({

@@ -8,12 +8,13 @@ import '../styles/containers/queue.css';
 
 class Queue extends Component {
   componentDidMount = () => {
-    this.socket = io('/ax9249', {
+    this.socket = io(window.location.pathname, {
       query: {
-        bar: '/ax9249',
+        bar: window.location.pathname,
         orderNumber: this.props.orderId,
       },
     });
+    console.log(this.props.orderId);
     this.socket.emit('NEW_ORDER', {
       orderId: this.props.orderId,
       status: this.props.orderStatus,

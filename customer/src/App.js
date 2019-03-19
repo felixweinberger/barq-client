@@ -52,12 +52,16 @@ class App extends Component { // eslint-disable-line
         clearOrder={this.props.clearOrder}
       />
     ),
+    CLOSED: () => (
+      <Closed />
+    ),
   }
 
   componentDidMount = () => {
-    axios.get('https://private-anon-cdc859ad92-barq.apiary-mock.com/a791xu/menu')
+    axios.get(`${window.location.pathname}/menu`)
       .then((res) => {
         this.props.updateBar(res.data);
+        if (res.data.open === 'false') this.props.updatePage('CLOSED');
       });
   }
 
