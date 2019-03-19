@@ -2,7 +2,12 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
 
-import { updateBar, updateOrder } from './store/actions/entities';
+import {
+  updateBar,
+  updateOrder,
+  updateStatus,
+  clearOrder,
+} from './store/actions/entities';
 import { updatePage } from './store/actions/view';
 
 import Menu from './containers/menu';
@@ -14,7 +19,13 @@ import './App.css';
 
 class App extends Component { // eslint-disable-line
   switch = {
-    MENU: () => <Menu updatePage={this.props.updatePage} bar={this.props.bar} />,
+    MENU: () => (
+      <Menu
+        updatePage={this.props.updatePage}
+        bar={this.props.bar}
+        order={this.props.order}
+      />
+    ),
     CHECKOUT: () => (
       <Checkout
         updatePage={this.props.updatePage}
@@ -33,8 +44,11 @@ class App extends Component { // eslint-disable-line
     QUEUE: () => (
       <Queue
         order={this.props.order}
+        updatePage={this.props.updatePage}
         orderId={this.props.orderId}
         orderStatus={this.props.orderStatus}
+        updateStatus={this.props.updateStatus}
+        clearOrder={this.props.clearOrder}
       />
     ),
   }
@@ -48,7 +62,9 @@ class App extends Component { // eslint-disable-line
 
   render() {
     return (
-      this.switch[this.props.page]()
+      <div className="App">
+        { this.switch[this.props.page]() }
+      </div>
     );
   }
 }
@@ -90,6 +106,8 @@ const mapDispatchToProps = dispatch => ({
   updateBar: bar => dispatch(updateBar(bar)),
   updatePage: page => dispatch(updatePage(page)),
   updateOrder: order => dispatch(updateOrder(order)),
+  updateStatus: status => dispatch(updateStatus(status)),
+  clearOrder: () => dispatch(clearOrder()),
 });
 
 export default connect(

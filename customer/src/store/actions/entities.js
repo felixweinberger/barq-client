@@ -13,3 +13,12 @@ export const updateOrder = order => ({
   type: 'UPDATE_ORDER',
   ...order,
 });
+
+export const updateStatus = status => ({
+  type: 'UPDATE_STATUS',
+  status,
+});
+
+export const clearOrder = () => ({
+  type: 'CLEAR_ORDER',
+});

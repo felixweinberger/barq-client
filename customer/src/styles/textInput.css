@@ -1,5 +1,4 @@
 .input {
-  font-size: 1rem;
 }
 
 .input__title {
@@ -7,6 +6,7 @@
 }
 
 .input__input {
+  font-size: 1rem;
   width: 100%;
   box-shadow: var(--primary-shadow-inset);
 }

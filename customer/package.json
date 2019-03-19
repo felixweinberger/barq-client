@@ -10,7 +10,8 @@
     "react-redux": "^6.0.1",
     "react-scripts": "2.1.8",
     "react-stripe-elements": "^2.0.3",
-    "redux": "^4.0.1"
+    "redux": "^4.0.1",
+    "socket.io-client": "^2.2.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -40,5 +41,7 @@
     "hooks": {
       "pre-commit": "npx eslint ./"
     }
-  }
+  },
+  "secure": false,
+  "proxy": "http://localhost:3001"
 }

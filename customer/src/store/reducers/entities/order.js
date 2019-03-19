@@ -22,6 +22,9 @@ const items = (state = initialState.items, action) => {
       return state;
       // return mapValues(keyBy(action.items, 'name'), o => o.quantity);
     }
+    case 'CLEAR_ORDER': {
+      return initialState.items;
+    }
     default: {
       return state;
     }
@@ -32,6 +35,9 @@ const tipRate = (state = initialState.tipRate, action) => {
   switch (action.type) {
     case 'UPDATE_TIP_RATE': {
       return action.tipRate;
+    }
+    case 'CLEAR_ORDER': {
+      return initialState.tipRate;
     }
     default: {
       return state;
@@ -44,6 +50,9 @@ const orderId = (state = initialState.orderId, action) => {
     case 'UPDATE_ORDER': {
       return action.orderId;
     }
+    case 'CLEAR_ORDER': {
+      return initialState.orderId;
+    }
     default: {
       return state;
     }
@@ -54,6 +63,12 @@ const status = (state = initialState.status, action) => {
   switch (action.type) {
     case 'UPDATE_ORDER': {
       return action.status;
+    }
+    case 'UPDATE_STATUS': {
+      return action.status;
+    }
+    case 'CLEAR_ORDER': {
+      return initialState.status;
     }
     default: {
       return state;

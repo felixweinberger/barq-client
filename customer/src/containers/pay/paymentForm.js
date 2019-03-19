@@ -14,24 +14,44 @@ import Footer from '../../ui/footer';
 class PaymentForm extends Component {
   readyCounter = 0;
 
-  state = {
-    paid: false,
-    button: {
+  buttonStates = {
+    loading: {
       title: 'Loading',
       clickable: false,
       type: 'neutral',
     },
+    paying: {
+      title: 'Paying...',
+      clickable: false,
+      type: 'neutral',
+    },
+    success: {
+      title: 'Track order!',
+      clickable: true,
+      type: 'success',
+    },
+    failed: {
+      title: 'Try Again',
+      clickable: true,
+      type: 'danger',
+    },
+    ready: {
+      title: 'Submit',
+      clickable: true,
+      type: 'success',
+    },
+  }
+
+  state = {
+    paid: false,
+    button: this.buttonStates.loading,
   };
 
   handleSubmit = async (e) => {
     e.preventDefault();
     try {
       this.setState({
-        button: {
-          title: 'Paying...',
-          clickable: false,
-          type: 'neutral',
-        },
+        button: this.buttonStates.paying,
       });
       const { token } = await this.props.stripe.createToken({ name: 'test' });
       if (!token) throw new Error('Failed');
@@ -49,25 +69,17 @@ class PaymentForm extends Component {
       };
       const { data } = await axios.post('https://private-anon-cdc859ad92-barq.apiary-mock.com/barId/pay', orderData);
       if (data.status === 'paid') {
-        console.log(data);
         this.props.updateOrder(data);
         this.setState({
           paid: true,
-          button: {
-            title: 'Track order!',
-            clickable: true,
-            type: 'success',
-          },
+          button: this.buttonStates.success,
         });
+        this.props.updatePage('QUEUE');
       }
     } catch (err) {
       console.log(err);
       this.setState({
-        button: {
-          title: 'Try Again',
-          clickable: true,
-          type: 'danger',
-        },
+        button: this.buttonStates.failed,
       });
     }
   }
@@ -82,11 +94,7 @@ class PaymentForm extends Component {
     this.readyCounter += 1;
     if (this.readyCounter === 4) {
       this.setState({
-        button: {
-          title: 'Submit',
-          clickable: true,
-          type: 'success',
-        },
+        button: this.buttonStates.ready,
       });
     }
   };
@@ -111,70 +119,55 @@ class PaymentForm extends Component {
 
   render() {
     return (
-      <>
-        {
-          !this.state.paid
-            ? (
-              <form className="pay__form" onSubmit={this.handleSubmit}>
-                <label>
-                  Card number
-                  <CardNumberElement
-                    onBlur={this.handleBlur}
-                    onChange={this.handleChange}
-                    onFocus={this.handleFocus}
-                    onReady={this.handleReady}
-                    {...this.createOptions(this.props.fontSize)}
-                  />
-                </label>
-                <label>
-                  Expiration date
-                  <CardExpiryElement
-                    onBlur={this.handleBlur}
-                    onChange={this.handleChange}
-                    onFocus={this.handleFocus}
-                    onReady={this.handleReady}
-                    {...this.createOptions(this.props.fontSize)}
-                  />
-                </label>
-                <label>
-                  CVC
-                  <CardCVCElement
-                    onBlur={this.handleBlur}
-                    onChange={this.handleChange}
-                    onFocus={this.handleFocus}
-                    onReady={this.handleReady}
-                    {...this.createOptions(this.props.fontSize)}
-                  />
-                </label>
-                <label>
-                  Postal code
-                  <PostalCodeElement
-                    onBlur={this.handleBlur}
-                    onChange={this.handleChange}
-                    onFocus={this.handleFocus}
-                    onReady={this.handleReady}
-                    {...this.createOptions(this.props.fontSize)}
-                  />
-                </label>
-                <Footer
-                  primaryButtonName={this.state.button.title}
-                  primaryButtonType={this.state.button.type}
-                  primaryButtonClickable={this.state.button.clickable}
-                  secondaryButtonName="Back"
-                  onSecondaryClick={() => this.props.updatePage('CHECKOUT')}
-                />
-              </form>
-            )
-            : (
-              <Footer
-                primaryButtonName={this.state.button.title}
-                primaryButtonType={this.state.button.type}
-                primaryButtonClickable={this.state.button.clickable}
-                onPrimaryClick={() => this.props.updatePage('QUEUE')}
-              />
-            )
-        }
-      </>
+      <form className="pay__form" onSubmit={this.handleSubmit}>
+        <label>
+          Card number
+          <CardNumberElement
+            onBlur={this.handleBlur}
+            onChange={this.handleChange}
+            onFocus={this.handleFocus}
+            onReady={this.handleReady}
+            {...this.createOptions(this.props.fontSize)}
+          />
+        </label>
+        <label>
+          Expiration date
+          <CardExpiryElement
+            onBlur={this.handleBlur}
+            onChange={this.handleChange}
+            onFocus={this.handleFocus}
+            onReady={this.handleReady}
+            {...this.createOptions(this.props.fontSize)}
+          />
+        </label>
+        <label>
+          CVC
+          <CardCVCElement
+            onBlur={this.handleBlur}
+            onChange={this.handleChange}
+            onFocus={this.handleFocus}
+            onReady={this.handleReady}
+            {...this.createOptions(this.props.fontSize)}
+          />
+        </label>
+        <label>
+          Postal code
+          <PostalCodeElement
+            onBlur={this.handleBlur}
+            onChange={this.handleChange}
+            onFocus={this.handleFocus}
+            onReady={this.handleReady}
+            {...this.createOptions(this.props.fontSize)}
+          />
+        </label>
+        <Footer
+          primaryButtonName={this.state.button.title}
+          primaryButtonType={this.state.button.type}
+          primaryButtonClickable={this.state.button.clickable}
+          secondaryButtonName={this.state.paid ? null : 'Back'}
+          onSecondaryClick={this.state.paid ? null : () => this.props.updatePage('CHECKOUT')}
+        />
+      </form>
     );
   }
 }

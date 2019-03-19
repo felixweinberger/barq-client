@@ -16,6 +16,7 @@ const MenuItem = ({
   },
   order,
   incrementItem,
+  editable = true,
 }) => {
   const number = order[name] || 0;
   return (
@@ -25,11 +26,16 @@ const MenuItem = ({
         <Price price={price} currency={currency} />
         <IconButton iconUrl="/info.png" />
       </div>
-      <Counter
-        count={number}
-        onAdd={() => incrementItem(name, 1)}
-        onMinus={() => incrementItem(name, -1)}
-      />
+      {
+        editable
+        && (
+          <Counter
+            count={number}
+            onAdd={() => incrementItem(name, 1)}
+            onMinus={() => incrementItem(name, -1)}
+          />
+        )
+      }
     </div>
   );
 };

@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { sumBy } from 'lodash';
+
 import SecondaryHead from '../ui/secondaryHead';
 import MenuItem from '../ui/menuItem';
 import Loader from '../ui/loader';
@@ -8,7 +10,7 @@ import Footer from '../ui/footer';
 
 import '../styles/containers/menu.css';
 
-const Menu = ({ bar: { menu, name: barName }, updatePage }) => (
+const Menu = ({ bar: { menu, name: barName }, updatePage, order }) => (
   <div className="menu">
     {
       !menu
@@ -34,7 +36,9 @@ const Menu = ({ bar: { menu, name: barName }, updatePage }) => (
               }
             </div>
             <Footer
-              primaryButtonName="Checkout"
+              primaryButtonName={sumBy(order, 'quantity') > 0 ? 'Checkout' : 'Nothing Selected'}
+              primaryButtonType={sumBy(order, 'quantity') > 0 ? 'success' : 'neutral'}
+              primaryButtonClickable={sumBy(order, 'quantity') > 0}
               onPrimaryClick={() => updatePage('CHECKOUT')}
             />
           </>
