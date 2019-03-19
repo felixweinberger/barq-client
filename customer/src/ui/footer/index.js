@@ -7,6 +7,8 @@ import '../../styles/footer.css';
 
 const Footer = ({
   primaryButtonName,
+  primaryButtonType,
+  primaryButtonClickable = true,
   onPrimaryClick,
   secondaryButtonName,
   onSecondaryClick,
@@ -16,7 +18,11 @@ const Footer = ({
       onSecondaryClick
       && <SecondaryButton title={secondaryButtonName} onClick={onSecondaryClick} />
     }
-    <PrimaryButton title={primaryButtonName} onClick={onPrimaryClick} />
+    <PrimaryButton
+      title={primaryButtonName}
+      onClick={primaryButtonClickable ? onPrimaryClick : null}
+      type={primaryButtonType}
+    />
   </div>
 );
 

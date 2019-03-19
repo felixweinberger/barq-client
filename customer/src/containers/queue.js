@@ -1,9 +1,13 @@
 import React from 'react';
 
-const queue = () => (
-  <div>
-    queue
-  </div>
-);
+const Queue = ({ order }) => { // eslint-disable-line
+  return (
+    <div>
+      {
+        order.map(item => <div key={item.name}>{item.name}</div>)
+      }
+    </div>
+  );
+};
 
-export default queue;
+export default Queue;

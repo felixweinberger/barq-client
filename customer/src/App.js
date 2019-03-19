@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
 
-import { updateBar } from './store/actions/entities';
+import { updateBar, updateOrder } from './store/actions/entities';
 import { updatePage } from './store/actions/view';
 
 import Menu from './containers/menu';
@@ -14,28 +14,34 @@ import './App.css';
 
 class App extends Component { // eslint-disable-line
   switch = {
-    MENU: () => <Menu updatePage={this.props.updatePage} menu={this.props.menu} />,
+    MENU: () => <Menu updatePage={this.props.updatePage} bar={this.props.bar} />,
     CHECKOUT: () => (
       <Checkout
         updatePage={this.props.updatePage}
         totals={this.props.totals}
-        orderDetails={this.props.orderDetails}
+        order={this.props.order}
       />
     ),
     PAY: () => (
       <Pay
         updatePage={this.props.updatePage}
-        orderDetails={this.props.orderDetails}
+        updateOrder={this.props.updateOrder}
+        order={this.props.order}
         totals={this.props.totals}
       />
     ),
-    QUEUE: () => <Queue />,
+    QUEUE: () => (
+      <Queue
+        order={this.props.order}
+        orderId={this.props.orderId}
+        orderStatus={this.props.orderStatus}
+      />
+    ),
   }
 
   componentDidMount = () => {
     axios.get('https://private-anon-cdc859ad92-barq.apiary-mock.com/a791xu/menu')
       .then((res) => {
-        console.log(res.data);
         this.props.updateBar(res.data);
       });
   }
@@ -67,11 +73,11 @@ const getOrderTotal = (order, catalog, vatRate, tipRate) => {
 };
 
 const mapStateToProps = state => ({
-  menu: state.entities.bar.menu,
-  catalog: state.entities.bar.catalog,
-  order: state.entities.order.items,
+  bar: state.entities.bar,
   page: state.view.page,
-  orderDetails: getOrderDetails(state.entities.order.items, state.entities.bar.catalog),
+  orderId: state.entities.order.orderId,
+  orderStatus: state.entities.order.status,
+  order: getOrderDetails(state.entities.order.items, state.entities.bar.catalog),
   totals: getOrderTotal(
     state.entities.order.items,
     state.entities.bar.catalog,
@@ -82,7 +88,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   updateBar: bar => dispatch(updateBar(bar)),
-  updatePage: page => (dispatch(updatePage(page))),
+  updatePage: page => dispatch(updatePage(page)),
+  updateOrder: order => dispatch(updateOrder(order)),
 });
 
 export default connect(

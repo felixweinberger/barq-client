@@ -8,3 +8,8 @@ export const updateBar = bar => ({
   type: 'UPDATE_BAR',
   ...bar,
 });
+
+export const updateOrder = order => ({
+  type: 'UPDATE_ORDER',
+  ...order,
+});

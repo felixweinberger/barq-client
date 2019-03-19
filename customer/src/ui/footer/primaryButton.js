@@ -3,14 +3,14 @@ import React from 'react';
 import '../../styles/primaryButton.css';
 
 const PrimaryButton = ({
-  title, onClick, loading, loadText, styles,
+  title, onClick, clickable, type, style,
 }) => (
   <input
     type="submit"
-    className="primaryButton"
-    value={!loading ? title : (loadText || 'Loading...')}
+    className={`primary-button--${type || 'success'} ${clickable ? '' : 'noclick'}`}
     onClick={onClick}
-    styles={{ ...styles }}
+    value={title || 'Submit'}
+    style={{ ...style }}
   />
 );
 

@@ -8,21 +8,21 @@ import TextInput from '../ui/inputs/textInput';
 
 import '../styles/containers/checkout.css';
 
-const Checkout = ({ orderDetails, totals, updatePage }) => {
+const Checkout = ({ order, totals, updatePage }) => {
   const [tip, setTip] = useState(0); // eslint-disable-line
   const [specialWishes, setSpecialWishes] = useState('');
   return (
     <div className="checkout">
       {
-        !orderDetails
+        !order
           ? <Loader />
           : (
             <>
               <div className="bill">
                 {
-                  orderDetails.length === 0
+                  order.length === 0
                     ? <div>No items selected...</div>
-                    : orderDetails.map(item => <MenuItem key={item.name} item={item} />)
+                    : order.map(item => <MenuItem key={item.name} item={item} />)
                 }
                 <div>
                   VAT.....

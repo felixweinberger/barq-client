@@ -35,7 +35,7 @@ const MenuItem = ({
 };
 
 const mapStateToProps = state => ({
-  order: state.entities.order,
+  order: state.entities.order.items,
 });
 
 const mapDispatchToProps = dispatch => ({

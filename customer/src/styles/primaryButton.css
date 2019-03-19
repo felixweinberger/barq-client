@@ -1,4 +1,4 @@
-.primaryButton {
+[class^="primary-button"] {
   display: inline-block;
   flex: 3;
   align-self: stretch;
@@ -10,8 +10,19 @@
 
   font-size: 2rem;
   font-family: var(--sans-serif);
+}
 
+.primary-button--success {
   background: var(--primary-color);
   color: var(--primary-color-on);
 }
 
+.primary-button--danger {
+  background: var(--danger-color);
+  color: var(--danger-color-on);
+}
+
+.primary-button--neutral {
+  background: var(--secondary-color);
+  color: var(--secondary-color-on);
+}
