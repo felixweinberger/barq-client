@@ -1,0 +1,45 @@
+import React, { Component } from 'react';
+import axios from 'axios';
+import PopUp from '../ui/popup.js';
+import OrderListItem from '../ui/orderListItem.js';
+
+
+class Main extends Component {
+  url = 'https://private-anon-4ec664d10a-barq.apiary-mock.com/staff/a791xu/queue';
+
+  componentDidMount() {
+    this.listAllOrders();
+  }
+
+  listAllOrders = () => {
+    axios.get(this.url, {headers: {"Content-type": "application/json"}})
+     .then(res => {
+       const { queue } = res.data;
+       this.props.updateQueue(queue)
+     })
+  }
+  
+  render() {
+    return (
+      <div className="main">
+      {
+        !this.props.queue
+        ? <div>loading...</div>
+        : this.props.queue.map(list => {
+            return (
+              <OrderListItem
+                key={list.orderId}
+                orderId={list.orderId}
+                items={list.items}
+                status={list.status}
+              />
+            )
+          })
+      }
+      <PopUp/>
+      </div>  
+    );
+  }
+}
+
+export default Main;

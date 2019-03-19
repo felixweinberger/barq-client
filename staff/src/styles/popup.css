@@ -1,0 +1,14 @@
+.wrapper {
+  position: absolute;
+  right: 20px;
+  font-size: 18px;
+}
+
+.menu {
+  display: block;
+}
+
+.menu-item {
+  margin: 10px;
+
+}
