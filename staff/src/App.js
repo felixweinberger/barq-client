@@ -1,13 +1,38 @@
 import React, { Component } from 'react';
 import './App.css';
 import axios from 'axios';
-import Main from './Containers/main';
+import { connect } from 'react-redux';
 import io from 'socket.io-client';
-import { updateQueue, addOrder, updateStatus } from './store/actions';
-import { connect } from 'react-redux'
+
+import { updateQueue, addOrder, updateStatus, updatePage } from './store/actions';
+
+import Main from './Containers/main';
+import Display from './Containers/display';
+import PopUp from './ui/popup.js';
 
 class App extends Component {
   url = `/staff${window.location.pathname}/queue`;
+
+  switch = {
+    MAIN: () => (
+      <Main
+        socket={this.socket}
+        queue={this.props.queue}  
+      />
+    ),
+    HISTORY: () => (
+      <Main
+        socket={this.socket}
+        queue={this.props.history}  
+      />
+    ),
+    DISPLAY: () => (
+      <Display 
+      queue={this.props.queue}
+      history={this.props.history}
+      />
+    )
+  }
 
   componentDidMount() {
   }
@@ -49,14 +74,10 @@ class App extends Component {
   componentWillUnmount = () => this.closeSocket();
 
   render() {
-    console.log(this.props.queue);
     return (
       <div className="App">
-      <Main
-        socket={this.socket}
-        updateQueue={this.props.updateQueue}
-        queue={this.props.history}  
-      />
+        { this.switch[this.props.page]() }
+        <PopUp updatePage={this.props.updatePage}/>
       </div>  
     );
   }
@@ -65,7 +86,8 @@ class App extends Component {
 const mapStateToProps = (state) => {
   return {
     queue: state.queue,
-    history: state.history
+    history: state.history,
+    page: state.page
   }
 };
 
@@ -74,6 +96,7 @@ const mapDispatchToProps = (dispatch) => {
     updateQueue: (queue) => dispatch(updateQueue(queue)),
     addOrder: (order) => dispatch(addOrder(order)),
     updateStatus: (status, order) => dispatch(updateStatus(status, order)),
+    updatePage: (page) => dispatch(updatePage(page)),
   }
 }
 

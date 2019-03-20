@@ -12,3 +12,8 @@ export const updateStatus = (status, order) => ({
   type:'UPDATE_STATUS',
   status, order
 });
+
+export const updatePage = (page) => ({
+  type:'UPDATE_PAGE',
+  page
+});

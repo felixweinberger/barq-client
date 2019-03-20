@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import PopUp from '../ui/popup.js';
 import OrderListItem from '../ui/orderListItem.js';
 
 
@@ -26,7 +25,6 @@ class Main extends Component {
             )
           })
       }
-      <PopUp/>
       </div>  
     );
   }

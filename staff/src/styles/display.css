@@ -1,0 +1,11 @@
+.display {
+  display: flex;
+}
+
+.pickup {
+  flex-grow:2;
+}
+
+.right-side {
+  flex-grow: 1;
+}

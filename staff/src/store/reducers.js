@@ -3,6 +3,7 @@ import { combineReducers } from 'redux';
 const initialState = {
   queue: [],
   history: [],
+  page: 'MAIN'
 }
 
 function queue (state = initialState.queue, action) {
@@ -42,6 +43,17 @@ function history (state = initialState.history, action) {
   }
 }
 
+function page (state = initialState.page, action) {
+  switch (action.type) {
+    case 'UPDATE_PAGE': {
+      return action.page;
+    }
+    default: {
+      return state;
+    }
+  }
+}
+
 export default combineReducers({
-  queue, history
+  queue, history, page
 });
