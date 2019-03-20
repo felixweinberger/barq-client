@@ -55,6 +55,7 @@ class PaymentForm extends Component {
         button: this.buttonStates.paying,
       });
       const { token } = await this.props.stripe.createToken({ name: 'test' });
+      console.log(token);
       if (!token) throw new Error('Failed');
       const orderData = {
         stripe: {
@@ -68,6 +69,7 @@ class PaymentForm extends Component {
           items: this.props.order,
         },
       };
+      console.log(orderData);
       const { data } = await axios.post(`${window.location.pathname}/pay`, orderData);
       if (data.status === 'paid') {
         this.props.updateOrder(data);
@@ -104,7 +106,7 @@ class PaymentForm extends Component {
     style: {
       base: {
         fontSize,
-        color: '#424770',
+        color: 'white',
         letterSpacing: '0.025em',
         fontFamily: 'Source Code Pro, monospace',
         '::placeholder': {

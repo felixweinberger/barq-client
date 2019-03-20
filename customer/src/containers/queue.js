@@ -4,6 +4,7 @@ import io from 'socket.io-client';
 import Footer from '../ui/footer';
 import MenuItem from '../ui/menuItem';
 import BeerAnimation from '../ui/beerAnimation';
+import PrimaryHead from '../ui/primaryHead';
 
 import '../styles/containers/queue.css';
 
@@ -42,6 +43,8 @@ class Queue extends Component {
     return (
       <>
         <div className="queue">
+
+          <PrimaryHead title={`Your number... #${this.props.orderId}`} />
           <div className="bill">
             {
               this.props.order.map(item => (
@@ -50,7 +53,7 @@ class Queue extends Component {
             }
           </div>
           <BeerAnimation />
-          {this.props.orderStatus}
+          <PrimaryHead title={this.props.orderStatus} />
         </div>
         {
           this.props.orderStatus === 'delivered'

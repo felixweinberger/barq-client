@@ -14,6 +14,7 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+  background: rgba(0, 0, 0, 0.3);
 }
 
 .pay__number {

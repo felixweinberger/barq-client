@@ -9,5 +9,8 @@
 }
 
 .menu__category {
+  margin-bottom: 1rem;
+  padding: 0.5rem 1rem;
   box-shadow: var(--primary-shadow);
+  background: rgba(255, 255, 255, 0.2);
 }
