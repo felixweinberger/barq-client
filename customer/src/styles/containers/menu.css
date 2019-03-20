@@ -1,8 +1,13 @@
 .menu {
   position: relative;
+  flex-grow: 1;
   padding-bottom: var(--footer-height);
 }
 
 .menu__categories {
   padding: 0.5rem 1rem;
+}
+
+.menu__category {
+  box-shadow: var(--primary-shadow);
 }

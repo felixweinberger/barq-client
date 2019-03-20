@@ -58,7 +58,7 @@ class PaymentForm extends Component {
       if (!token) throw new Error('Failed');
       const orderData = {
         stripe: {
-          amount: Number(this.props.totals.total.toFixed(2)) * 100,
+          amount: Number((this.props.totals.total * 100).toFixed(0)),
           currency: 'eur',
           description: 'Drinks order',
           source: token.id,
@@ -121,7 +121,7 @@ class PaymentForm extends Component {
   render() {
     return (
       <form className="pay__form" onSubmit={this.handleSubmit}>
-        <label>
+        <label className="pay__number">
           Card number
           <CardNumberElement
             onBlur={this.handleBlur}
@@ -131,7 +131,7 @@ class PaymentForm extends Component {
             {...this.createOptions(this.props.fontSize)}
           />
         </label>
-        <label>
+        <label className="pay__expiry">
           Expiration date
           <CardExpiryElement
             onBlur={this.handleBlur}
@@ -141,26 +141,28 @@ class PaymentForm extends Component {
             {...this.createOptions(this.props.fontSize)}
           />
         </label>
-        <label>
-          CVC
-          <CardCVCElement
-            onBlur={this.handleBlur}
-            onChange={this.handleChange}
-            onFocus={this.handleFocus}
-            onReady={this.handleReady}
-            {...this.createOptions(this.props.fontSize)}
-          />
-        </label>
-        <label>
-          Postal code
-          <PostalCodeElement
-            onBlur={this.handleBlur}
-            onChange={this.handleChange}
-            onFocus={this.handleFocus}
-            onReady={this.handleReady}
-            {...this.createOptions(this.props.fontSize)}
-          />
-        </label>
+        <div>
+          <label className="pay__cvc">
+            CVC
+            <CardCVCElement
+              onBlur={this.handleBlur}
+              onChange={this.handleChange}
+              onFocus={this.handleFocus}
+              onReady={this.handleReady}
+              {...this.createOptions(this.props.fontSize)}
+            />
+          </label>
+          <label className="pay__postal">
+            Postal code
+            <PostalCodeElement
+              onBlur={this.handleBlur}
+              onChange={this.handleChange}
+              onFocus={this.handleFocus}
+              onReady={this.handleReady}
+              {...this.createOptions(this.props.fontSize)}
+            />
+          </label>
+        </div>
         <Footer
           primaryButtonName={this.state.button.title}
           primaryButtonType={this.state.button.type}

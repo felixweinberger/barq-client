@@ -21,7 +21,7 @@ const Menu = ({ bar: { menu, name: barName }, updatePage, order }) => (
             <div className="menu__categories">
               {
                 menu.map(({ name: categoryName, items }) => (
-                  <div key={categoryName} className="category">
+                  <div key={categoryName} className="menu__category">
                     <SecondaryHead title={categoryName} />
                     {
                       items.map(item => (

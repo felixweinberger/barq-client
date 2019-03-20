@@ -1,3 +1,4 @@
 .category {
   padding: 0.5rem 1rem;
+  box-shadow: var(--primary-shadow);
 }

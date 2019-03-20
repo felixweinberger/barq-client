@@ -1,13 +1,30 @@
 .pay {
   flex-grow: 1;
   width: 100%;
+  padding: 1rem 2rem;
 
   display: flex;
   align-items: center;
-  
 }
 
 .pay__form {
   padding: 1rem 2rem;
-  width: 100%;
+  flex-grow: 1;
+  box-shadow: var(--primary-shadow);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.pay__number {
+  flex-basis: 100%;
+  margin-bottom: 1rem;
+}
+
+.pay__expiry {
+  margin-top: 0.5rem;
+}
+
+.pay__postal {
+  align-self: center;
 }

@@ -3,6 +3,7 @@ import io from 'socket.io-client';
 
 import Footer from '../ui/footer';
 import MenuItem from '../ui/menuItem';
+import BeerAnimation from '../ui/beerAnimation';
 
 import '../styles/containers/queue.css';
 
@@ -49,6 +50,7 @@ class Queue extends Component {
               ))
             }
           </div>
+          <BeerAnimation />
           {this.props.orderStatus}
         </div>
         {
