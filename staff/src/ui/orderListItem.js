@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import '../styles/orderListItem.css';
-// import SpecialWish from './specialWhish.js';
+// import SpecialWish from './specialWish.js';
 import { connect } from 'react-redux';
 import { updateStatus } from '../store/actions';
 
@@ -18,8 +18,6 @@ class OrderListItem extends Component  {
     const nextStatus = this.statusList[nextIndex];
     this.props.updateStatus(nextStatus, this.props.orderId)
     this.props.emitStatusUpdate(nextStatus)
-    console.log(this.statusList[nextIndex]);
-    console.log('clicked!', e.target.name);
   }
 
   render() {

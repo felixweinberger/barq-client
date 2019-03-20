@@ -9,9 +9,9 @@ class App extends Component {
 
   
 componentDidMount = () => {
-  this.socket = io('/ax9249', {
+  this.socket = io(window.location.pathname, {
     query: {
-      bar: '/ax9249',
+      bar: window.location.pathname,
       token: 'token'
     },
   });

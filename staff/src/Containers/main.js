@@ -5,7 +5,7 @@ import OrderListItem from '../ui/orderListItem.js';
 
 
 class Main extends Component {
-  url = 'https://private-anon-4ec664d10a-barq.apiary-mock.com/staff/a791xu/queue';
+  url = `/staff${window.location.pathname}/queue`;
 
   componentDidMount() {
     this.listAllOrders();
