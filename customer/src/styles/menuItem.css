@@ -1,0 +1,15 @@
+.menu-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 2rem;
+  margin: 0.5rem 0;
+}
+
+.menu-item__name {
+  flex-grow: 1;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+}

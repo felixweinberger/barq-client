@@ -1,6 +1,6 @@
 import React from 'react';
 
-import '../styles/secondaryButton.css';
+import '../../styles/secondaryButton.css';
 
 const SecondaryButton = ({
   title, onClick, loading, loadText, styles,

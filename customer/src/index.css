@@ -1,16 +1,55 @@
+@import url('https://fonts.googleapis.com/css?family=Merriweather|Roboto:400,400i,700');
+
 :root {
-  --sans-serif: sans-serif;
-  --serif: serif;
+  --sans-serif: 'Roboto', sans-serif;
+  --serif: 'Meeriweather', serif;
 
   --primary-shadow: 0px 2px 5px 0px rgba(0,0,0,0.75);
+  --primary-shadow-inset: 0px 0px 5px 0px rgba(0,0,0,0.75) inset;
   --secondary-shadow: 0px 2px 10px 0px rgba(122,122,122,1);
 
-  --primary-color: black;
-  --primary-color-on: white;
+  --primary-color: linear-gradient(315deg, #3bb78f 0%, #0bab64 74%);;
+  --primary-color-on: #191716;
+  --secondary-color: linear-gradient(to bottom, #D5DEE7 0%, #E8EBF2 50%, #E2E7ED 100%), linear-gradient(to bottom, rgba(0,0,0,0.02) 50%, rgba(255,255,255,0.02) 61%, rgba(0,0,0,0.02) 73%), linear-gradient(33deg, rgba(255,255,255,0.20) 0%, rgba(0,0,0,0.20) 100%);
+  --secondary-color-on: #191716;
+  --danger-color: linear-gradient(45deg, #ee9ca7 0%, #ffdde1 100%);
+  --danger-color-on: #191716;
+  --warning-color: linear-gradient(-20deg, #fc6076 0%, #ff9a44 100%);
+  --warning-color-on: #191716;
 
-  --light-border: black;
+  --light-border: #191716;;
+
+  --header-height: 4rem;
+  --footer-height: 5rem;
+
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+  display: flex;
 }
 
-input {
+body {
+  margin: 0;
+  padding: 0;
+  flex-grow: 1;
+  display: flex;
+}
+
+#root {
+  margin: 0;
+  padding: 0;
+  flex-grow: 1;
+  display: flex;
+}
+
+* {
+  box-sizing: border-box;
+  border: none;
+  outline: none;
+  margin: 0;
+  padding: 0;
+}
+
+input, textarea {
   touch-action: manipulation;
 }

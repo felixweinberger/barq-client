@@ -1,0 +1,9 @@
+.queue {
+  flex-grow: 1;
+  padding-bottom: var(--footer-height);
+  
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

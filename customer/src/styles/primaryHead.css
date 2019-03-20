@@ -1,3 +1,5 @@
-.head-one {
-  font-size: 30px;
+.primary-head {
+  margin: 0 1rem;
+  font-size: 3rem;
+  font-family: var(--sans-serif);
 }

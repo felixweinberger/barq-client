@@ -1,3 +1,21 @@
 .logo {
+  position: relative;
   font-size: 3rem;
+  height: 5rem;
+  line-height: 5rem;
+  text-align: center;
+}
+
+.logo__image {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  z-index: -1;
+  opacity: 0.6;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }

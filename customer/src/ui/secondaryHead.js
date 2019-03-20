@@ -1,9 +1,10 @@
 import React from 'react';
+
 import '../styles/secondaryHead.css';
 
 
-const secondaryHead = ({ headTwo }) => (
-  <div className="head-two"><h2>{headTwo}</h2></div>
+const secondaryHead = ({ title }) => (
+  <h2 className="secondary-head">{title}</h2>
 );
 
 export default secondaryHead;
