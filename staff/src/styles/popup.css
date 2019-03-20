@@ -1,14 +1,18 @@
+
+
 .wrapper {
   position: absolute;
   right: 20px;
   font-size: 18px;
+  
 }
 
-.menu {
-  display: block;
-}
 
 .menu-item {
   margin: 10px;
-
+  display: block;
+  text-align: center;
+  width: 180px;
+  height: 40px;
+  text-align: center;
 }
