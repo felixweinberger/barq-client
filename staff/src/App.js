@@ -8,6 +8,7 @@ import { updateQueue, addOrder, updateStatus, updatePage } from './store/actions
 
 import Main from './Containers/main';
 import Display from './Containers/display';
+import QrCode from './Containers/qrCode';
 import PopUp from './ui/popup.js';
 
 class App extends Component {
@@ -31,6 +32,9 @@ class App extends Component {
       queue={this.props.queue}
       history={this.props.history}
       />
+    ),
+    QRCODE: () => (
+      <QrCode />
     )
   }
 

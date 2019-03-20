@@ -15,6 +15,7 @@ const PopUp = ({updatePage}) => (
         <button className="menu-item" onClick={()=> updatePage('MAIN')}>Now</button>
         <button className="menu-item" onClick={()=> updatePage('HISTORY')}>History</button>
         <button className="menu-item" onClick={()=> updatePage('DISPLAY')}>Queue</button>
+        <button className="menu-item" onClick={()=> updatePage('QRCODE')}>QR Code</button>
         <button className="menu-item">Block Orders</button>
         <button className="menu-item">LogOut</button>
       </div>
