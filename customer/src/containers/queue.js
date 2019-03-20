@@ -15,7 +15,6 @@ class Queue extends Component {
         orderNumber: this.props.orderId,
       },
     });
-    console.log(this.props.orderId);
     this.socket.emit('NEW_ORDER', {
       orderId: this.props.orderId,
       status: this.props.orderStatus,

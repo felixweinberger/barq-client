@@ -12,20 +12,19 @@ componentDidMount = () => {
   this.socket = io('/ax9249', {
     query: {
       bar: '/ax9249',
-      orderNumber: 'token'
-  },
-});
+      token: 'token'
+    },
+  });
 
-this.socket.emit('STATUS_UPDATE', {
-  orderId: 'token',
-  status: this.props.orderStatus,
-  items: this.props.order,
-});
+  this.socket.on('NEW_ORDER', (newOrder) => {
+    this.props.addOrder(newOrder);
+  });
 
-this.socket.on('NEW_ORDER', (newOrder) => {
-  this.props.updateStatus(newOrder);
-})
+  this.socket.on('STATUS_UPDATE', (orderId, status) => {
+    this.props.updateStatus(status, orderId);
+  });
 }
+
 closeSocket = () => {
   this.socket.removeAllListeners();
   this.socket.close();
@@ -55,7 +54,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     updateQueue: (queue) => dispatch(updateQueue(queue)),
-    addOrder: (order) => dispatch(addOrder(order))
+    addOrder: (order) => dispatch(addOrder(order)),
+    updateStatus: (status, orderId) => dispatch(updateStatus(status, orderId)),
   }
 }
 

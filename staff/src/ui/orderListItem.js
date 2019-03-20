@@ -8,7 +8,6 @@ import { updateStatus } from '../store/actions';
 class OrderListItem extends Component  {
   statusList = ['paid', 'in preparation', 'ready for pickup', 'delivered']  
   onButtonClick = (e) => {
-    console.log('test')
     const index = this.statusList.findIndex(status => status === this.props.status)
     let nextIndex;  
     if (e.target.name === 'back') {
@@ -16,7 +15,9 @@ class OrderListItem extends Component  {
     } else {
       nextIndex = index + 1 === this.statusList.length ? index : index + 1;
     }
-    this.props.updateStatus(this.statusList[nextIndex], this.props.orderId)
+    const nextStatus = this.statusList[nextIndex];
+    this.props.updateStatus(nextStatus, this.props.orderId)
+    this.props.emitStatusUpdate(nextStatus)
     console.log(this.statusList[nextIndex]);
     console.log('clicked!', e.target.name);
   }
@@ -24,19 +25,19 @@ class OrderListItem extends Component  {
   render() {
     return (
       <div className="orderListItem">
-        <button name='back' onClick={this.onButtonClick} className="btn-back">Back</button>
+        <button name='back' onClick={this.onButtonClick} className="wrapper-back" value="Back">Back</button>
         <div className="wrapper-list">
-        <h2>#{this.props.orderId}</h2> 
-        {
-          this.props.items.map(item => (
-            <div key={item.name} className="item">{item.name}x{item.quantity}</div>
-          ))
-        }
+          <h2>#{this.props.orderId}</h2> 
+          {
+            this.props.items.map(item => (
+              <div key={item.name} className="item">{item.name}x{item.quantity}</div>
+            ))
+          }
         </div>
-        <div className="wrapper-status">
-        <button name='update' onClick={this.onButtonClick} className="btn-update">Update</button>
-        <h2>{this.props.status}</h2>
-        </div>
+        <button name='update' onClick={this.onButtonClick} className="wrapper-status">
+          Update
+          {this.props.status}
+        </button>
       </div>
     );
   };

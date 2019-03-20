@@ -18,6 +18,10 @@ class Main extends Component {
        this.props.updateQueue(queue)
      })
   }
+
+  emitStatusUpdate = (orderId, nextStatus) => {
+    this.props.socket.emit('STATUS_UPDATE', orderId, nextStatus);
+  }
   
   render() {
     return (
@@ -32,6 +36,7 @@ class Main extends Component {
                 orderId={list.orderId}
                 items={list.items}
                 status={list.status}
+                emitStatusUpdate={nextStatus => this.emitStatusUpdate(list.orderId, nextStatus)}
               />
             )
           })
