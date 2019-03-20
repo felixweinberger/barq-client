@@ -4,7 +4,13 @@ import '../styles/popup.css';
 
 const PopUp = () => (
   <div className="wrapper">
-    <Popup trigger={<button className="btn">Trigger</button>} position="left center">
+    <Popup
+      contentStyle={{
+        width: "100%",
+        margin: 0,
+      }}
+      trigger={<button className="btn"></button>}
+      position="top center">
       <div className="menu">
         <button className="menu-item">Now</button>
         <button className="menu-item">History</button>

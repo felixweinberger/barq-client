@@ -16,11 +16,12 @@ class OrderListItem extends Component  {
       nextIndex = index + 1 === this.statusList.length ? index : index + 1;
     }
     const nextStatus = this.statusList[nextIndex];
-    this.props.updateStatus(nextStatus, this.props.orderId)
+    this.props.updateStatus(nextStatus, this.props.queue.find(order => order.orderId === this.props.orderId))
     this.props.emitStatusUpdate(nextStatus)
   }
 
   render() {
+    console.log(this.props.queue);
     return (
       <div className="orderListItem">
         <button name='back' onClick={this.onButtonClick} className="wrapper-back" value="Back">Back</button>

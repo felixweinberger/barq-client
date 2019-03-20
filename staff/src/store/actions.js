@@ -8,7 +8,7 @@ export const addOrder = (order) => ({
   order
 });
 
-export const updateStatus = (status, orderId) => ({
+export const updateStatus = (status, order) => ({
   type:'UPDATE_STATUS',
-  status, orderId
+  status, order
 });

@@ -1,7 +1,7 @@
 
 
 .wrapper {
-  position: absolute;
+  position: fixed;
   bottom: 0;
   left: 0;
   font-size: 18px;
@@ -16,13 +16,20 @@
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
+  background-color: paleturquoise;
+  outline: none;
+  border: none;
+}
+
+.menu {
+  width: 100%;
 }
 
 .menu-item {
-  margin: 10px;
+  width: 100%;
   display: block;
   text-align: center;
-  width: 180px;
-  height: 40px;
+  font-size: 2rem;
+  height: 4rem;
   text-align: center;
 }
