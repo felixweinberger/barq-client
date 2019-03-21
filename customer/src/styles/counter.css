@@ -1,13 +1,15 @@
 .counter {
-  display: inline-flex;
-  justify-content: center;
+  display: flex;
+  justify-content: flex-end;
   align-items: center;
+  align-self: stretch;
+  flex-grow: 1;
 }
 
 .counter__count {
   font-size: 1.5rem;
   font-family: var(--sans-serif);
-  margin: 0 1rem;
+  margin: 0 0.25rem;
   min-width: 2rem;
   text-align: center;
 }

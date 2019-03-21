@@ -1,10 +1,13 @@
 .pay {
   flex-grow: 1;
   width: 100%;
-  padding: 1rem 2rem;
+  padding: 2rem 2rem;
 
   display: flex;
-  align-items: center;
+  align-items: flex-start;
+
+  font-family: var(--serif);
+  padding-bottom: calc(1rem + var(--footer-height));
 }
 
 .pay__form {
@@ -14,12 +17,25 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  background: rgba(0, 0, 0, 0.3);
+  background: linear-gradient(315deg, rgba(0, 0, 0, 0.2) 0%, rgba(51, 53, 58, 0.01) 74%);
+  transition: opacity 0.1s ease-in;
+}
+
+[class^="pay__"] {
+  font-size: 1.25rem;
+}
+
+.pay__form--invisible {
+  opacity: 0;
 }
 
 .pay__number {
   flex-basis: 100%;
   margin-bottom: 1rem;
+}
+
+.pay__cvc div {
+  margin-bottom: 0.5rem;
 }
 
 .pay__expiry {

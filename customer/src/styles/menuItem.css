@@ -1,5 +1,6 @@
 .menu-item {
   display: flex;
+  position: relative;
   justify-content: space-between;
   align-items: center;
   font-size: 2rem;
@@ -7,9 +8,8 @@
 }
 
 .menu-item__name {
-  flex-grow: 1;
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
   justify-content: space-between;
   align-items: flex-start;
 }
