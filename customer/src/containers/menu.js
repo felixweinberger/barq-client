@@ -5,19 +5,17 @@ import { sumBy } from 'lodash';
 import SecondaryHead from '../ui/secondaryHead';
 import MenuItem from '../ui/menuItem';
 import Loader from '../ui/loader';
-import Logo from '../ui/logo';
 import Footer from '../ui/footer';
 
 import '../styles/containers/menu.css';
 
-const Menu = ({ bar: { menu, name: barName }, updatePage, order }) => (
+const Menu = ({ bar: { menu }, updatePage, order }) => (
   <div className="menu">
     {
       !menu
         ? <Loader />
         : (
           <>
-            <Logo logoPath="/logo.jpg" barName={barName} />
             <div className="menu__categories">
               {
                 menu.map(({ name: categoryName, items }) => (

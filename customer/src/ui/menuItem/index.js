@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { incrementItem as actionIncrementItem } from '../../store/actions/entities';
 
 import Text from '../text';
-import IconButton from '../iconButton';
+// import IconButton from '../iconButton';
 import Price from '../price';
 import Counter from './counter';
 
@@ -23,18 +23,18 @@ const MenuItem = ({
     <div className="menu-item">
       <div className="menu-item__name">
         <Text content={name} />
-        <Price price={price} currency={currency} />
-        <IconButton iconUrl="/info.png" />
+        <Price style={{ flexBasis: '100%' }} price={price} currency={currency} />
       </div>
       {
         editable
-        && (
-          <Counter
-            count={number}
-            onAdd={() => incrementItem(name, 1)}
-            onMinus={() => incrementItem(name, -1)}
-          />
-        )
+          ? (
+            <Counter
+              count={number}
+              onAdd={() => incrementItem(name, 1)}
+              onMinus={() => incrementItem(name, -1)}
+            />
+          )
+          : <Text content={`x${number}`} />
       }
     </div>
   );

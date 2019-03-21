@@ -8,7 +8,7 @@
   --primary-shadow-inset: 0px 0px 5px 0px rgba(0,0,0,0.75) inset;
   --secondary-shadow: 0px 2px 10px 0px rgba(122,122,122,1);
 
-  --primary-color: linear-gradient(315deg, #3bb78f 0%, #0bab64 74%);;
+  --primary-color: linear-gradient(315deg, #3bb78f 0%, #0bab64 74%);
   --primary-color-on: white;
   --secondary-color: linear-gradient(to bottom, #D5DEE7 0%, #E8EBF2 50%, #E2E7ED 100%), linear-gradient(to bottom, rgba(0,0,0,0.02) 50%, rgba(255,255,255,0.02) 61%, rgba(0,0,0,0.02) 73%), linear-gradient(33deg, rgba(255,255,255,0.20) 0%, rgba(0,0,0,0.20) 100%);
   --secondary-color-on: #191716;

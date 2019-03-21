@@ -17,7 +17,7 @@ const store = createStore(
 );
 
 ReactDOM.render(
-  <StripeProvider apiKey="pk_test_6lE722mlf3FMRUAE7oJVbhDr">
+  <StripeProvider apiKey={process.env.REACT_APP_STRIPE_PK}>
     <Provider store={store}>
       <App />
     </Provider>

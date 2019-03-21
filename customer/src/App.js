@@ -10,6 +10,7 @@ import {
 } from './store/actions/entities';
 import { updatePage } from './store/actions/view';
 
+import Logo from './ui/logo';
 import Menu from './containers/menu';
 import Checkout from './containers/checkout';
 import Pay from './containers/pay';
@@ -60,14 +61,19 @@ class App extends Component { // eslint-disable-line
   componentDidMount = () => {
     axios.get(`${window.location.pathname}/menu`)
       .then((res) => {
-        this.props.updateBar(res.data);
-        if (res.data.open === 'false') this.props.updatePage('CLOSED');
+        if (res.data.menu) this.props.updateBar(res.data);
+        if (!res.data.menu || res.data.open === 'false') this.props.updatePage('CLOSED');
+        const cachedOrder = window.localStorage.getItem('order');
+        if (cachedOrder) this.props.updateOrder(JSON.parse(cachedOrder));
+        if (this.props.orderId) this.props.updatePage('QUEUE');
+        else if (this.props.order.length > 0) this.props.updatePage('CHECKOUT');
       });
   }
 
   render() {
     return (
       <div className="App">
+        <Logo logoPath="/logo.jpg" barName={this.props.bar.name} />
         { this.switch[this.props.page]() }
       </div>
     );

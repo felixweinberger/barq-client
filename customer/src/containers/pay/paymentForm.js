@@ -8,7 +8,7 @@ import {
 } from 'react-stripe-elements';
 import axios from 'axios';
 
-import Loader from '../../ui/loader'; // eslint-disable-line
+import Loader from '../../ui/loader';
 import Footer from '../../ui/footer';
 
 class PaymentForm extends Component {
@@ -55,7 +55,6 @@ class PaymentForm extends Component {
         button: this.buttonStates.paying,
       });
       const { token } = await this.props.stripe.createToken({ name: 'test' });
-      console.log(token);
       if (!token) throw new Error('Failed');
       const orderData = {
         stripe: {
@@ -69,9 +68,9 @@ class PaymentForm extends Component {
           items: this.props.order,
         },
       };
-      console.log(orderData);
       const { data } = await axios.post(`${window.location.pathname}/pay`, orderData);
       if (data.status === 'paid') {
+        window.localStorage.setItem('order', JSON.stringify(data));
         this.props.updateOrder(data);
         this.setState({
           paid: true,
@@ -91,7 +90,10 @@ class PaymentForm extends Component {
 
   handleChange = () => null;
 
-  handleFocus = () => null;
+  handleFocus = () => {
+    window.scrollTo(0, 0);
+    document.scrollTop = 0;
+  }
 
   handleReady = () => {
     this.readyCounter += 1;
@@ -120,59 +122,76 @@ class PaymentForm extends Component {
     },
   });
 
+  componentDidMount = () => {
+    document.querySelectorAll('.pay__cvc input').forEach((el) => {
+      el.addEventListener('focus', (e) => {
+        window.scrollTo(0, 0);
+        document.body.scrollTop = 0;
+        e.preventDefault();
+        console.log('focus');
+      });
+    });
+  }
+
   render() {
     return (
-      <form className="pay__form" onSubmit={this.handleSubmit}>
-        <label className="pay__number">
-          Card number
-          <CardNumberElement
-            onBlur={this.handleBlur}
-            onChange={this.handleChange}
-            onFocus={this.handleFocus}
-            onReady={this.handleReady}
-            {...this.createOptions(this.props.fontSize)}
-          />
-        </label>
-        <label className="pay__expiry">
-          Expiration date
-          <CardExpiryElement
-            onBlur={this.handleBlur}
-            onChange={this.handleChange}
-            onFocus={this.handleFocus}
-            onReady={this.handleReady}
-            {...this.createOptions(this.props.fontSize)}
-          />
-        </label>
-        <div>
-          <label className="pay__cvc">
-            CVC
-            <CardCVCElement
+      <>
+        {
+          this.state.button.title === 'Loading'
+          && <Loader />
+        }
+        <form className={`pay__form${this.state.button.title === 'Loading' ? '--invisible' : ''}`} onSubmit={this.handleSubmit}>
+          <label className="pay__number">
+            Card number
+            <CardNumberElement
               onBlur={this.handleBlur}
               onChange={this.handleChange}
               onFocus={this.handleFocus}
               onReady={this.handleReady}
-              {...this.createOptions(this.props.fontSize)}
+              {...this.createOptions('16px')}
             />
           </label>
-          <label className="pay__postal">
-            Postal code
-            <PostalCodeElement
+          <label className="pay__expiry">
+            Expiration date
+            <CardExpiryElement
               onBlur={this.handleBlur}
               onChange={this.handleChange}
               onFocus={this.handleFocus}
               onReady={this.handleReady}
-              {...this.createOptions(this.props.fontSize)}
+              {...this.createOptions('16px')}
             />
           </label>
-        </div>
-        <Footer
-          primaryButtonName={this.state.button.title}
-          primaryButtonType={this.state.button.type}
-          primaryButtonClickable={this.state.button.clickable}
-          secondaryButtonName={this.state.paid ? null : 'Back'}
-          onSecondaryClick={this.state.paid ? null : () => this.props.updatePage('CHECKOUT')}
-        />
-      </form>
+          <div>
+            <label className="pay__cvc">
+              CVC
+              <CardCVCElement
+                onBlur={this.handleBlur}
+                onChange={this.handleChange}
+                onFocus={this.handleFocus}
+                onReady={this.handleReady}
+                {...this.createOptions('1.25rem')}
+              />
+            </label>
+            <label className="pay__postal">
+              Postal code
+              <PostalCodeElement
+                onBlur={this.handleBlur}
+                onChange={this.handleChange}
+                onFocus={this.handleFocus}
+                onReady={this.handleReady}
+                {...this.createOptions('1.25rem')}
+              />
+            </label>
+          </div>
+          <Footer
+            primaryButtonName={this.state.button.title}
+            primaryButtonType={this.state.button.type}
+            primaryButtonClickable={this.state.button.clickable}
+            secondaryButtonName={this.state.paid ? null : 'Back'}
+            onSecondaryClick={this.state.paid ? null : () => this.props.updatePage('CHECKOUT')}
+          />
+        </form>
+      </>
     );
   }
 }

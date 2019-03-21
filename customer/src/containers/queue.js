@@ -5,6 +5,7 @@ import Footer from '../ui/footer';
 import MenuItem from '../ui/menuItem';
 import BeerAnimation from '../ui/beerAnimation';
 import PrimaryHead from '../ui/primaryHead';
+import SecondaryHead from '../ui/secondaryHead';
 
 import '../styles/containers/queue.css';
 
@@ -43,17 +44,17 @@ class Queue extends Component {
     return (
       <>
         <div className="queue">
-
-          <PrimaryHead title={`Your number... #${this.props.orderId}`} />
-          <div className="bill">
+          <SecondaryHead style={{ margin: '0' }} title="Your number" />
+          <PrimaryHead style={{ margin: '0' }} title={`#${this.props.orderId}`} />
+          <div className="queue__bill">
             {
               this.props.order.map(item => (
                 <MenuItem key={item.name} item={item} editable={false} />
               ))
             }
           </div>
+          <PrimaryHead style={{ marginBottom: '1rem' }} title={this.props.orderStatus} />
           <BeerAnimation />
-          <PrimaryHead title={this.props.orderStatus} />
         </div>
         {
           this.props.orderStatus === 'delivered'
@@ -62,6 +63,7 @@ class Queue extends Component {
               primaryButtonName="Order another round!"
               onPrimaryClick={() => {
                 this.props.clearOrder();
+                window.localStorage.removeItem('order');
                 this.props.updatePage('MENU');
               }}
             />
