@@ -12,10 +12,10 @@ function queue (state = initialState.queue, action) {
       return action.queue.filter(order => order.status !== 'delivered');
     }
     case 'ADD_ORDER': {
+      if (state.find(order => order.orderId === Number(action.order.orderId))) return state;
       return state.concat(action.order);
     }
     case 'UPDATE_STATUS' : {
-      console.log(action.status);
       if (action.status === 'delivered') return state.filter(order => order.orderId !== action.order.orderId);
       return state.map(order => {
         if(order.orderId !== action.order.orderId) return order;
@@ -34,7 +34,7 @@ function history (state = initialState.history, action) {
       return action.queue.filter(order => order.status === 'delivered');
     }
     case 'UPDATE_STATUS' : {
-      if (action.status === 'delivered') return state.concat(action.order);
+      if (action.status === 'delivered') return state.concat(Object.assign({}, action.order, {status: action.status}));
       return state;
     }
     default: {

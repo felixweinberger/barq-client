@@ -16,26 +16,29 @@ class OrderListItem extends Component  {
       nextIndex = index + 1 === this.statusList.length ? index : index + 1;
     }
     const nextStatus = this.statusList[nextIndex];
+    console.log(nextStatus, this.props.queue.find(order => order.orderId === this.props.orderId))
     this.props.updateStatus(nextStatus, this.props.queue.find(order => order.orderId === this.props.orderId))
     this.props.emitStatusUpdate(nextStatus)
   }
 
   render() {
-    console.log(this.props.queue);
     return (
       <div className="orderListItem">
-        <button name='back' onClick={this.onButtonClick} className="wrapper-back" value="Back">Back</button>
+        <button name='back' onClick={this.onButtonClick} className="wrapper-back" value="Back">
+          <h2>Back</h2>
+        </button>
         <div className="wrapper-list">
           <h2>#{this.props.orderId}</h2> 
           {
-            this.props.items.map(item => (
-              <div key={item.name} className="item">{item.name}x{item.quantity}</div>
-            ))
+            this.props.items.map(item => {
+              console.log(item.name, item.quantity);
+              return <div key={item._id} className="item">{item.name} x {item.quantity}</div>
+            })
           }
         </div>
         <button name='update' onClick={this.onButtonClick} className="wrapper-status">
-          Update
-          {this.props.status}
+          <h2>Update</h2>
+          <h2>{this.props.status}</h2>
         </button>
       </div>
     );

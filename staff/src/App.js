@@ -29,8 +29,9 @@ class App extends Component {
     ),
     DISPLAY: () => (
       <Display 
-      queue={this.props.queue}
-      history={this.props.history}
+        socket={this.socket}
+        queue={this.props.queue}
+        history={this.props.history}
       />
     ),
     QRCODE: () => (
@@ -64,9 +65,7 @@ class App extends Component {
     });
 
     this.socket.on('STATUS_UPDATE', (orderId, status) => {
-      if (status !== 'delivered') {
-        this.props.updateStatus(status, this.props.queue.find(order => order.orderId === orderId));
-      }
+      this.props.updateStatus(status, this.props.queue.concat(this.props.history).find(order => order.orderId === orderId));
     });
   }
 
@@ -81,7 +80,7 @@ class App extends Component {
     return (
       <div className="App">
         { this.switch[this.props.page]() }
-        <PopUp updatePage={this.props.updatePage}/>
+        <PopUp page={this.props.page} updatePage={this.props.updatePage}/>
       </div>  
     );
   }
