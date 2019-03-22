@@ -29,7 +29,6 @@ class Staff extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            staff: [],
             name: '',
             email: '',
         }
@@ -39,14 +38,19 @@ class Staff extends Component {
         this.setState({ [name]: event.target.value })
     }
 
+    componentDidMount() {
+        this.setState({staff: this.props.staff});
+    }
+
+
     handleSubmit = event => {
         const newStaff = {
             name: this.state.name,
             email: this.state.email,
         }
         const tokenid = localStorage.getItem('id_token');
-        event.preventDefault();
-        fetch(`${host}/owner/bars/${this.props.match.params.barid}/staff`, {
+        //event.preventDefault();
+        fetch(`${host}/owner/bars/${this.props.staff[0]._id}/staff`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -54,20 +58,21 @@ class Staff extends Component {
             },
             body: JSON.stringify(newStaff)
         })
+        this.props.getUser();
+        this.setState({ email: '', name: '' })
     }
 
     render() {
         const { classes } = this.props;
-        console.log(this.props.staff);
-        console.log(this.props.barid);
-        // console.log(this.props.props);
 
-        const StaffList = this.props.staff.map(member => (
-            <div key={member.staffId} >
+        console.log(this.props.staff);
+
+        const StaffList = typeof this.props.staff[0] === 'object' ? this.props.staff[0].staff.map(member => (
+            <div key={member._id} >
                 <h4>{member.name}</h4>
-                <h4>{member.email}</h4>
+                <h5>{member.email}</h5>
             </div>
-        ))
+        )) : (<div>This Bar has no staff members</div>);
 
 
         return (

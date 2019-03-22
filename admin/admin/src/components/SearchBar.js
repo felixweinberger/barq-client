@@ -1,6 +1,7 @@
 import React from 'react';
 import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
 import { classnames } from '../helpers';
+import { Redirect } from 'react-router-dom';
 
 import host from '../Config/host';
 
@@ -13,6 +14,8 @@ class SearchBar extends React.Component {
       latitude: null,
       longitude: null,
       isGeocoding: false,
+      redirect: false,
+      path: '',
     };
   }
 
@@ -47,6 +50,8 @@ class SearchBar extends React.Component {
       address: '',
       latitude: null,
       longitude: null,
+      redirect: false,
+      path: '',
     });
   };
 
@@ -75,9 +80,18 @@ class SearchBar extends React.Component {
       },
       body: JSON.stringify(newBar)
     })
+    this.props.getUser();
+    this.setState({path: '/bars/' + this.props.user.bars[this.props.user.bars.length -1]._id });
+    this.setState({redirect: true});
   }
 
   render() {
+
+    if (this.state.redirect === true) {
+      return <Redirect to={this.state.path} />
+    }
+
+
     const {
       address,
       errorMessage,
@@ -86,7 +100,7 @@ class SearchBar extends React.Component {
       isGeocoding,
     } = this.state;
 
-    console.log(this.props.user);
+    console.log(this.props);
 
     return (
       <div>

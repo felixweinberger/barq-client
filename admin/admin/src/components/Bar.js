@@ -9,18 +9,8 @@ class Bar extends Component {
     constructor (props) {
         super(props);
         this.state = {
-            bar: {}
+            bar: []
         }
-    }
-
-    componentDidMount() {
-        this.setBarToState();
-    }
-
-    setBarToState = () => {
-        const id = this.props.match.params.barid;
-        const bar = this.props.bars.find(bar => bar._id == id)
-        this.setState({ bar })
     }
 
 
@@ -28,8 +18,8 @@ class Bar extends Component {
 
         return (
             <div>
-                <Menu menus={this.props.bars[0]} />
-                <Staff staff={this.props.bars[0].staff} />
+                <Menu getUser={this.props.getUser} menus={[...this.props.user.bars.filter(bar => bar._id === this.props.match.params.barid)]} />
+                <Staff getUser={this.props.getUser} staff={[...this.props.user.bars.filter(bar => bar._id === this.props.match.params.barid)]} />
             </div>
         )
 

@@ -42,13 +42,14 @@ class Menu extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            menu: '',
             file: {},
             json: '',
-            flag: false
+            flag: false,
+            newMenuName: '',
+            newMenuJSON: '',
         }
     }
-
+//
     handleClick = event => {
         event.preventDefault();
         this.setState({flag: true})
@@ -62,7 +63,7 @@ class Menu extends Component {
         this.setState({file: files[0]});
       }
 
-    onSubmit = (event) => {
+    onSubmit = name => (event) => {
         event.preventDefault();
         console.log(this.state.file);
         const file = this.state.file;
@@ -82,11 +83,97 @@ class Menu extends Component {
             Object.entries(convertToObject(csvRow))
                 .forEach(el => categoriesArr.push({name: el[0], items: el[1]}))
 
-            this.setState({json: categoriesArr})
+            this.setState({[name]: categoriesArr})
             })
         }
         reader.readAsBinaryString(file);
 
+    }
+
+    // onSubmit = (event) => {
+    //     event.preventDefault();
+    //     console.log(this.state.file);
+    //     const file = this.state.file;
+    //     const reader = new FileReader();
+    //     reader.onabort = () => console.log('file reading was aborted');
+    //     reader.onerror = () => console.log('file reading has failed');
+    //     reader.onload = () => {
+    //         const binaryStr = reader.result;
+    //         csv({
+    //         noheader:false,
+    //         output: "csv"
+    //         })
+    //         .fromString(binaryStr)
+    //         .then((csvRow)=>{
+    //         let categoriesArr = []
+
+    //         Object.entries(convertToObject(csvRow))
+    //             .forEach(el => categoriesArr.push({name: el[0], items: el[1]}))
+
+    //         this.setState({json: categoriesArr})
+    //         })
+    //     }
+    //     reader.readAsBinaryString(file);
+
+    // }
+
+    // onConfirm = async (e) => {
+    //     e.preventDefault();
+    //     const { json } = this.state;
+    //     const { name } = 
+    //     const newMenu = { name: menuName, categories: json };
+    //     const result = await fetch(
+    //       SERVER_ADDRESS, {
+    //         method: 'POST',
+    //         headers: {
+    //           Authorization: `Bearer ${TOKEN}`,
+    //           'Content-Type': 'application/json',
+    //         },
+    //         body: JSON.stringify(newMenu),
+    //       },
+    //     );
+    //     console.log('Response: ', result.status); // eslint-disable-line no-console
+    //   }
+
+    onConfirm = name => event => {
+        event.preventDefault();
+        console.log(name);
+        const { json } = this.state;
+        const newMenu = {}
+    }
+
+    onDelete = name => event => {
+        event.preventDefault();
+        const barid = this.props.menus[0]._id;
+        const idtoken = localStorage.getItem('id_token');
+
+        fetch('http://localhost:3001/owner/bars/' + barid + '/menus/' + name, {
+            method: 'DELETE',
+            headers: {
+                'Authorization': `Bearer ${idtoken}`,
+            },
+        })
+        this.props.getUser();
+    }
+
+    createMenu = event => {
+        event.preventDefault();
+        const barid = this.props.menus[0]._id
+        const idtoken = localStorage.getItem('id_token');
+        const newMenu = {
+            name: this.state.newMenuName,
+            categories: this.state.newMenuJSON,
+        };
+        fetch('http://localhost:3001/owner/bars/' + barid + '/menus', {
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${idtoken}`,
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(newMenu),
+        })
+        this.props.getUser();
+        this.setState({ newMenuName: '', newMenuJSON: '' })
     }
 
     ItemsList = (nodes) => {
@@ -110,54 +197,109 @@ class Menu extends Component {
             ))
         }
     }
-    
-    MenuList = ( {menus:nodes} ) => {
-        console.log(nodes, "HERE");
-        const { classes } = this.props;
-        if (nodes) {
-            return nodes.map(menu => (
-                <div key={menu.menuId} >
-                    <h2>{menu.name}</h2>
-                    {this.CategoriesList(menu.categories)}
-                    <div className={classes.inputField} >
-                        <Button
-                            variant="contained" 
-                            className={classes.button} 
-                            onClick={this.handleClick}
-                        >
-                            Update
-                        </Button>
-                        <form>
-                            <input 
-                                type="file" 
-                                name="file" 
-                                onChange={(e) => this.handleThatChange(e.target.files)}
-                            />
-                            <Button 
-                                type="submit" 
-                                value="Submit" 
-                                onClick={this.onSubmit}
-                            >
-                                Submit
-                            </Button>
-                        </form>
-                    </div>
-                </div>
-            ))
-        }
-    }
 
 
     render() {
 
-        console.log(this.props.menus);
+        const { classes } = this.props;
 
-        console.log(this.state.json);
+        const { json, newMenuJSON } = this.state;
+
+        const MenuLists = typeof this.props.menus[0] === 'object' && this.props.menus[0].menus.length > 0 ? this.props.menus[0].menus.map(menu => (
+            <div key={menu._id}>
+                <h2>{menu.name}</h2>
+                {
+                    json.length > 0 ? this.CategoriesList(json) : this.CategoriesList(menu.categories)
+                }
+                <form>
+                    <input
+                        accept="/*.csv"
+                        className={classes.input}
+                        style={{ display: 'none' }}
+                        id="contained-button-file"
+                        multiple
+                        type="file"
+                        name="file" 
+                        onChange={(e) => this.handleThatChange(e.target.files)}
+                    />
+                    <label htmlFor="contained-button-file">
+                    <Button variant="contained" component="span" className={classes.button}>
+                        Upload
+                    </Button>
+                    </label> 
+                    <Button 
+                        type="submit" 
+                        value="Submit" 
+                        onClick={this.onSubmit('json')}
+                    >
+                        Preview
+                    </Button>
+                    <Button 
+                        type="submit" 
+                        onClick={this.onConfirm(menu._id)}
+                    >
+                        Confirm
+                    </Button>
+                    <Button 
+                        type="reset"  
+                        onClick={this.onDelete(menu._id)}
+                    >
+                        Delete Menu
+                    </Button>
+                </form>
+                {/* {this.CategoriesList(menu.categories)} */}
+
+            </div>
+        )) : (<div><h1>You have no menus yet! Please upload your menu in csv format</h1></div>)
 
         return (
             <div>
-                {this.MenuList(this.props.menus)}
-                {this.state.flag && (this.CategoriesList(this.state.json)) }
+                {MenuLists}
+                <div>
+                    <form>
+                        <h1>Create new menu:</h1>
+                        <TextField 
+                            id="standard-name" 
+                            label="Name" 
+                            className={classes.textField} 
+                            value={this.state.newMenuName} 
+                            onChange={this.handleChange('newMenuName')} 
+                            margin="normal"
+                        />
+                        <h4>Upload csv file</h4>
+                        <input
+                            accept="/*.csv"
+                            className={classes.input}
+                            style={{ display: 'none' }}
+                            id="contained-button-file"
+                            multiple
+                            type="file"
+                            name="file" 
+                            onChange={(e) => this.handleThatChange(e.target.files)}
+                        />
+                        <label htmlFor="contained-button-file">
+                        <Button variant="contained" component="span" className={classes.button}>
+                            Upload
+                        </Button>
+                        </label> 
+                        <Button 
+                            type="submit" 
+                            value="Submit" 
+                            onClick={this.onSubmit('newMenuJSON')}
+                        >
+                            Preview
+                        </Button>
+                        <Button 
+                            type="submit" 
+                            onClick={this.createMenu}
+                        >
+                            Confirm
+                        </Button>
+                    </form>
+                    {
+                        newMenuJSON.length > 0 ? this.CategoriesList(newMenuJSON) : (<div></div>)
+                    }
+                </div>
             </div>
         )
     }

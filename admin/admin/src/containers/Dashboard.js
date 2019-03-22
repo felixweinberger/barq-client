@@ -128,48 +128,18 @@ class Dashboard extends Component {
         this.state = {
             open: false,
             user: {
-              _id: null,
-              email: null,
-              name: null,
-              bars: [
-                {
-                  menus: [
-                    {
-                      categories: [
-                        {
-                          items: [
-                            {
-                              _id: '',
-                              name: '',
-                              price: 0,
-                            }
-                          ],
-                          _id: '',
-                          name: '',
-                        }
-                      ],
-                      _id: '',
-                      name: '',
-                    }
-                  ],
-                  staff: [
-                    {
-                      _id: '',
-                      name: '',
-                      email: '',
-                    }
-                  ],
-                  name: '',
-                  currency: '',
-                  vat: 0,
-                  _id: ''
-                }
-              ],
-            },
-        }
+              bars: [],
+            }
+        };
+        this.getUser = this.getUser.bind(this);
     }
 
     componentDidMount() {
+      this.getUser();
+    }
+
+    getUser() {
+      console.log(this.props.auth.isAuthenticated());
       fetch(host + '/owner', {
         method: 'GET',
         headers: {
@@ -179,8 +149,7 @@ class Dashboard extends Component {
     })
         .then(res => res.json())
         .then(data => {
-            this.setState({user: data });
-            console.log(data);
+            this.setState({ user: data });
         })
     }
 
@@ -288,31 +257,15 @@ class Dashboard extends Component {
                             render={(props) => (
                                 <div>
                                     <h3>Enter the name of the bar you would like to add:</h3>
-                                    <SearchBar {...props} user={this.state.user} />
+                                    <SearchBar getUser={this.getUser} {...props} {...this.state} />
                                 </div>
                             )}
                         />
-                        {/* <Route 
-                            path="/staff" 
-                            render={(props) => (
-                                <div>
-                                    <Staff {...props} barid={bars[0]._id} staff={staff} />
-                                </div>
-                            )}
-                        />
-                        <Route 
-                            path="/menus" 
-                            render={(props) => (
-                                <div>
-                                    <Menu {...props} menus={menus} />
-                                </div>
-                            )}
-                        /> */}
                         <Route 
                             path="/bars/:barid"
-                            render={(props) => (
-                                <Bar {...props} bars={this.state.user.bars} />
-                            )}
+                            render={(props) => {
+                              return <Bar {...props} getUser={this.getUser} {...this.state} />
+                            }}
                         />
                     </Switch>
                 </main>

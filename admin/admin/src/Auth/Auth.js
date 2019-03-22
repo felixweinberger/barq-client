@@ -51,18 +51,18 @@ export default class Auth {
     return this.idToken;
   }
 
-  retrieveProfile() {
-      const idToken = localStorage.getItem('id_token');
-      if (idToken) {
-          try {
-              const profile = jwt_decode(idToken);
-              //showProfileInfo(profile);
-              console.log(profile)
-          } catch (err) {
-              alert('There was an error getting the profile:' + err.message);
-          }
-      }
-  }
+  // retrieveProfile() {
+  //     const idToken = localStorage.getItem('id_token');
+  //     if (idToken) {
+  //         try {
+  //             const profile = jwt_decode(idToken);
+  //             //showProfileInfo(profile);
+  //             console.log(profile)
+  //         } catch (err) {
+  //             alert('There was an error getting the profile:' + err.message);
+  //         }
+  //     }
+  // }
 
 
   setSession(authResult) {
@@ -78,7 +78,7 @@ export default class Auth {
     this.expiresAt = expiresAt;
 
     // navigate to the home route
-    history.replace('/home');
+    history.replace('/');
   }
 
   renewSession() {
