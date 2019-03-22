@@ -7,8 +7,10 @@ import Text from '../text';
 // import IconButton from '../iconButton';
 import Price from '../price';
 import Counter from './counter';
+import PopupInfo from '../popupInfo';
 
 import '../../styles/menuItem.css';
+import '../../styles/popupInfo.css';
 
 const MenuItem = ({
   item: {
@@ -24,6 +26,9 @@ const MenuItem = ({
       <div className="menu-item__name">
         <Text content={name} />
         <Price style={{ flexBasis: '100%' }} price={price} currency={currency} />
+        <div className="popup-info">
+          <PopupInfo />
+        </div>
       </div>
       {
         editable
