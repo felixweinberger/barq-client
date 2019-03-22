@@ -9,7 +9,8 @@ class OrderListItem extends Component  {
   statusList = ['paid', 'in preparation', 'ready for pickup', 'delivered']  
   onButtonClick = (e) => {
     const index = this.statusList.findIndex(status => status === this.props.status)
-    let nextIndex;  
+    let nextIndex;
+    console.log(e.target);
     if (e.target.name === 'back') {
       nextIndex = index === 0 ? 0 : index - 1;
     } else {
@@ -25,7 +26,7 @@ class OrderListItem extends Component  {
     return (
       <div className="orderListItem">
         <button name='back' onClick={this.onButtonClick} className="wrapper-back" value="Back">
-          <h2>Back</h2>
+          Back
         </button>
         <div className="wrapper-list">
           <h2>#{this.props.orderId}</h2> 
@@ -37,8 +38,8 @@ class OrderListItem extends Component  {
           }
         </div>
         <button name='update' onClick={this.onButtonClick} className="wrapper-status">
-          <h2>Update</h2>
-          <h2>{this.props.status}</h2>
+          Update
+          {this.props.status}
         </button>
       </div>
     );

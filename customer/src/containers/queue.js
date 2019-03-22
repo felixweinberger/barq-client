@@ -62,6 +62,7 @@ class Queue extends Component {
             <Footer
               primaryButtonName="Order another round!"
               onPrimaryClick={() => {
+                console.log('clicked!');
                 this.props.clearOrder();
                 window.localStorage.removeItem('order');
                 this.props.updatePage('MENU');

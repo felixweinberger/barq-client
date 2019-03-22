@@ -91,8 +91,7 @@ class PaymentForm extends Component {
   handleChange = () => null;
 
   handleFocus = () => {
-    window.scrollTo(0, 0);
-    document.scrollTop = 0;
+    console.log('handle focused');
   }
 
   handleReady = () => {
@@ -121,17 +120,6 @@ class PaymentForm extends Component {
       },
     },
   });
-
-  componentDidMount = () => {
-    document.querySelectorAll('.pay__cvc input').forEach((el) => {
-      el.addEventListener('focus', (e) => {
-        window.scrollTo(0, 0);
-        document.body.scrollTop = 0;
-        e.preventDefault();
-        console.log('focus');
-      });
-    });
-  }
 
   render() {
     return (
@@ -169,7 +157,7 @@ class PaymentForm extends Component {
                 onChange={this.handleChange}
                 onFocus={this.handleFocus}
                 onReady={this.handleReady}
-                {...this.createOptions('1.25rem')}
+                {...this.createOptions('16px')}
               />
             </label>
             <label className="pay__postal">
@@ -179,7 +167,7 @@ class PaymentForm extends Component {
                 onChange={this.handleChange}
                 onFocus={this.handleFocus}
                 onReady={this.handleReady}
-                {...this.createOptions('1.25rem')}
+                {...this.createOptions('16px')}
               />
             </label>
           </div>

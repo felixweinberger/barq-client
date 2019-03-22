@@ -9,4 +9,10 @@
   align-items: center;
   padding: 1rem;
   background: white;
+  flex-direction: column;
+}
+
+.qrcode__url {
+  color: black;
+  font-size: 3rem;
 }

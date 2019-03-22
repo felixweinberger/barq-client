@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import OrderListItem from '../ui/orderListItem.js';
 
+import '../styles/main.css';
+
 
 class Main extends Component {
   emitStatusUpdate = (orderId, nextStatus) => {
@@ -8,6 +10,7 @@ class Main extends Component {
   }
   
   render() {
+    console.log(this.props);
     return (
       <div className="main">
       {
