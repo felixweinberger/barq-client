@@ -1,18 +1,17 @@
 import React, { Component } from 'react';
 import OrderListItem from '../ui/orderListItem.js';
 
-import '../styles/main.css';
+import '../styles/queue.css';
 
 
-class Main extends Component {
+class Queue extends Component {
   emitStatusUpdate = (orderId, nextStatus) => {
     this.props.socket.emit('STATUS_UPDATE', orderId, nextStatus);
   }
   
   render() {
-    console.log(this.props);
     return (
-      <div className="main">
+      <div className="queue">
       {
         !this.props.queue
         ? <div>loading...</div>
@@ -33,4 +32,4 @@ class Main extends Component {
   }
 }
 
-export default Main;
+export default Queue;

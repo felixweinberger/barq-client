@@ -1,5 +1,3 @@
-
-
 .wrapper {
   position: fixed;
   bottom: 0;
@@ -34,12 +32,24 @@
   background: none;
 }
 
-.menu-item {
+[class^="menu-item"] {
   width: 100%;
   display: block;
   text-align: center;
   font-size: 2rem;
   height: 4rem;
   text-align: center;
+  background: var(--primary-color);
+}
+
+.menu-item--selected {
+  background: var(--secondary-color);
+}
+
+.menu-item__block {
+  background: var(--danger-color);
+}
+
+.menu-item__block--selected {
   background: var(--primary-color);
 }

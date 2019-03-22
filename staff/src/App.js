@@ -4,25 +4,25 @@ import axios from 'axios';
 import { connect } from 'react-redux';
 import io from 'socket.io-client';
 
-import { updateQueue, addOrder, updateStatus, updatePage } from './store/actions';
+import { updateQueue, addOrder, updateStatus, updatePage, setOpen } from './store/actions';
 
-import Main from './Containers/main';
-import Display from './Containers/display';
-import QrCode from './Containers/qrCode';
+import Queue from './containers/queue';
+import Display from './containers/display';
+import QrCode from './containers/qrCode';
 import PopUp from './ui/popup.js';
 
 class App extends Component {
-  url = `/staff${window.location.pathname}/queue`;
+  url = `/staff${window.location.pathname}`;
 
   switch = {
     MAIN: () => (
-      <Main
+      <Queue
         socket={this.socket}
         queue={this.props.queue}  
       />
     ),
     HISTORY: () => (
-      <Main
+      <Queue
         socket={this.socket}
         queue={this.props.history}  
       />
@@ -43,12 +43,21 @@ class App extends Component {
   }
 
   listAllOrders = () => {
-    axios.get(this.url, {headers: {"Content-type": "application/json"}})
+    axios.get(`${this.url}/queue`, {headers: {"Content-type": "application/json"}})
      .then(res => {
        console.log(res.data);
        const { queue, history } = res.data;
        this.props.updateQueue(queue.concat(history))
      })
+  }
+
+  toggleBlocked = () => {
+    axios.post(`${this.url}/open`, {
+      open: !this.props.isBlocked
+    })
+    .then(res => {
+      this.props.setOpen(!this.props.isOpen);
+    })
   }
   
   componentDidMount = () => {
@@ -80,7 +89,7 @@ class App extends Component {
     return (
       <div className="App">
         { this.switch[this.props.page]() }
-        <PopUp page={this.props.page} updatePage={this.props.updatePage}/>
+        <PopUp page={this.props.page} isOpen={this.props.isOpen} updatePage={this.props.updatePage} toggleBlocked={this.toggleBlocked} />
       </div>  
     );
   }
@@ -90,7 +99,8 @@ const mapStateToProps = (state) => {
   return {
     queue: state.queue,
     history: state.history,
-    page: state.page
+    page: state.page,
+    isOpen: state.isOpen
   }
 };
 
@@ -100,6 +110,7 @@ const mapDispatchToProps = (dispatch) => {
     addOrder: (order) => dispatch(addOrder(order)),
     updateStatus: (status, order) => dispatch(updateStatus(status, order)),
     updatePage: (page) => dispatch(updatePage(page)),
+    setOpen: (isOpen) => dispatch(setOpen(isOpen))
   }
 }
 

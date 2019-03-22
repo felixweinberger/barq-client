@@ -17,3 +17,8 @@ export const updatePage = (page) => ({
   type:'UPDATE_PAGE',
   page
 });
+
+export const setOpen = (isOpen) => ({
+  type: 'SET_OPEN',
+  isOpen
+})

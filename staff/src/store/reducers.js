@@ -3,7 +3,8 @@ import { combineReducers } from 'redux';
 const initialState = {
   queue: [],
   history: [],
-  page: 'MAIN'
+  page: 'MAIN',
+  isOpen: true,
 }
 
 function queue (state = initialState.queue, action) {
@@ -54,6 +55,17 @@ function page (state = initialState.page, action) {
   }
 }
 
+function isOpen (state = initialState.isOpen, action) {
+  switch (action.type) {
+    case 'SET_OPEN': {
+      return action.isOpen;
+    }
+    default: {
+      return state;
+    }
+  }
+}
+
 export default combineReducers({
-  queue, history, page
+  queue, history, page, isOpen
 });

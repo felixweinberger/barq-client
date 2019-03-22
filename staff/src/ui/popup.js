@@ -2,7 +2,7 @@ import React from 'react';
 import Popup from 'reactjs-popup';
 import '../styles/popup.css';
 
-const PopUp = ({page, updatePage}) => (
+const PopUp = ({page, isOpen, updatePage, toggleBlocked}) => (
   <div className="wrapper">
     <Popup
       contentStyle={{
@@ -25,12 +25,11 @@ const PopUp = ({page, updatePage}) => (
       closeOnDocumentClick
       position="top center">
       <div className="menu">
-        { page !== 'MAIN' && <button className="menu-item" onClick={() => updatePage('MAIN')}>Now</button> }
-        { page !== 'HISTORY' && <button className="menu-item" onClick={() => updatePage('HISTORY')}>History</button> }
-        { page !== 'DISPLAY' && <button className="menu-item" onClick={() => updatePage('DISPLAY')}>Queue</button> }
-        { page !== 'QRCODE' && <button className="menu-item" onClick={() => updatePage('QRCODE')}>QR Code</button> }
-        { page === '' && <button className="menu-item">Block Orders</button> }
-        { page === '' && <button className="menu-item">LogOut</button> }
+        <button className={`menu-item${page === 'MAIN' ? '--selected' : ''}`} onClick={() => updatePage('MAIN')}>Now</button>
+        <button className={`menu-item${page === 'HISTORY' ? '--selected' : ''}`} onClick={() => updatePage('HISTORY')}>History</button>
+        <button className={`menu-item${page === 'DISPLAY' ? '--selected' : ''}`} onClick={() => updatePage('DISPLAY')}>Queue</button>
+        <button className={`menu-item${page === 'QRCODE' ? '--selected' : ''}`} onClick={() => updatePage('QRCODE')}>QR Code</button>
+        <button className={`menu-item__block${!isOpen ? '--selected' : ''}`} onClick={() => toggleBlocked()}>{`${isOpen ? 'Block' : 'Open'} Orders`}</button>
       </div>
     </Popup>
   </div>

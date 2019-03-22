@@ -10,6 +10,7 @@
   padding: 1rem;
   background: white;
   flex-direction: column;
+  padding-bottom: 6rem;
 }
 
 .qrcode__url {
