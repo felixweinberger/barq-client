@@ -1,0 +1,26 @@
+version: '3'
+
+services:
+
+  staff:
+    build: ./staff
+    # Connect to the barq network
+    networks:
+      - barq-server_barq-net
+    ports:
+      # Map the react app at 3000 to 3001 on host
+      - "3000:3000"
+
+  customer:
+    build: ./customer
+    # Connect to the barq network
+    networks:
+      - barq-server_barq-net
+    ports:
+      # Map the react app at 3000 to 3001 on host
+      - "3002:3000"
+
+networks: 
+
+  barq-server_barq-net:
+    external: true
