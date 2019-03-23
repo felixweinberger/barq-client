@@ -26,6 +26,7 @@ class App extends Component { // eslint-disable-line
         updatePage={this.props.updatePage}
         bar={this.props.bar}
         order={this.props.order}
+        total={this.props.totals.pretaxTotal}
       />
     ),
     CHECKOUT: () => (
@@ -62,6 +63,7 @@ class App extends Component { // eslint-disable-line
     axios.get(`${window.location.pathname}/menu`)
       .then((res) => {
         if (res.data.menu) this.props.updateBar(res.data);
+        console.log(res.data);
         if (!res.data.menu || res.data.open === 'false') this.props.updatePage('CLOSED');
         const cachedOrder = window.localStorage.getItem('order');
         if (cachedOrder) this.props.updateOrder(JSON.parse(cachedOrder));
