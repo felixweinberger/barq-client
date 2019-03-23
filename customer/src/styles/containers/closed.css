@@ -1,0 +1,28 @@
+.container-popup {
+  position: relative;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(0,0,0,0.6);
+  z-index: -1;
+}
+
+.popup {
+  width: 300px;
+  height: 200px;
+  line-height: 200px;
+  position: fixed;
+  top: 50%; 
+  left: 50%;
+  margin-top: -100px;
+  margin-left: -150px;
+  background-color: white;
+  color: black;
+  border-radius: 5px;
+  text-align: center;
+  z-index: 11; 
+  font-weight: bold;
+  font-family: 'Merriweather', serif;
+}

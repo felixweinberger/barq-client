@@ -4,7 +4,8 @@ import Loader from '../ui/loader';
 import MenuItem from '../ui/menuItem';
 import Footer from '../ui/footer';
 import Price from '../ui/price';
-// import TextInput from '../ui/inputs/textInput';
+import TextInput from '../ui/inputs/textInput';
+
 
 import '../styles/containers/checkout.css';
 
@@ -29,8 +30,7 @@ const Checkout = ({ order, totals, updatePage }) => (
                 Total...
                 <Price style={{ textAlign: 'right', fontSize: '1.25rem' }} price={totals.total} />
               </div>
-              {/* <TextInput title="Special Wishes" value={specialWishes}
-            onChange={e => setSpecialWishes(e.target.value)} /> */}
+              <TextInput title="Special Wishes" />
             </div>
             <Footer
               primaryButtonName="Pay"
