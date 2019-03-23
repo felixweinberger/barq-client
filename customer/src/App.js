@@ -8,7 +8,7 @@ import {
   updateStatus,
   clearOrder,
 } from './store/actions/entities';
-import { updatePage } from './store/actions/view';
+import { updatePage as updatePageAction } from './store/actions/view';
 
 import Logo from './ui/logo';
 import Menu from './containers/menu';
@@ -21,14 +21,19 @@ import './App.css';
 
 class App extends Component { // eslint-disable-line
   switch = {
-    MENU: () => (
-      <Menu
-        updatePage={this.props.updatePage}
-        bar={this.props.bar}
-        order={this.props.order}
-        total={this.props.totals.pretaxTotal}
-      />
-    ),
+    MENU: () => {
+      const {
+        updatePage, bar, order, totals: { pretaxTotal },
+      } = this.props;
+      return (
+        <Menu
+          updatePage={updatePage}
+          bar={bar}
+          order={order}
+          total={pretaxTotal}
+        />
+      );
+    },
     CHECKOUT: () => (
       <Checkout
         updatePage={this.props.updatePage}
@@ -117,7 +122,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   updateBar: bar => dispatch(updateBar(bar)),
-  updatePage: page => dispatch(updatePage(page)),
+  updatePage: page => dispatch(updatePageAction(page)),
   updateOrder: order => dispatch(updateOrder(order)),
   updateStatus: status => dispatch(updateStatus(status)),
   clearOrder: () => dispatch(clearOrder()),
