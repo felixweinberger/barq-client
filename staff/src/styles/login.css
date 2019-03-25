@@ -2,7 +2,7 @@ body {
   font-family: 'Merriweather', serif;
 }
 
-.wrapper {
+.login__wrapper {
   position: relative;
   position: fixed;
   top: 0;
