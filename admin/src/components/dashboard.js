@@ -13,20 +13,24 @@ class Dashboard extends Component {
   }
 
   getOwnerData = () => {
-    const { token, updateUser } = this.props;
+    const { token } = this.props;
+    console.log(token)
     fetch('/owner/me',
       {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       })
-      .then(res => res.json())
-      .then(res => updateUser(res.user));
+      .then(res => {
+        console.log(res)
+        return res.json()
+      })
+      .then(res => this.setState({ ownerData: res.user }))
   }
 
   addBar = (event, barObj) => {
-    const { token, barId } = this.props;
     event.preventDefault();
+    const { token } = this.props;
     fetch('/owner/bars',
       {
         method: 'POST',
@@ -37,14 +41,11 @@ class Dashboard extends Component {
         body: JSON.stringify(barObj),
       })
       .then(res => res.json())
-      .then(response => this.setState({
-        ownerData: response,
-        activeBar: response.bars.find(bar => bar._id === barId),
-      }));
+      .then(res => this.setState({ ownerData: res }))
   }
 
   deleteBar = (barId) => {
-    const { token, updateUser } = this.props;
+    const { token } = this.props;
     fetch(`/owner/bars/${barId}`,
       {
         method: 'DELETE',
@@ -53,7 +54,7 @@ class Dashboard extends Component {
         },
       })
       .then(res => res.json())
-      .then(res => updateUser(res.user));
+      .then(res => this.setState({ ownerData: res }));
   }
 
   selectBar = (barData) => {
@@ -107,12 +108,14 @@ class Dashboard extends Component {
         },
         body: JSON.stringify(menu),
       })
-      .then(response => response.json())
+      .then(res => res.json())
       .then((response) => {
+        console.log(response, 'pre')
         this.setState({
           ownerData: response,
           activeBar: response.bars.find(bar => bar._id === barId),
         });
+        console.log(response, 'post')
       });
   }
 
@@ -140,13 +143,13 @@ class Dashboard extends Component {
   }
 
   render() {
-    const { logout, user, token } = this.props;
+    const { logout, token } = this.props;
     const { activeBar } = this.state;
     return (
       <div className="dashboard">
         <button type="submit" onClick={logout}>Log out</button>
         <BarList
-          data={user}
+          data={this.state.ownerData}
           addBar={this.addBar}
           deleteBar={this.deleteBar}
           selectBar={this.selectBar}

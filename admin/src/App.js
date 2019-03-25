@@ -25,24 +25,20 @@ class App extends Component {
     window.localStorage.removeItem('token');
   }
 
-  updateUser = (user) => {
-    this.setState({ user });
-  }
-
   render() {
     return (
       <div className="App">
         <img src={logo} alt="BarQ Logo" />
-        {this.state.user 
-          ? <Dashboard 
+        {this.state.user
+          ? <Dashboard
               user={this.state.user}
               token={this.state.token}
               logout={this.logout}
               updateUser={this.updateUser}
-            /> 
-          : this.state.authPage === 'register' 
-            ? <Register toggleLogin={() => this.setState({authPage: 'login'})}/> 
-            : <Login 
+            />
+          : this.state.authPage === 'register'
+            ? <Register toggleLogin={() => this.setState({authPage: 'login'})}/>
+            : <Login
                 toggleRegister={() => this.setState({authPage: 'register'})}
                 setSession={(user, token) => this.setState({ user, token })}
               />
