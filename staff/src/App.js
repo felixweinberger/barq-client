@@ -45,8 +45,8 @@ class App extends Component {
   listAllOrders = () => {
     axios.get(`${this.url}/queue`, {headers: {"Content-type": "application/json"}})
      .then(res => {
-       const { queue, history } = res.data;
-       this.props.updateQueue(queue.concat(history))
+       const { queue } = res.data;
+       this.props.updateQueue(queue)
      })
   }
 
