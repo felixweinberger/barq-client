@@ -19,7 +19,6 @@ function queue (state = initialState.queue, action) {
     case 'UPDATE_STATUS' : {
       if (action.status === 'delivered') return state.filter(order => order.orderId !== action.order.orderId);
       return state.map(order => {
-        console.log(order, action.order);
         if(order.orderId !== action.order.orderId) return order;
         else return Object.assign({}, order, {status: action.status})
       })
