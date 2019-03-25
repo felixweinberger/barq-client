@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './App.css';
+import './dashboard.css';
 import axios from 'axios';
 import { connect } from 'react-redux';
 import io from 'socket.io-client';
@@ -10,7 +10,6 @@ import Queue from './containers/queue';
 import Display from './containers/display';
 import QrCode from './containers/qrCode';
 import PopUp from './ui/popup.js';
-import Login from  './containers/login'
 
 class Dashboard extends Component {
   url = `/staff${window.location.pathname}`;
@@ -46,9 +45,8 @@ class Dashboard extends Component {
   listAllOrders = () => {
     axios.get(`${this.url}/queue`, {headers: {"Content-type": "application/json"}})
      .then(res => {
-       console.log(res.data);
-       const { queue, history } = res.data;
-       this.props.updateQueue(queue.concat(history))
+       const { queue } = res.data;
+       this.props.updateQueue(queue)
      })
   }
 

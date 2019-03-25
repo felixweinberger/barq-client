@@ -1,0 +1,39 @@
+version: '3'
+
+services:
+
+  staff:
+    build: ./staff
+    container_name: staff
+    # Connect to the barq network
+    networks:
+      - server_barq-net
+    # Set the container name
+    ports:
+      # Map the react app at 3000 to 3000 on host
+      - "3000:3000"
+
+  customer:
+    build: ./customer
+    container_name: customer
+    # Connect to the barq network
+    networks:
+      - server_barq-net
+    ports:
+      # Map the react app at 3000 to 3002 on host
+      - "3002:3000"
+
+  admin:
+    build: ./admin
+    container_name: admin
+    # Connect to the barq network
+    networks:
+      - server_barq-net
+    ports:
+      # Map the react app at 3000 to 3003 on host
+      - "3003:3000"
+
+networks: 
+
+  server_barq-net:
+    external: true

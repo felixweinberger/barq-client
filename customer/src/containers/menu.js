@@ -9,7 +9,9 @@ import Footer from '../ui/footer';
 
 import '../styles/containers/menu.css';
 
-const Menu = ({ bar: { menu }, updatePage, order }) => (
+const Menu = ({
+  bar: { menu }, updatePage, order, total, isMenuOpen,
+}) => (
   <div className="menu">
     {
       !menu
@@ -34,10 +36,12 @@ const Menu = ({ bar: { menu }, updatePage, order }) => (
               }
             </div>
             <Footer
-              primaryButtonName={sumBy(order, 'quantity') > 0 ? 'Checkout' : 'Nothing Selected'}
+              primaryButtonName={sumBy(order, 'quantity') > 0 ? `Checkout (${new Intl.NumberFormat('es-ES', { style: 'currency', currency: 'EUR' }).format(total)})` : 'Nothing Selected'}
               primaryButtonType={sumBy(order, 'quantity') > 0 ? 'success' : 'neutral'}
               primaryButtonClickable={sumBy(order, 'quantity') > 0}
-              onPrimaryClick={() => updatePage('CHECKOUT')}
+              onPrimaryClick={() => isMenuOpen()
+                .then(isOpen => (isOpen ? updatePage('CHECKOUT') : updatePage('CLOSED')))
+              }
             />
           </>
         )

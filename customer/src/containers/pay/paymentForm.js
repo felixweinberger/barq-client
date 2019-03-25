@@ -47,42 +47,57 @@ class PaymentForm extends Component {
     button: this.buttonStates.loading,
   };
 
+  getStripeToken = async () => {
+    const { stripe } = this.props;
+    const { token } = await stripe.createToken({ name: 'test' });
+    if (!token) throw new Error('Failed');
+    return token;
+  }
+
+  createOrderData = async (total, order) => {
+    const token = await this.getStripeToken();
+    return {
+      stripe: {
+        amount: Number((total * 100).toFixed(0)),
+        currency: 'eur',
+        description: 'Drinks order',
+        source: token.id,
+        statement_descriptor: 'Drinks order',
+      },
+      order: {
+        items: order,
+      },
+    };
+  }
+
   handleSubmit = async (e) => {
+    const { button: { clickable } } = this.state;
+    const {
+      total, order, updateOrder, updatePage, isMenuOpen,
+    } = this.props;
+
     e.preventDefault();
-    if (!this.state.button.clickable) return;
+    if (!clickable) return;
+
     try {
-      this.setState({
-        button: this.buttonStates.paying,
-      });
-      const { token } = await this.props.stripe.createToken({ name: 'test' });
-      if (!token) throw new Error('Failed');
-      const orderData = {
-        stripe: {
-          amount: Number((this.props.totals.total * 100).toFixed(0)),
-          currency: 'eur',
-          description: 'Drinks order',
-          source: token.id,
-          statement_descriptor: 'Drinks order',
-        },
-        order: {
-          items: this.props.order,
-        },
-      };
+      const { paying, success } = this.buttonStates;
+      this.setState({ button: paying });
+      const isOpen = await isMenuOpen();
+      if (!isOpen) return updatePage('CLOSED');
+      const orderData = await this.createOrderData(total, order);
       const { data } = await axios.post(`${window.location.pathname}/pay`, orderData);
       if (data.status === 'paid') {
         window.localStorage.setItem('order', JSON.stringify(data));
-        this.props.updateOrder(data);
+        updateOrder(data);
         this.setState({
           paid: true,
-          button: this.buttonStates.success,
+          button: success,
         });
-        this.props.updatePage('QUEUE');
+        updatePage('QUEUE');
       }
     } catch (err) {
-      console.log(err);
-      this.setState({
-        button: this.buttonStates.failed,
-      });
+      const { failed } = this.buttonStates;
+      this.setState({ button: failed });
     }
   }
 
@@ -90,20 +105,16 @@ class PaymentForm extends Component {
 
   handleChange = () => null;
 
-  handleFocus = () => {
-    console.log('handle focused');
-  }
+  handleFocus = () => null;
 
   handleReady = () => {
     this.readyCounter += 1;
     if (this.readyCounter === 4) {
-      this.setState({
-        button: this.buttonStates.ready,
-      });
+      this.setState({ button: this.buttonStates.ready });
     }
   };
 
-  createOptions = (fontSize, padding) => ({
+  createOptions = fontSize => ({
     style: {
       base: {
         fontSize,
@@ -113,7 +124,6 @@ class PaymentForm extends Component {
         '::placeholder': {
           color: '#aab7c4',
         },
-        padding,
       },
       invalid: {
         color: '#9e2146',
@@ -122,13 +132,21 @@ class PaymentForm extends Component {
   });
 
   render() {
+    const {
+      button: { title, type, clickable },
+      paid,
+    } = this.state;
+    const { updatePage } = this.props;
     return (
       <>
         {
-          this.state.button.title === 'Loading'
+          title === 'Loading'
           && <Loader />
         }
-        <form className={`pay__form${this.state.button.title === 'Loading' ? '--invisible' : ''}`} onSubmit={this.handleSubmit}>
+        <form
+          className={`pay__form${title === 'Loading' ? '--invisible' : ''}`}
+          onSubmit={this.handleSubmit}
+        >
           <label className="pay__number">
             Card number
             <CardNumberElement
@@ -172,11 +190,11 @@ class PaymentForm extends Component {
             </label>
           </div>
           <Footer
-            primaryButtonName={this.state.button.title}
-            primaryButtonType={this.state.button.type}
-            primaryButtonClickable={this.state.button.clickable}
-            secondaryButtonName={this.state.paid ? null : 'Back'}
-            onSecondaryClick={this.state.paid ? null : () => this.props.updatePage('CHECKOUT')}
+            primaryButtonName={title}
+            primaryButtonType={type}
+            primaryButtonClickable={clickable}
+            secondaryButtonName={paid ? null : 'Back'}
+            onSecondaryClick={paid ? null : () => updatePage('CHECKOUT')}
           />
         </form>
       </>

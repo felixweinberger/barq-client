@@ -3,12 +3,12 @@ import { connect } from 'react-redux';
 import axios from 'axios';
 
 import {
-  updateBar,
-  updateOrder,
-  updateStatus,
-  clearOrder,
+  updateBar as updateBarAction,
+  updateOrder as updateOrderAction,
+  updateStatus as updateStatusAction,
+  clearOrder as clearOrderAction,
 } from './store/actions/entities';
-import { updatePage } from './store/actions/view';
+import { updatePage as updatePageAction } from './store/actions/view';
 
 import Logo from './ui/logo';
 import Menu from './containers/menu';
@@ -21,82 +21,109 @@ import './App.css';
 
 class App extends Component { // eslint-disable-line
   switch = {
-    MENU: () => (
-      <Menu
-        updatePage={this.props.updatePage}
-        bar={this.props.bar}
-        order={this.props.order}
-      />
-    ),
-    CHECKOUT: () => (
-      <Checkout
-        updatePage={this.props.updatePage}
-        totals={this.props.totals}
-        order={this.props.order}
-      />
-    ),
-    PAY: () => (
-      <Pay
-        updatePage={this.props.updatePage}
-        updateOrder={this.props.updateOrder}
-        order={this.props.order}
-        totals={this.props.totals}
-      />
-    ),
-    QUEUE: () => (
-      <Queue
-        order={this.props.order}
-        updatePage={this.props.updatePage}
-        orderId={this.props.orderId}
-        orderStatus={this.props.orderStatus}
-        updateStatus={this.props.updateStatus}
-        clearOrder={this.props.clearOrder}
-      />
-    ),
+    MENU: () => {
+      const {
+        updatePage, bar, order, total,
+      } = this.props;
+      return (
+        <Menu
+          updatePage={updatePage}
+          bar={bar}
+          order={order}
+          total={total}
+          isMenuOpen={this.isMenuOpen}
+        />
+      );
+    },
+    CHECKOUT: () => {
+      const {
+        updatePage, total, order,
+      } = this.props;
+      return (
+        <Checkout
+          updatePage={updatePage}
+          total={total}
+          order={order}
+          isMenuOpen={this.isMenuOpen}
+        />
+      );
+    },
+    PAY: () => {
+      const {
+        updatePage, updateOrder, order, total,
+      } = this.props;
+      return (
+        <Pay
+          updatePage={updatePage}
+          updateOrder={updateOrder}
+          order={order}
+          total={total}
+          isMenuOpen={this.isMenuOpen}
+        />
+      );
+    },
+    QUEUE: () => {
+      const {
+        order, updatePage, orderId, orderStatus, updateStatus, clearOrder,
+      } = this.props;
+      return (
+        <Queue
+          order={order}
+          updatePage={updatePage}
+          orderId={orderId}
+          orderStatus={orderStatus}
+          updateStatus={updateStatus}
+          clearOrder={clearOrder}
+          isMenuOpen={this.isMenuOpen}
+        />
+      );
+    },
     CLOSED: () => (
       <Closed />
     ),
   }
 
+  isMenuOpen = () => axios
+    .get(`${window.location.pathname}/menu`)
+    .then(res => res.data.open);
+
   componentDidMount = () => {
     axios.get(`${window.location.pathname}/menu`)
       .then((res) => {
-        if (res.data.menu) this.props.updateBar(res.data);
-        if (!res.data.menu || res.data.open === 'false') this.props.updatePage('CLOSED');
+        const {
+          updateBar, updatePage, updateOrder,
+        } = this.props;
+        if (res.data.menu) updateBar(res.data);
         const cachedOrder = window.localStorage.getItem('order');
-        if (cachedOrder) this.props.updateOrder(JSON.parse(cachedOrder));
-        if (this.props.orderId) this.props.updatePage('QUEUE');
-        else if (this.props.order.length > 0) this.props.updatePage('CHECKOUT');
+        if (cachedOrder) updateOrder(JSON.parse(cachedOrder));
+        const { orderId, order } = this.props;
+        if (orderId) updatePage('QUEUE');
+        else if (!res.data.menu || res.data.open === false) updatePage('CLOSED');
+        else if (order.length > 0) updatePage('CHECKOUT');
       });
   }
 
   render() {
+    const { bar: { name }, page } = this.props;
     return (
       <div className="App">
-        <Logo logoPath="/logo.jpg" barName={this.props.bar.name} />
-        { this.switch[this.props.page]() }
+        <Logo logoPath="/logo.jpg" barName={name} />
+        { this.switch[page]() }
       </div>
     );
   }
 }
 
 const getOrderDetails = (order, catalog) => (
-  Object.entries(order).map(([itemId, quantity]) => ({ ...catalog[itemId], quantity }))
+  Object.entries(order)
+    .filter(([, quantity]) => quantity > 0)
+    .map(([itemId, quantity]) => ({ ...catalog[itemId], quantity }))
 );
 
-const getOrderTotal = (order, catalog, vatRate, tipRate) => {
+const getOrderTotal = (order, catalog) => {
   const orderDetails = getOrderDetails(order, catalog);
-  const pretaxTotal = orderDetails.reduce((acc, cur) => acc + cur.price * cur.quantity, 0);
-  const vat = pretaxTotal * vatRate;
-  const pretipTotal = pretaxTotal + vat;
-  const tip = pretipTotal * tipRate;
-  const total = pretipTotal + tip;
-  return {
-    pretaxTotal,
-    vat,
-    tip,
-    total,
-  };
+  const total = orderDetails.reduce((acc, cur) => acc + cur.price * cur.quantity, 0);
+  return total;
 };
 
 const mapStateToProps = state => ({
@@ -105,20 +132,18 @@ const mapStateToProps = state => ({
   orderId: state.entities.order.orderId,
   orderStatus: state.entities.order.status,
   order: getOrderDetails(state.entities.order.items, state.entities.bar.catalog),
-  totals: getOrderTotal(
+  total: getOrderTotal(
     state.entities.order.items,
     state.entities.bar.catalog,
-    state.entities.bar.vatRate,
-    state.entities.order.tipRate,
   ),
 });
 
 const mapDispatchToProps = dispatch => ({
-  updateBar: bar => dispatch(updateBar(bar)),
-  updatePage: page => dispatch(updatePage(page)),
-  updateOrder: order => dispatch(updateOrder(order)),
-  updateStatus: status => dispatch(updateStatus(status)),
-  clearOrder: () => dispatch(clearOrder()),
+  updateBar: bar => dispatch(updateBarAction(bar)),
+  updatePage: page => dispatch(updatePageAction(page)),
+  updateOrder: order => dispatch(updateOrderAction(order)),
+  updateStatus: status => dispatch(updateStatusAction(status)),
+  clearOrder: () => dispatch(clearOrderAction()),
 });
 
 export default connect(

@@ -1,4 +1,5 @@
 .secondary-head {
+  color: var(--primary-color-on);
   font-size: 2rem;
   margin: 0.5rem 0;
 }

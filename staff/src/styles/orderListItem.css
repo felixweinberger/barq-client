@@ -9,6 +9,7 @@
   height: 10rem;
   color: var(--secondary-color-on);
   background: var(--secondary-color);
+  overflow-Y: scroll;
 }
 
 [class^="wrapper"] {

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { reduxForm, Field } from 'redux-form';
 
 
 import '../styles/login.css';

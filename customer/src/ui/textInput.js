@@ -1,6 +1,6 @@
 import React from 'react';
 
-import '../../styles/textInput.css';
+import '../styles/textInput.css';
 
 const TextInput = ({ title, value, onChange }) => (
   <div className="input">
