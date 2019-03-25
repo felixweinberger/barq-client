@@ -115,7 +115,9 @@ class App extends Component { // eslint-disable-line
 }
 
 const getOrderDetails = (order, catalog) => (
-  Object.entries(order).map(([itemId, quantity]) => ({ ...catalog[itemId], quantity }))
+  Object.entries(order)
+    .filter(([, quantity]) => quantity > 0)
+    .map(([itemId, quantity]) => ({ ...catalog[itemId], quantity }))
 );
 
 const getOrderTotal = (order, catalog) => {
