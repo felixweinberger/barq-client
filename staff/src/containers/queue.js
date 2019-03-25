@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import axios from 'axios';
+
 import OrderListItem from '../ui/orderListItem.js';
 
 import '../styles/queue.css';
