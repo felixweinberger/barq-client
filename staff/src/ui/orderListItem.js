@@ -32,7 +32,6 @@ class OrderListItem extends Component  {
           <h2>#{this.props.orderId}</h2> 
           {
             this.props.items.map(item => {
-              console.log(item.name, item.quantity);
               return <div key={item._id} className="item">{item.name} x {item.quantity}</div>
             })
           }
@@ -46,15 +45,11 @@ class OrderListItem extends Component  {
   };
 }
 
-const mapStateToProps = (state) => ({
-  queue: state.queue
-})
-
 const mapDispatchToProps = (dispatch) => ({
   updateStatus: (status, orderId) => dispatch(updateStatus(status, orderId))
 })
 
 export default connect(
-  mapStateToProps,
+  null,
   mapDispatchToProps
 )(OrderListItem);

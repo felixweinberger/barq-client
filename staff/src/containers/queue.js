@@ -22,6 +22,7 @@ class Queue extends Component {
                 orderId={list.orderId}
                 items={list.items}
                 status={list.status}
+                queue={this.props.queue}
                 emitStatusUpdate={nextStatus => this.emitStatusUpdate(list.orderId, nextStatus)}
               />
             )

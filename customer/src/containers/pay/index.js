@@ -5,19 +5,11 @@ import InjectedPaymentForm from './paymentForm';
 
 import '../../styles/containers/pay.css';
 
-const Pay = ({
-  order,
-  updatePage,
-  updateOrder,
-  total,
-}) => (
+const Pay = props => (
   <div className="pay">
     <Elements>
       <InjectedPaymentForm
-        order={order}
-        total={total}
-        updatePage={updatePage}
-        updateOrder={updateOrder}
+        {...props}
       />
     </Elements>
   </div>

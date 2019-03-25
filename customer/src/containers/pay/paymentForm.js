@@ -73,7 +73,7 @@ class PaymentForm extends Component {
   handleSubmit = async (e) => {
     const { button: { clickable } } = this.state;
     const {
-      total, order, updateOrder, updatePage,
+      total, order, updateOrder, updatePage, isMenuOpen,
     } = this.props;
 
     e.preventDefault();
@@ -82,6 +82,8 @@ class PaymentForm extends Component {
     try {
       const { paying, success } = this.buttonStates;
       this.setState({ button: paying });
+      const isOpen = await isMenuOpen();
+      if (!isOpen) return updatePage('CLOSED');
       const orderData = await this.createOrderData(total, order);
       const { data } = await axios.post(`${window.location.pathname}/pay`, orderData);
       if (data.status === 'paid') {

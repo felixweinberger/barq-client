@@ -9,7 +9,9 @@ import TextInput from '../ui/textInput';
 
 import '../styles/containers/checkout.css';
 
-const Checkout = ({ order, total, updatePage }) => (
+const Checkout = ({
+  order, total, updatePage, isMenuOpen,
+}) => (
   <div className="checkout">
     {
       !order
@@ -32,7 +34,8 @@ const Checkout = ({ order, total, updatePage }) => (
               primaryButtonName="Pay"
               onPrimaryClick={() => {
                 window.localStorage.setItem('order', JSON.stringify({ items: order }));
-                updatePage('PAY');
+                isMenuOpen()
+                  .then(isOpen => (isOpen ? updatePage('PAY') : updatePage('CLOSED')));
               }}
               secondaryButtonName="Back"
               onSecondaryClick={() => updatePage('MENU')}

@@ -45,7 +45,6 @@ class App extends Component {
   listAllOrders = () => {
     axios.get(`${this.url}/queue`, {headers: {"Content-type": "application/json"}})
      .then(res => {
-       console.log(res.data);
        const { queue, history } = res.data;
        this.props.updateQueue(queue.concat(history))
      })
@@ -53,7 +52,7 @@ class App extends Component {
 
   toggleBlocked = () => {
     axios.post(`${this.url}/open`, {
-      open: !this.props.isBlocked
+      open: !this.props.isOpen
     })
     .then(res => {
       this.props.setOpen(!this.props.isOpen);
