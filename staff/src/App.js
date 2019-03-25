@@ -1,41 +1,19 @@
 import React, { Component } from 'react';
-import './App.css';
-import axios from 'axios';
 import { connect } from 'react-redux';
-import io from 'socket.io-client';
-
-import { updateQueue, addOrder, updateStatus, updatePage, setOpen } from './store/actions';
-
-import Queue from './containers/queue';
-import Display from './containers/display';
-import QrCode from './containers/qrCode';
-import PopUp from './ui/popup.js';
-
+import Dashboard from './Dashboard';
+import Login from './containers/login'
 class App extends Component {
-  url = `/staff${window.location.pathname}`;
-
+  state = {
+    page: 'LOGIN',
+    pin: ''
+  }
   switch = {
-    MAIN: () => (
-      <Queue
-        socket={this.socket}
-        queue={this.props.queue}  
-      />
+    DASHBOARD: () => (
+      <Dashboard />
     ),
-    HISTORY: () => (
-      <Queue
-        socket={this.socket}
-        queue={this.props.history}  
-      />
-    ),
-    DISPLAY: () => (
-      <Display 
-        socket={this.socket}
-        queue={this.props.queue}
-        history={this.props.history}
-      />
-    ),
-    QRCODE: () => (
-      <QrCode />
+   
+    LOGIN: () => (
+      <Login onChange={this.onChange} pin={this.state.pin} onSubmit={this.staffLogin}/>
     )
   }
 
@@ -57,63 +35,31 @@ class App extends Component {
     .then(res => {
       this.props.setOpen(!this.props.isOpen);
     })
-  }
-  
-  componentDidMount = () => {
-    this.listAllOrders();
-    this.socket = io(window.location.pathname, {
-      query: {
-        bar: window.location.pathname,
-        token: 'token'
-      },
-    });
-
-    this.socket.on('NEW_ORDER', (newOrder) => {
-      this.props.addOrder(newOrder);
-    });
-
-    this.socket.on('STATUS_UPDATE', (orderId, status) => {
-      this.props.updateStatus(status, this.props.queue.concat(this.props.history).find(order => order.orderId === orderId));
-    });
+  onChange = (e) => {
+    this.setState({pin: e.target.value});
   }
 
-  closeSocket = () => {
-    this.socket.removeAllListeners();
-    this.socket.close();
+ staffLogin = (e) => {
+   e.preventDefault();
+   console.log(this.state.pin)
+    // axios.get(`${this.url}/staff/id`, {headers: {"Content-type": "application/json"}})
+    // .then(res => {
+    //   console.log(res.data);
+    //   const { } = res.data;
+    //   this.props.updateQueue(queue.concat(history))
+    // })
   }
-
-  componentWillUnmount = () => this.closeSocket();
 
   render() {
+    console.log(this.state.page)
     return (
-      <div className="App">
-        { this.switch[this.props.page]() }
-        <PopUp page={this.props.page} isOpen={this.props.isOpen} updatePage={this.props.updatePage} toggleBlocked={this.toggleBlocked} />
-      </div>  
+      <div>
+        {
+          this.switch[this.state.page]()
+        }
+      </div>
     );
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    queue: state.queue,
-    history: state.history,
-    page: state.page,
-    isOpen: state.isOpen
-  }
-};
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    updateQueue: (queue) => dispatch(updateQueue(queue)),
-    addOrder: (order) => dispatch(addOrder(order)),
-    updateStatus: (status, order) => dispatch(updateStatus(status, order)),
-    updatePage: (page) => dispatch(updatePage(page)),
-    setOpen: (isOpen) => dispatch(setOpen(isOpen))
-  }
-}
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(App);
+export default App;

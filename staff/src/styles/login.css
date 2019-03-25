@@ -1,0 +1,50 @@
+body {
+  font-family: 'Merriweather', serif;
+}
+
+.wrapper {
+  position: relative;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
+}
+
+.form {
+  width: 200px;
+  height: 100px;
+  line-height: 100px;
+  position: fixed;
+  top: 50%; 
+  left: 48%;
+  margin-top: -70px;
+  margin-left: -75px;
+  color:white;
+  border-radius: 5px;
+  text-align: center;
+  z-index: 11; 
+  font-weight: bold;
+  font-family: 'Merriweather', serif;
+}
+
+
+.label {
+  font-size: 25px;
+  font-family: 'Merriweather', serif;
+  color: white;
+  padding-bottom: 10px;
+}
+
+.input {
+  border-radius: 10px;
+  padding: 10px 18px;
+}
+.submit {
+  font-family: 'Merriweather', serif;
+  background-color: white;
+  border-radius: 18px;
+  padding: 10px 20px;
+  margin-bottom: 10px;
+}
