@@ -114,12 +114,13 @@ class PaymentForm extends Component {
     }
   };
 
-  createOptions = fontSize => ({
+  createOptions = {
     style: {
       base: {
-        fontSize,
+        fontSize: '20px',
         color: 'white',
         letterSpacing: '0.025em',
+        marginBottom: '8px',
         fontFamily: 'Source Code Pro, monospace',
         '::placeholder': {
           color: '#aab7c4',
@@ -129,7 +130,7 @@ class PaymentForm extends Component {
         color: '#9e2146',
       },
     },
-  });
+  };
 
   render() {
     const {
@@ -147,47 +148,52 @@ class PaymentForm extends Component {
           className={`pay__form${title === 'Loading' ? '--invisible' : ''}`}
           onSubmit={this.handleSubmit}
         >
-          <label className="pay__number">
-            Card number
-            <CardNumberElement
-              onBlur={this.handleBlur}
-              onChange={this.handleChange}
-              onFocus={this.handleFocus}
-              onReady={this.handleReady}
-              {...this.createOptions('16px')}
-            />
-          </label>
-          <label className="pay__expiry">
-            Expiration date
-            <CardExpiryElement
-              onBlur={this.handleBlur}
-              onChange={this.handleChange}
-              onFocus={this.handleFocus}
-              onReady={this.handleReady}
-              {...this.createOptions('16px')}
-            />
-          </label>
-          <div>
-            <label className="pay__cvc">
-              CVC
-              <CardCVCElement
-                onBlur={this.handleBlur}
-                onChange={this.handleChange}
-                onFocus={this.handleFocus}
-                onReady={this.handleReady}
-                {...this.createOptions('16px')}
-              />
-            </label>
-            <label className="pay__postal">
-              Postal code
-              <PostalCodeElement
-                onBlur={this.handleBlur}
-                onChange={this.handleChange}
-                onFocus={this.handleFocus}
-                onReady={this.handleReady}
-                {...this.createOptions('16px')}
-              />
-            </label>
+          <div className="pay__stripe" />
+          <div className="pay__info">
+            <div className="pay__top">
+              <label className="pay__number">
+                Card number
+                <CardNumberElement
+                  onBlur={this.handleBlur}
+                  onChange={this.handleChange}
+                  onFocus={this.handleFocus}
+                  onReady={this.handleReady}
+                  {...this.createOptions}
+                />
+              </label>
+              <label className="pay__cvc">
+                CVC
+                <CardCVCElement
+                  onBlur={this.handleBlur}
+                  onChange={this.handleChange}
+                  onFocus={this.handleFocus}
+                  onReady={this.handleReady}
+                  {...this.createOptions}
+                />
+              </label>
+            </div>
+            <div className="pay__bottom">
+              <label className="pay__expiry">
+                Expiry date
+                <CardExpiryElement
+                  onBlur={this.handleBlur}
+                  onChange={this.handleChange}
+                  onFocus={this.handleFocus}
+                  onReady={this.handleReady}
+                  {...this.createOptions}
+                />
+              </label>
+              <label className="pay__postal">
+                Postal code
+                <PostalCodeElement
+                  onBlur={this.handleBlur}
+                  onChange={this.handleChange}
+                  onFocus={this.handleFocus}
+                  onReady={this.handleReady}
+                  {...this.createOptions}
+                />
+              </label>
+            </div>
           </div>
           <Footer
             primaryButtonName={title}

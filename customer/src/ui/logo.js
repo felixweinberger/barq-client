@@ -9,9 +9,6 @@ const Logo = ({ logoPath, barName }) => (
     <PrimaryHead title={barName} />
     <div
       className="logo__image"
-      style={{
-        backgroundImage: `url(${logoPath})`,
-      }}
     />
   </div>
 );

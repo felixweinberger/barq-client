@@ -27,7 +27,7 @@ const MenuItem = ({
         <Text content={name} />
         <Price style={{ flexBasis: '100%' }} price={price} currency={currency} />
       </div>
-      <div className="popup-info">
+      <div className="menu__info">
         <PopupInfo />
       </div>
       {
@@ -39,7 +39,7 @@ const MenuItem = ({
               onMinus={() => incrementItem(name, -1)}
             />
           )
-          : <Text content={`x${number}`} />
+          : <Text style={{ marginLeft: '1rem' }} content={`x ${number}`} />
       }
     </div>
   );

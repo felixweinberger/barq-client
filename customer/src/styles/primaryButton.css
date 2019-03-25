@@ -10,19 +10,20 @@
 
   font-size: 2rem;
   font-family: var(--sans-serif);
+  color: white;
 }
 
 .primary-button--success {
-  background: var(--primary-color);
-  color: var(--primary-color-on);
+  background: var(--success-color);
+  color: white;
 }
 
 .primary-button--danger {
   background: var(--danger-color);
-  color: var(--danger-color-on);
+  color: white;
 }
 
 .primary-button--neutral {
-  background: var(--secondary-color);
-  color: var(--secondary-color-on);
+  background: var(--neutral-color);
+  color: var(--neutral-color-on);
 }

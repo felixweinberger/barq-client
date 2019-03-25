@@ -10,8 +10,6 @@
 }
 
 .queue__bill {
-  box-shadow: var(--primary-shadow);
-  background: rgba(255, 255, 255, 0.5);
   color: black;
   padding: 0.5rem 1rem;
   align-self: stretch;
