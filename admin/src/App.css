@@ -1,0 +1,125 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
+
+.App {
+  font-family: Montserrat;
+  font-size: 12px;
+  background-color: #f1e4c7;
+  padding: 20px;
+  color: #2F3330;
+}
+
+.staffContainer {
+  background-color:lightgreen;
+  padding: 50px;
+  flex: 3;
+}
+
+.menuContainer {
+  background-color: #f1e4c7;
+  padding: 20px;
+  flex: 3;
+}
+
+.dashboard {
+  display: flex;
+  background-color: #c80d36;
+  padding: 6px;
+}
+
+.barList {
+  background-color: #f1e4c7;
+  padding: 20px;
+  flex: 1;
+  flex-direction: vertical;
+}
+
+.barDetails {
+  background-color: #c80d36;
+  padding-left: 6px;
+  flex: 3;
+}
+
+.category__title {
+  padding-top: 10px;
+  font-weight: bold;
+}
+
+.category__listitem {
+  font-style: italic;
+}
+
+.staff__name {
+  padding-top: 10px;
+  font-weight: bold;
+}
+
+.staff__email {
+  font-style: italic;
+}
+
+.menuListItem {
+  background-color: white;
+}
+
+h1 {
+  color: #c80d36
+}
+
+h2 {
+  color: #5E0035;
+  font-weight: bold;
+}
+
+.welcome {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+[class^='welcome__'] {
+  font-size: 1rem;
+  font-family: sans-serif;
+  text-decoration: none;
+  color: black;
+  text-align: center;
+  margin-bottom: 0.5rem;
+  transition: 0.1s ease-in all;
+}
+
+.welcome__title {
+  font-weight: 700;
+  font-size: 3rem;
+  background-image: url('/logo.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.welcome__login {
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  box-shadow: 0px 2px 3px 1px rgba(0, 0, 0, 0.75),
+              0px 2px 10px 0px rgba(0, 0, 0, 0.5);
+}
+
+.welcome__username:focus, .welcome__password:focus {
+  box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 1) inset;
+}
+
+
+.welcome__submit {
+  cursor: pointer;
+  box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 1);
+}
+
+.welcome__toggle {
+  cursor: pointer;
+  margin-bottom: 0;
+}
+
+.welcome__warning {
+  color: darkred;
+}
