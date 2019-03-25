@@ -26,9 +26,9 @@ const MenuItem = ({
       <div className="menu-item__name">
         <Text content={name} />
         <Price style={{ flexBasis: '100%' }} price={price} currency={currency} />
-        <div className="popup-info">
-          <PopupInfo />
-        </div>
+      </div>
+      <div className="popup-info">
+        <PopupInfo />
       </div>
       {
         editable

@@ -9,13 +9,13 @@ const Pay = ({
   order,
   updatePage,
   updateOrder,
-  totals,
+  total,
 }) => (
   <div className="pay">
     <Elements>
       <InjectedPaymentForm
         order={order}
-        totals={totals}
+        total={total}
         updatePage={updatePage}
         updateOrder={updateOrder}
       />

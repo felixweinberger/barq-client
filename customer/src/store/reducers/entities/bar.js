@@ -12,6 +12,7 @@ const initialState = {
 const menu = (state = initialState.menu, action) => {
   switch (action.type) {
     case 'UPDATE_BAR': {
+      console.log(action);
       return action.menu;
     }
     default: {
@@ -31,17 +32,6 @@ const catalog = (state = initialState.catalog, action) => {
   }
 };
 
-const vatRate = (state = initialState.vatRate, action) => {
-  switch (action.type) {
-    case 'UPDATE_BAR': {
-      return action.vat;
-    }
-    default: {
-      return state;
-    }
-  }
-};
-
 const name = (state = initialState.name, action) => {
   switch (action.type) {
     case 'UPDATE_BAR': {
@@ -54,5 +44,5 @@ const name = (state = initialState.name, action) => {
 };
 
 export default combineReducers({
-  menu, catalog, vatRate, name,
+  menu, catalog, name,
 });

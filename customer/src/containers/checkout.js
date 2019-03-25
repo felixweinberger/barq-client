@@ -4,12 +4,12 @@ import Loader from '../ui/loader';
 import MenuItem from '../ui/menuItem';
 import Footer from '../ui/footer';
 import Price from '../ui/price';
-import TextInput from '../ui/inputs/textInput';
+import TextInput from '../ui/textInput';
 
 
 import '../styles/containers/checkout.css';
 
-const Checkout = ({ order, totals, updatePage }) => (
+const Checkout = ({ order, total, updatePage }) => (
   <div className="checkout">
     {
       !order
@@ -22,13 +22,9 @@ const Checkout = ({ order, totals, updatePage }) => (
                   ? <div>No items selected...</div>
                   : order.map(item => <MenuItem key={item.name} item={item} />)
               }
-              <div className="checkout__vat">
-                VAT.....
-                <Price style={{ textAlign: 'right', fontSize: '1.25rem' }} price={totals.vat} />
-              </div>
               <div className="checkout__total">
                 Total...
-                <Price style={{ textAlign: 'right', fontSize: '1.25rem' }} price={totals.total} />
+                <Price style={{ textAlign: 'right', fontSize: '1.25rem' }} price={total} />
               </div>
               <TextInput title="Special Wishes" />
             </div>

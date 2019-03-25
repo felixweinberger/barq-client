@@ -12,7 +12,7 @@
   align-self: stretch;
 }
 
-.checkout__vat, .checkout__total {
+.checkout__total {
   display: flex;
   justify-content: space-between;
   align-items: baseline;

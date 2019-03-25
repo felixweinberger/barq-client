@@ -14,6 +14,7 @@ const store = createStore(
   reducers,
   window.__REDUX_DEVTOOLS_EXTENSION__ // eslint-disable-line no-underscore-dangle
   && window.__REDUX_DEVTOOLS_EXTENSION__(), // eslint-disable-line no-underscore-dangle
+  // applyMiddleware(api)
 );
 
 ReactDOM.render(

@@ -9,15 +9,15 @@
   --secondary-shadow: 0px 2px 10px 0px rgba(122,122,122,1);
 
   --primary-color: #13AFA0;
-  --primary-color-on: #56544B;
+  --primary-color-on: #424242;
   --secondary-color: rgba(255, 255, 255, 0.5);
-  --secondary-color-on: #56544B;
+  --secondary-color-on: #424242;
   --danger-color: #EA0E48;
   --danger-color-on: #56544B;
   --warning-color: linear-gradient(-20deg, #fc6076 0%, #ff9a44 100%);
   --warning-color-on: #56544B;
 
-  --light-border: #191716;;
+  --light-border: #191716;
 
   --header-height: 4rem;
   --footer-height: 5rem;
@@ -33,7 +33,7 @@ body {
   padding: 0;
   flex-grow: 1;
   display: flex;
-  background: #56544B;
+  background: #424242;
   color: white;
 }
 
