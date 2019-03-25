@@ -91,7 +91,6 @@ h2 {
 .welcome__title {
   font-weight: 700;
   font-size: 3rem;
-  background-image: url('/logo.png');
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;

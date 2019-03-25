@@ -3,10 +3,8 @@ import React from 'react';
 import MenuContainer from './menuContainer';
 import StaffContainer from './staffContainer';
 
-const BarDetails = (props) => {
-  const {
-    token, data, addMenu, deleteMenu, addStaffMember, deleteStaffMember,
-  } = props;
+const BarDetails = ({ token, data, addMenu, deleteMenu, addStaffMember, deleteStaffMember }) => {
+
   return (
     <div className="barDetails">
       <div>Menu Container</div>
