@@ -20,7 +20,7 @@ const BarDetails = ({
       token={token}
       data={data.staff}
       barId={data._id}
-      addStaffMember={addStaffMember}
+      addStaffmember={addStaffMember}
       deleteStaffMember={deleteStaffMember}
     />
   </div>

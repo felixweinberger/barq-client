@@ -1,56 +1,32 @@
 import React, { Component } from 'react';
 
-import StaffContainerItem from './staffContainerItem';
-
 class StaffContainer extends Component {
   state = {
-    name: '',
-    email: '',
-  }
-
-  onChangeName = (e) => {
-    const name = e.nativeEvent.target.value;
-    this.setState({ name });
-  }
-
-  onChangeEmail = (e) => {
-    const email = e.nativeEvent.target.value;
-    this.setState({ email });
+    staffCode: '',
   }
 
   onSubmit = (e) => {
+    const { token, barId } = this.props;
     e.preventDefault();
-    const { barId, addStaffMember } = this.props;
-    const { name, email } = this.state;
-    if (name.length < 1 || email.length < 1) {
-      alert('Error: Please ensure that you submit both a name and email.'); // eslint-disable-line no-alert
-      return 1;
-    }
-    addStaffMember({ name, email }, barId);
-    return 0;
+    fetch(
+      `/owner/bars/${barId}/code`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+      },
+    )
+      .then(res => res.json())
+      .then(res => this.setState({ staffCode: res })); // eslint-disable-line no-console
   }
 
   render() {
-    const { data, barId, deleteStaffMember } = this.props;
+    const { staffCode } = this.state;
     return (
       <div className="staffContainer">
-
-        {data
-          ? data.map(staff => (
-            <StaffContainerItem
-              data={staff}
-              key={staff.name}
-              barId={barId}
-              deleteStaffMember={deleteStaffMember}
-            />
-          ))
-          : null}
-
-        <form>
-          <input type="text" placeholder="Name" onChange={this.onChangeName} />
-          <input type="text" placeholder="Email" onChange={this.onChangeEmail} />
-          <input type="submit" value="Submit" onClick={this.onSubmit} />
-        </form>
+        {staffCode}
+        <input type="submit" value="Generate code" onClick={this.onSubmit} />
       </div>
     );
   }
