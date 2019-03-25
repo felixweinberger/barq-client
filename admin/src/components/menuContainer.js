@@ -3,19 +3,15 @@ import csv from 'csvtojson';
 
 import MenuListItem from './menuListItem';
 
-const convertToObject = (input) => {
-  return input.reduce((categories, el) => {
-    if (!categories[el[2]]) categories[el[2]] = [];
-    categories[el[2]].push({ name: el[0], price: el[1] });
-    return categories;
-  }, {})
-};
+const convertToObject = input => input.reduce((categories, el) => {
+  if (!categories[el[2]]) categories[el[2]] = []; // eslint-disable-line
+  categories[el[2]].push({ name: el[0], price: el[1] });
+  return categories;
+}, {});
 
 class MenuContainer extends React.Component {
-
   state = {
     file: null,
-    json: [],
     menuName: '',
   }
 
@@ -31,26 +27,25 @@ class MenuContainer extends React.Component {
   }
 
   onSubmit = async (e) => {
+    const { file, menuName } = this.state;
     e.preventDefault();
     const reader = new FileReader();
     reader.onload = () => {
       const binaryStr = reader.result;
       csv({ noheader: false, output: 'csv' })
         .fromString(binaryStr)
-        .then(csvRow => {
+        .then((csvRow) => {
           const { barId, addMenu } = this.props;
           const categories = Object.entries(convertToObject(csvRow))
             .map(el => ({ name: el[0], items: el[1] }));
-          addMenu({ name: this.state.menuName, categories }, barId);
-        })
+          addMenu({ name: menuName, categories }, barId);
+        });
     };
-
-    reader.readAsBinaryString(this.state.file)
+    reader.readAsBinaryString(file);
   }
 
   render() {
     const { data, deleteMenu, barId } = this.props;
-
     return (
       <div className="menuContainer">
         <h1>Menus</h1>
@@ -64,7 +59,6 @@ class MenuContainer extends React.Component {
             />
           ))
           : null}
-
         <form>
           <input type="text" placeholder="Name" onChange={this.onChangeName} />
           <input type="file" name="file" onChange={this.onFileChange} />

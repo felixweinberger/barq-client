@@ -14,18 +14,14 @@ class Dashboard extends Component {
 
   getOwnerData = () => {
     const { token } = this.props;
-    console.log(token)
     fetch('/owner/me',
       {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       })
-      .then(res => {
-        console.log(res)
-        return res.json()
-      })
-      .then(res => this.setState({ ownerData: res.user }))
+      .then(res => res.json())
+      .then(res => this.setState({ ownerData: res.user }));
   }
 
   addBar = (event, barObj) => {
@@ -41,11 +37,12 @@ class Dashboard extends Component {
         body: JSON.stringify(barObj),
       })
       .then(res => res.json())
-      .then(res => this.setState({ ownerData: res }))
+      .then(res => this.setState({ ownerData: res }));
   }
 
   deleteBar = (barId) => {
     const { token } = this.props;
+    const { activeBar } = this.state;
     fetch(`/owner/bars/${barId}`,
       {
         method: 'DELETE',
@@ -54,7 +51,10 @@ class Dashboard extends Component {
         },
       })
       .then(res => res.json())
-      .then(res => this.setState({ ownerData: res }));
+      .then(res => this.setState({ ownerData: res }))
+      .then(() => {
+        if (barId === activeBar._id) this.setState({ activeBar: null });
+      });
   }
 
   selectBar = (barData) => {
@@ -110,12 +110,10 @@ class Dashboard extends Component {
       })
       .then(res => res.json())
       .then((response) => {
-        console.log(response, 'pre')
         this.setState({
           ownerData: response,
           activeBar: response.bars.find(bar => bar._id === barId),
         });
-        console.log(response, 'post')
       });
   }
 
@@ -144,12 +142,12 @@ class Dashboard extends Component {
 
   render() {
     const { logout, token } = this.props;
-    const { activeBar } = this.state;
+    const { activeBar, ownerData } = this.state;
     return (
       <div className="dashboard">
         <button type="submit" onClick={logout}>Log out</button>
         <BarList
-          data={this.state.ownerData}
+          data={ownerData}
           addBar={this.addBar}
           deleteBar={this.deleteBar}
           selectBar={this.selectBar}
