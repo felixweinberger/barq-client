@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, forwardRef } from 'react';
+import withPose from './withPose';
 
 import Loader from '../ui/loader';
 import MenuItem from '../ui/menuItem';
@@ -10,12 +11,13 @@ import TextInput from '../ui/textInput';
 import '../styles/containers/checkout.css';
 import SecondaryHead from '../ui/secondaryHead';
 
-const Checkout = ({
-  order, total, updatePage, isMenuOpen, updateOrder
-}) => {
+const Checkout = forwardRef((props, ref) => {
+  const {
+    order, total, updatePage, isMenuOpen, updateOrder,
+  } = props;
   const [specialWishes, setSpecialWishes] = useState('');
   return (
-    <div className="checkout">
+    <div ref={ref} className="checkout">
       {
         !order
           ? <Loader />
@@ -50,6 +52,6 @@ const Checkout = ({
     }
     </div>
   );
-};
+});
 
-export default Checkout;
+export default withPose(Checkout);

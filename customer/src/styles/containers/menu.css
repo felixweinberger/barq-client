@@ -1,4 +1,5 @@
 .menu {
+  left: 0;
   position: relative;
   flex-grow: 1;
   padding-bottom: var(--footer-height);

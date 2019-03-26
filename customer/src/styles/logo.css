@@ -1,7 +1,7 @@
 .logo {
   position: relative;
   font-size: 2rem;
-  height: 5rem;
+  height: var(--header-height);
   line-height: 5rem;
   text-align: center;
   font-weight: 400;

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { PoseGroup } from 'react-pose';
 import axios from 'axios';
 
 import {
@@ -27,6 +28,7 @@ class App extends Component { // eslint-disable-line
       } = this.props;
       return (
         <Menu
+          key={0}
           updatePage={updatePage}
           bar={bar}
           order={order}
@@ -41,6 +43,7 @@ class App extends Component { // eslint-disable-line
       } = this.props;
       return (
         <Checkout
+          key={1}
           updatePage={updatePage}
           updateOrder={updateOrder}
           total={total}
@@ -55,6 +58,7 @@ class App extends Component { // eslint-disable-line
       } = this.props;
       return (
         <Pay
+          key={2}
           updatePage={updatePage}
           updateOrder={updateOrder}
           order={order}
@@ -69,6 +73,7 @@ class App extends Component { // eslint-disable-line
       } = this.props;
       return (
         <Queue
+          key={3}
           order={order}
           updatePage={updatePage}
           orderId={orderId}
@@ -81,7 +86,9 @@ class App extends Component { // eslint-disable-line
       );
     },
     CLOSED: () => (
-      <Closed />
+      <Closed
+          key={4}
+      />
     ),
   }
 
@@ -110,7 +117,9 @@ class App extends Component { // eslint-disable-line
     return (
       <div className="App">
         <Logo logoPath="/logo.jpg" barName={name} />
-        { this.switch[page]() }
+        <PoseGroup animateOnMount flipMove={false} preEnterPose="before">
+          { this.switch[page]() }
+        </PoseGroup>
       </div>
     );
   }
