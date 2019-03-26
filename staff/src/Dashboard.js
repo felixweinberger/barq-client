@@ -70,6 +70,7 @@ class Dashboard extends Component {
     });
 
     this.socket.on('NEW_ORDER', (newOrder) => {
+      console.log(newOrder);
       this.props.addOrder(newOrder);
     });
 

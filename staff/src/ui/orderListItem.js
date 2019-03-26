@@ -33,6 +33,7 @@ class OrderListItem extends Component  {
               return <div key={item._id} className="item">{item.name} x {item.quantity}</div>
             })
           }
+          <p>{this.props.specialWishes}</p>
         </div>
         <button name='update' onClick={this.onButtonClick} className="wrapper-status">
           Update

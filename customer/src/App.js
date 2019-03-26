@@ -37,11 +37,12 @@ class App extends Component { // eslint-disable-line
     },
     CHECKOUT: () => {
       const {
-        updatePage, total, order,
+        updatePage, updateOrder, total, order,
       } = this.props;
       return (
         <Checkout
           updatePage={updatePage}
+          updateOrder={updateOrder}
           total={total}
           order={order}
           isMenuOpen={this.isMenuOpen}
@@ -64,7 +65,7 @@ class App extends Component { // eslint-disable-line
     },
     QUEUE: () => {
       const {
-        order, updatePage, orderId, orderStatus, updateStatus, clearOrder,
+        order, updatePage, orderId, orderStatus, updateStatus, clearOrder, orderSpecialWishes,
       } = this.props;
       return (
         <Queue
@@ -72,6 +73,7 @@ class App extends Component { // eslint-disable-line
           updatePage={updatePage}
           orderId={orderId}
           orderStatus={orderStatus}
+          orderSpecialWishes={orderSpecialWishes}
           updateStatus={updateStatus}
           clearOrder={clearOrder}
           isMenuOpen={this.isMenuOpen}
@@ -134,6 +136,7 @@ const mapStateToProps = state => ({
   page: state.view.page,
   orderId: state.entities.order.orderId,
   orderStatus: state.entities.order.status,
+  orderSpecialWishes: state.entities.order.specialWishes,
   order: getOrderDetails(state.entities.order.items, state.entities.bar.catalog),
   total: getOrderTotal(
     state.entities.order.items,

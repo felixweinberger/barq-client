@@ -6,6 +6,7 @@ const initialState = {
   tipRate: 0.05,
   orderId: null,
   status: 'unpaid',
+  specialWishes: '',
 };
 
 const items = (state = initialState.items, action) => {
@@ -33,20 +34,6 @@ const items = (state = initialState.items, action) => {
   }
 };
 
-const tipRate = (state = initialState.tipRate, action) => {
-  switch (action.type) {
-    case 'UPDATE_TIP_RATE': {
-      return action.tipRate || state;
-    }
-    case 'CLEAR_ORDER': {
-      return initialState.tipRate;
-    }
-    default: {
-      return state;
-    }
-  }
-};
-
 const orderId = (state = initialState.orderId, action) => {
   switch (action.type) {
     case 'UPDATE_ORDER': {
@@ -54,6 +41,20 @@ const orderId = (state = initialState.orderId, action) => {
     }
     case 'CLEAR_ORDER': {
       return initialState.orderId;
+    }
+    default: {
+      return state;
+    }
+  }
+};
+
+const specialWishes = (state = initialState.specialWishes, action) => {
+  switch (action.type) {
+    case 'UPDATE_ORDER': {
+      return action.specialWishes || state;
+    }
+    case 'CLEAR_ORDER': {
+      return initialState.status;
     }
     default: {
       return state;
@@ -79,5 +80,5 @@ const status = (state = initialState.status, action) => {
 };
 
 export default combineReducers({
-  items, tipRate, orderId, status,
+  items, orderId, status, specialWishes
 });
