@@ -31,11 +31,6 @@ class Queue extends Component {
     });
   }
 
-  componentDidUpdate = () => {
-    const { orderStatus } = this.props;
-    if (orderStatus === 'delivered') this.closeSocket();
-  }
-
   closeSocket = () => {
     this.socket.removeAllListeners();
     this.socket.close();
@@ -68,6 +63,7 @@ class Queue extends Component {
             <Footer
               primaryButtonName="Order another round!"
               onPrimaryClick={() => {
+                this.closeSocket();
                 clearOrder();
                 window.localStorage.removeItem('order');
                 isMenuOpen()
