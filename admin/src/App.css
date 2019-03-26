@@ -8,6 +8,14 @@
   color: #2F3330;
 }
 
+.paymentDetails {
+  background-color: lightblue;
+}
+
+.orderHistory {
+  background-color: lightpink;
+}
+
 .staffContainer {
   background-color:lightgreen;
   padding: 50px;

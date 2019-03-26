@@ -2,6 +2,8 @@ import React from 'react';
 
 import MenuContainer from './menuContainer';
 import StaffContainer from './staffContainer';
+import OrderHistory from './orderHistory';
+import PaymentDetails from './paymentDetails';
 
 const BarDetails = ({
   token, data, addMenu, deleteMenu, addStaffMember, deleteStaffMember,
@@ -22,6 +24,16 @@ const BarDetails = ({
       barId={data._id}
       addStaffmember={addStaffMember}
       deleteStaffMember={deleteStaffMember}
+    />
+    <div>Payment Details</div>
+    <PaymentDetails
+      token={token}
+      barId={data._id}
+      iban={data.iban}
+    />
+    <div>Order History</div>
+    <OrderHistory
+      history={data.history}
     />
   </div>
 );
