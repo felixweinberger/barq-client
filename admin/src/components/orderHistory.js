@@ -2,7 +2,7 @@ import React from 'react';
 
 const OrderHistory = ({ history, refreshHistory }) => (
   <div className="orderHistory">
-    <input type="submit" value="Refresh history" onClick={refreshHistory} />
+    <input className="clickerSmall" id="refreshHistory" type="submit" value="Refresh history" onClick={refreshHistory} />
     <table className="orderHistory__table">
       <tbody>
         <tr>
