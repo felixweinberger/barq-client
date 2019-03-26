@@ -144,26 +144,33 @@ class Dashboard extends Component {
     const { logout, token } = this.props;
     const { activeBar, ownerData } = this.state;
     return (
-      <div className="dashboard">
-        <button type="submit" onClick={logout}>Log out</button>
-        <BarList
-          data={ownerData}
-          addBar={this.addBar}
-          deleteBar={this.deleteBar}
-          selectBar={this.selectBar}
-        />
-        {activeBar
-          ? (
-            <BarDetails
-              data={activeBar}
-              token={token}
-              addStaffMember={this.addStaffMember}
-              deleteStaffMember={this.deleteStaffMember}
-              addMenu={this.addMenu}
-              deleteMenu={this.deleteMenu}
-            />
-          )
-          : null}
+      <div>
+        <div className="dashboardHeader">
+          <div className="headerLogo">BarQ</div>
+          <button className="clicker" type="button" id="logout" onClick={logout}>Log out</button>
+        </div>
+
+
+        <div className="dashboard">
+          <BarList
+            data={ownerData}
+            addBar={this.addBar}
+            deleteBar={this.deleteBar}
+            selectBar={this.selectBar}
+          />
+          {activeBar
+            ? (
+              <BarDetails
+                data={activeBar}
+                token={token}
+                addStaffMember={this.addStaffMember}
+                deleteStaffMember={this.deleteStaffMember}
+                addMenu={this.addMenu}
+                deleteMenu={this.deleteMenu}
+              />
+            )
+            : null}
+        </div>
       </div>
     );
   }
