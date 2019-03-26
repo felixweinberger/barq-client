@@ -18,11 +18,9 @@
   left: 50%;
   margin-top: -100px;
   margin-left: -150px;
-  background-color: white;
-  color: black;
-  border-radius: 5px;
+  background-color: var(--primary-color-on);
+  color: var(--primary-color);
+  border-radius: 0.5rem;
   text-align: center;
   z-index: 11; 
-  font-weight: bold;
-  font-family: 'Merriweather', serif;
 }
