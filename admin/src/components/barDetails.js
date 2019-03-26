@@ -6,7 +6,7 @@ import OrderHistory from './orderHistory';
 import PaymentDetails from './paymentDetails';
 
 const BarDetails = ({
-  token, data, addMenu, deleteMenu, addStaffMember, deleteStaffMember,
+  token, data, addMenu, deleteMenu, addStaffMember, deleteStaffMember, updateIban,
 }) => (
   <div className="barDetails">
     <div>Menu Container</div>
@@ -30,6 +30,7 @@ const BarDetails = ({
       token={token}
       barId={data._id}
       iban={data.iban}
+      updateIban={updateIban}
     />
     <div>Order History</div>
     <OrderHistory

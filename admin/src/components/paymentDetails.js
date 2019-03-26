@@ -1,44 +1,23 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-class PaymentDetails extends Component {
-  state = {
-    iban: '',
-  }
+const PaymentDetails = (props) => {
+  const { barId, iban, updateIban } = props;
 
-  onChangeIban = (e) => {
-    this.setState({
-      iban: e.nativeEvent.target.value,
-    });
-  }
-
-  onSubmitIban = (e) => {
-    const { token, barId } = this.props;
-    const { iban } = this.state;
+  const onSubmitIban = (e) => {
     e.preventDefault();
-    fetch(
-      `/owner/bars/${barId}/iban`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify({ iban }),
-      },
-    )
-      .then(res => res.json())
-      .then(res => console.log(res)); // eslint-disable-line no-console
-  }
+    const newIban = e.nativeEvent.target[0].value;
+    updateIban(barId, newIban);
+  };
 
-  render() {
-    const { iban } = this.props;
-    return (
-      <div className="paymentDetails">
-        {iban}
-        <input type="text" placeholder="IBAN" onChange={this.onChangeIban} />
-        <input type="submit" value="Submit" onClick={this.onSubmitIban} />
-      </div>
-    );
-  }
-}
+  return (
+    <div className="paymentDetails">
+      {iban}
+      <form onSubmit={onSubmitIban}>
+        <input type="text" placeholder="IBAN" />
+        <input type="submit" value="Submit" />
+      </form>
+    </div>
+  );
+};
 
 export default PaymentDetails;

@@ -136,6 +136,28 @@ class Dashboard extends Component {
       });
   }
 
+  updateIban = (barId, iban) => {
+    const { token } = this.props;
+    const { ownerData } = this.state;
+    fetch(
+      `/owner/bars/${barId}/iban`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({ iban }),
+      },
+    )
+      .then(res => res.json())
+      .then(res => this.setState({
+        ownerData: {
+          ...ownerData,
+          iban: res,
+        },
+      }));
+  }
+
   componentDidMount = () => {
     this.getOwnerData();
   }
@@ -161,6 +183,7 @@ class Dashboard extends Component {
               deleteStaffMember={this.deleteStaffMember}
               addMenu={this.addMenu}
               deleteMenu={this.deleteMenu}
+              updateIban={this.updateIban}
             />
           )
           : null}
