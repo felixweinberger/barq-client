@@ -5,26 +5,30 @@ const OrderHistory = (props) => {
   return (
     <div className="orderHistory">
       <input type="submit" value="Refresh history" onClick={refreshHistory} />
-      {history.length > 0
-        ? history.map(order => (
-          <div key={order.orderId}>
-            Order #:
-            {order.orderId}
-            Date:
-            {order.timestamp}
-            Items:
-            {order.items.map(orderItem => (
-              <div key={orderItem._id}>
-                {orderItem.name}
-                x
-                {orderItem.quantity}
-                $
-                {orderItem.price}
-              </div>
-            ))}
-          </div>
-        ))
-        : null}
+      <table>
+        <tr>
+          <th>Order #</th>
+          <th>Date</th>
+          <th>Items</th>
+          <th>Total</th>
+        </tr>
+        {history.length > 0
+          ? history.map((order) => {
+            const total = order.items.reduce((acc, el) => acc + el.amount, 0);
+            return (
+              <tr key={order.orderId}>
+                <td>{order.orderId}</td>
+                <td>{order.timestamp}</td>
+                <td>ORDER ITEMS</td>
+                <td>
+                  €
+                  {total}
+                </td>
+              </tr>
+            );
+          })
+          : null}
+      </table>
     </div>
   );
 };
