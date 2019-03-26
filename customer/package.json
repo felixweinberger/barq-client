@@ -46,5 +46,5 @@
     }
   },
   "secure": false,
-  "proxy": "http://localhost:3001"
+  "proxy": "http://app:3001"
 }
