@@ -8,7 +8,7 @@ class Login extends Component {
   render() {
     return (
       <div>
-        <div className="wrapper">
+        <div className="login__wrapper">
           <form className="form" onSubmit={this.props.onSubmit}>
             <div className="field">
               <div>
