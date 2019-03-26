@@ -41,13 +41,27 @@ body {
   outline: none;
   margin: 0;
   padding: 0;
+  font-family: var(--font);
+  font-weight: 400;
 }
 
 input, textarea {
   touch-action: manipulation;
 }
 
-h1, h2 {
-  font-family: var(--sans-serif);
+h1 {
+  font-size: 3.5rem;
+}
+
+h2 {
   font-size: 3rem;
+}
+
+h1, h2 {
+  font-family: var(--font);
+  font-weight: 400;
+}
+
+button {
+  font-weight: 400;
 }
