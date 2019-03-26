@@ -120,7 +120,6 @@ class PaymentForm extends Component {
         fontSize: '16px',
         color: 'white',
         letterSpacing: '0.025em',
-        marginBottom: '8px',
         fontFamily: 'Source Code Pro, monospace',
         '::placeholder': {
           color: '#aab7c4',

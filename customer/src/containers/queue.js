@@ -46,7 +46,7 @@ class Queue extends Component {
       <>
         <div className="queue">
           <SecondaryHead style={{ margin: '0' }} title="Your number" />
-          <PrimaryHead style={{ margin: '0' }} title={`#${orderId}`} />
+          <PrimaryHead style={{ margin: '0', textAlign: 'center' }} title={`#${orderId}`} />
           <div className="queue__bill">
             {
               order.map(item => (
@@ -54,7 +54,7 @@ class Queue extends Component {
               ))
             }
           </div>
-          <PrimaryHead style={{ marginBottom: '1rem' }} title={orderStatus} />
+          <PrimaryHead style={{ marginBottom: '1rem', textAlign: 'center' }} title={orderStatus} />
           <BeerAnimation />
         </div>
         {

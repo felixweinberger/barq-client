@@ -87,10 +87,7 @@ class App extends Component { // eslint-disable-line
 
   isMenuOpen = () => axios
     .get(`${window.location.pathname}/menu`)
-    .then(res => {
-      console.log(res.data);
-      return res.data.open
-    });
+    .then(res => res.data.open);
 
   componentDidMount = () => {
     axios.get(`${window.location.pathname}/menu`)
