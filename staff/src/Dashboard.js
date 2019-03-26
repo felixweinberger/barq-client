@@ -52,19 +52,20 @@ class Dashboard extends Component {
 
   toggleBlocked = () => {
     axios.post(`${this.url}/open`, {
-      open: !this.props.isBlocked
+      open: !this.props.isOpen
     })
     .then(res => {
-      this.props.setOpen(!this.props.isOpen);
+      this.props.setOpen(res.data.open);
     })
   }
   
   componentDidMount = () => {
+    const { token } = this.props;
     this.listAllOrders();
     this.socket = io(window.location.pathname, {
       query: {
         bar: window.location.pathname,
-        token: 'token'
+        token
       },
     });
 
@@ -88,7 +89,7 @@ class Dashboard extends Component {
     return (
       <div className="dashboard">
         { this.switch[this.props.page]() }
-        <PopUp page={this.props.page} isOpen={this.props.isOpen} updatePage={this.props.updatePage} toggleBlocked={this.toggleBlocked} />
+        <PopUp logout={this.props.logout} page={this.props.page} isOpen={this.props.isOpen} updatePage={this.props.updatePage} toggleBlocked={this.toggleBlocked} />
       </div>  
     );
   }
