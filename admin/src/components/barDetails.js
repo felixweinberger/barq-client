@@ -3,9 +3,12 @@ import React from 'react';
 import MenuContainer from './menuContainer';
 import StaffContainer from './staffContainer';
 import BarPoster from './barPoster';
+import OrderHistory from './orderHistory';
+import PaymentDetails from './paymentDetails';
 
 const BarDetails = ({
-  token, data, addMenu, deleteMenu, addStaffMember, deleteStaffMember, generateStaffCode, staffCode,
+  token, data, addMenu, deleteMenu, addStaffMember, deleteStaffMember,
+  generateStaffCode, staffCode, updateIban, refreshHistory,
 }) => (
   <div className="barDetails">
     <MenuContainer
@@ -25,6 +28,18 @@ const BarDetails = ({
         addStaffMember={addStaffMember}
         deleteStaffMember={deleteStaffMember}
         generateStaffCode={generateStaffCode}
+      />
+      <div>Payment Details</div>
+      <PaymentDetails
+        token={token}
+        barId={data._id}
+        iban={data.iban}
+        updateIban={updateIban}
+      />
+      <div>Order History</div>
+      <OrderHistory
+        history={data.history}
+        refreshHistory={refreshHistory}
       />
     </div>
   </div>

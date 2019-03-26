@@ -1,45 +1,36 @@
-
-
-body {
-
-}
-
 .login__wrapper {
-  position: relative;
   position: fixed;
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
-  z-index: -1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .form {
-  width: 200px;
-  height: 100px;
+  display: flex;
+  flex-direction: column;
   line-height: 100px;
-  position: fixed;
-  top: 50%; 
-  left: 48%;
-  margin-top: -70px;
-  margin-left: -75px;
   color: var(--primary-color-on);
   border-radius: 5px;
   text-align: center;
-  z-index: 11; 
   font-weight: bold;
 }
 
 
 .label {
   font-size: 25px;
+  line-height: 25px;
   color: var(--primary-color-on);
-  padding-bottom: 10px;
+  padding-bottom: 25px;
 }
 
 .input {
   border-radius: 10px;
   padding: 10px 18px;
+  margin-bottom: 25px;
 }
 .submit {
   background-color: var(--primary-color-on);

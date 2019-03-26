@@ -8,14 +8,15 @@ import './App.css';
 
 class App extends Component {
   state = {
-    page: 'DASHBOARD',
-    pin: ''
+    page: 'LOGIN',
+    pin: '',
+    token: null
   }
+
   switch = {
     DASHBOARD: () => (
-      <Dashboard />
+      <Dashboard token={this.state.token} logout={this.logout} />
     ),
-   
     LOGIN: () => (
       <Login onChange={this.onChange} pin={this.state.pin} onSubmit={this.staffLogin}/>
     )
@@ -25,23 +26,36 @@ class App extends Component {
     this.setState({pin: e.target.value});
   }
 
- staffLogin = (e) => {
+  logout = (e) => {
+    this.setState({ token: null });
+    window.localStorage.clear();
+  }
+
+  staffLogin = (e) => {
    e.preventDefault();
-   console.log(this.state.pin);
-    // axios.get(`${this.url}/staff/id`, {headers: {"Content-type": "application/json"}})
-    // .then(res => {
-    //   console.log(res.data);
-    //   const { } = res.data;
-    //   this.props.updateQueue(queue.concat(history))
-    // })
+   const barId = window.location.pathname.slice(1);
+   const decoded = `${barId}:${this.state.pin}`
+   const encoded = btoa(decoded);
+    axios.get(`/staff${window.location.pathname}/code`, {
+      headers: {
+        "Content-type": "application/json",
+        Authorization: `Basic ${encoded}`
+      }
+    })
+    .then(res => {
+      const { token } = res.data;
+      window.localStorage.setItem('token', token);
+      this.setState({ token });
+    })
   }
 
   render() {
-    console.log(this.state.page)
     return (
       <div className="App">
         {
-          this.switch[this.state.page]()
+         this.state.token
+         ? this.switch['DASHBOARD']()
+         : this.switch['LOGIN']()
         }
       </div>
     );

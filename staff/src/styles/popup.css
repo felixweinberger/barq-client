@@ -40,10 +40,12 @@
   height: 4rem;
   text-align: center;
   background: var(--primary-color);
+  color: var(--primary-color-on);
 }
 
 .menu-item--selected {
-  background: var(--secondary-color);
+  background: var(--neutral-color);
+  color: var(--primary-color);
 }
 
 .menu-item__block {
@@ -51,5 +53,9 @@
 }
 
 .menu-item__block--selected {
-  background: var(--primary-color);
+  background: var(--success-color);
+}
+
+.menu-item__logout {
+  background: var(--danger-color);
 }

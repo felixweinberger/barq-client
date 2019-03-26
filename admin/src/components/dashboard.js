@@ -152,6 +152,42 @@ class Dashboard extends Component {
       });
   }
 
+  updateIban = (barId, iban) => {
+    const { token } = this.props;
+    const { activeBar } = this.state;
+    fetch(
+      `/owner/bars/${barId}/iban`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({ iban }),
+      },
+    )
+      .then(res => res.json())
+      .then((res) => {
+        this.setState({
+          activeBar: {
+            ...activeBar,
+            iban: res,
+          },
+        });
+        this.getOwnerData();
+      });
+  }
+
+  refreshHistory = async () => {
+    const { activeBar, ownerData } = this.state;
+    const barId = activeBar._id;
+    await this.getOwnerData();
+    ownerData.bars.forEach((bar) => {
+      if (barId === bar._id) {
+        this.setState({ activeBar: bar });
+      }
+    });
+  }
+
   componentDidMount = () => {
     this.getOwnerData();
   }
@@ -185,6 +221,8 @@ class Dashboard extends Component {
                 generateStaffCode={this.generateStaffCode}
                 addMenu={this.addMenu}
                 deleteMenu={this.deleteMenu}
+                updateIban={this.updateIban}
+                refreshHistory={this.refreshHistory}
               />
             )
             : null}

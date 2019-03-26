@@ -2,7 +2,7 @@ import React from 'react';
 import Popup from 'reactjs-popup';
 import '../styles/popup.css';
 
-const PopUp = ({page, isOpen, updatePage, toggleBlocked}) => (
+const PopUp = ({page, isOpen, updatePage, toggleBlocked, logout}) => (
   <div className="wrapper">
     <Popup
       contentStyle={{
@@ -30,6 +30,7 @@ const PopUp = ({page, isOpen, updatePage, toggleBlocked}) => (
         <button className={`menu-item${page === 'DISPLAY' ? '--selected' : ''}`} onClick={() => updatePage('DISPLAY')}>Queue</button>
         <button className={`menu-item${page === 'QRCODE' ? '--selected' : ''}`} onClick={() => updatePage('QRCODE')}>QR Code</button>
         <button className={`menu-item__block${!isOpen ? '--selected' : ''}`} onClick={() => toggleBlocked()}>{`${isOpen ? 'Block' : 'Open'} Orders`}</button>
+        <button className={`menu-item__logout`} onClick={logout}>Log Out</button>
       </div>
     </Popup>
   </div>

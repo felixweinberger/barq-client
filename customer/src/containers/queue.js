@@ -12,7 +12,7 @@ import '../styles/containers/queue.css';
 class Queue extends Component {
   componentDidMount = () => {
     const {
-      orderId, orderStatus, order, updateStatus,
+      orderId, orderStatus, order, updateStatus, orderSpecialWishes,
     } = this.props;
     this.socket = io(window.location.pathname, {
       query: {
@@ -24,6 +24,7 @@ class Queue extends Component {
       orderId,
       status: orderStatus,
       items: order,
+      specialWishes: orderSpecialWishes,
     });
     this.socket.on('STATUS_UPDATE', (newStatus) => {
       updateStatus(newStatus);
