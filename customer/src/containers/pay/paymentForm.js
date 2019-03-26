@@ -126,7 +126,7 @@ class PaymentForm extends Component {
         },
       },
       invalid: {
-        color: '#9e2146',
+        color: '#EA0E48',
       },
     },
   };

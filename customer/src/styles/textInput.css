@@ -15,4 +15,5 @@
   box-shadow: var(--primary-shadow-inset);
   height: 4rem;
   padding: 0.5rem;
+  border-radius: 0.5rem;
 }

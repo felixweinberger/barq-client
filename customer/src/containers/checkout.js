@@ -25,7 +25,7 @@ const Checkout = ({
                 <SecondaryHead title="Your Order" />
                 {
                   order.length === 0
-                    ? <div>No items selected...</div>
+                    ? <div>No items selected</div>
                     : order.map(item => <MenuItem key={item.name} item={item} />)
                 }
                 <div className="checkout__total">

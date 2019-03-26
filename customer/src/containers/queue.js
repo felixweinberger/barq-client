@@ -50,7 +50,7 @@ class Queue extends Component {
           <div className="queue__bill">
             {
               order.map(item => (
-                <MenuItem key={item.name} item={item} editable={false} />
+                <MenuItem key={item.name} item={item} editable={false} showPrice={false} />
               ))
             }
           </div>
