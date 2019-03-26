@@ -161,6 +161,17 @@ class Dashboard extends Component {
       });
   }
 
+  refreshHistory = async () => {
+    const { activeBar, ownerData } = this.state;
+    const barId = activeBar._id;
+    await this.getOwnerData();
+    ownerData.bars.forEach((bar) => {
+      if (barId === bar._id) {
+        this.setState({ activeBar: bar });
+      }
+    });
+  }
+
   componentDidMount = () => {
     this.getOwnerData();
   }
@@ -187,6 +198,7 @@ class Dashboard extends Component {
               addMenu={this.addMenu}
               deleteMenu={this.deleteMenu}
               updateIban={this.updateIban}
+              refreshHistory={this.refreshHistory}
             />
           )
           : null}

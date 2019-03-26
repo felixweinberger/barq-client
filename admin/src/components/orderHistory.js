@@ -1,10 +1,10 @@
 import React from 'react';
 
 const OrderHistory = (props) => {
-  const { history, onRefreshHistory } = props;
+  const { history, refreshHistory } = props;
   return (
     <div className="orderHistory">
-      <input type="submit" value="Refresh history" onClick={onRefreshHistory} />
+      <input type="submit" value="Refresh history" onClick={refreshHistory} />
       {history.length > 0
         ? history.map(order => (
           <div key={order.orderId}>
