@@ -57,6 +57,22 @@
   cursor: default;
 }
 
+.clickerSmall {
+  font-family: 'Quicksand', sans-serif;
+  text-decoration: none;
+  display: block;
+  border: none;
+  background-color: #EA0E48;
+  border-radius: 50px;
+  padding: 10px;
+  width: 200px;
+  margin: 5px;
+  text-align: center;
+  color: #ffffff;
+  font-size: 16px;
+  cursor: default;
+}
+
 #signUp {
   background-color: #13AFA0
 }
@@ -218,15 +234,39 @@
   background-color: #ffffff;
   padding-left: 20px;
   flex: 1;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 }
 
-/* StaffContainer - defunct */
+.leftBarPoster {
+  flex: 1;
+  text-align: center;
+}
+
+.midBarPoster {
+  flex: 1;
+  text-align: center;
+}
+
+.rightBarPoster {
+  flex: 1;
+  text-align: center;
+  padding: 30px;
+}
+
+#generatePoster {
+ margin: auto;
+}
+
+/* StaffContainer */
 
 .staffContainer {
   border-top: solid #cacaca 2px;
   background-color: #ffffff;
   padding-left: 20px;
   flex: 1;
+  display: flex;
 }
 
 .codeGenerator {
@@ -240,4 +280,70 @@
 
 .staffCode {
   font-size: 24px;
+}
+
+#generateStaffCode {
+  margin: auto;
+}
+
+#newStaffCode {
+  background-color: #cacaca;
+  border-radius: 50px;
+  width: 100px;
+  padding: 5px;
+  margin: auto;
+  margin-top: 10px;
+}
+
+/* Payment Details */
+
+#addIban {
+  margin: auto;
+}
+
+#existingIban {
+  background-color: #cacaca;
+  border-radius: 50px;
+  width: 200px;
+  padding: 5px;
+  margin: auto;
+}
+
+#ibanTextField {
+  width: 180px;
+  margin: 10px;
+}
+
+.paymentDetails {
+  flex: 1,auto;
+  background: #000000;
+}
+
+.orderHistory {
+  flex: 1;
+  padding-left: 20px;
+}
+
+th {
+  background-color: #cacaca
+}
+
+#thOrder {
+  width: 30px;
+}
+
+#thDate {
+  width: 100px;
+}
+
+#thItems {
+  width: 500px;
+}
+
+#thTotal {
+  width: 100px;
+}
+
+.tr0 {
+  background-color: #EAC0CB
 }

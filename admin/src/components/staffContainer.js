@@ -7,11 +7,18 @@ const StaffContainer = ({ barId, generateStaffCode, staffCode }) => {
   };
   return (
     <div className="staffContainer">
-      <h2>Staff Login</h2>
-      <h3>For security purposes, we recommend that you update your staff code every week.</h3>
-      <div className="codeGenerator">
-        <button className="clicker" type="button" value="Generate code" onClick={onSubmit}>Get New Login Code</button>
-        <div className="staffCode">{staffCode}</div>
+
+      <div className="leftBarPoster">
+        <h1>Staff Login</h1>
+        <h3>
+          Share your unique staff login code with your bar
+          staff to log in to the bartender interface.
+        </h3>
+      </div>
+
+      <div className="rightBarPoster">
+        <button className="clickerSmall" id="generateStaffCode" type="button" value="Generate code" onClick={onSubmit}>Get New Login Code</button>
+        {staffCode ? <p id="newStaffCode">{staffCode}</p> : <p>Staffcode hidden</p>}
       </div>
     </div>
   );

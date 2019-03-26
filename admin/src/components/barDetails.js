@@ -29,14 +29,12 @@ const BarDetails = ({
         deleteStaffMember={deleteStaffMember}
         generateStaffCode={generateStaffCode}
       />
-      <div>Payment Details</div>
       <PaymentDetails
         token={token}
         barId={data._id}
         iban={data.iban}
         updateIban={updateIban}
       />
-      <div>Order History</div>
       <OrderHistory
         history={data.history}
         refreshHistory={refreshHistory}

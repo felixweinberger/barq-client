@@ -1,16 +1,27 @@
 import React from 'react';
 import QRCode from 'qrcode-react';
 
-const BarListItem = ({ data }) => {
+const BarPoster = ({ data }) => {
   const url = `http://www.barq.io/${data._id}`;
   return (
     <div className="barPoster">
-      <h2>{data.name}</h2>
-      <QRCode value={url} />
-      <h3>{url}</h3>
-      <button className="clicker" type="button">Generate Poster</button>
+
+      <div className="leftBarPoster">
+        <h1>{data.name}</h1>
+        <QRCode value={url} />
+        <h3>{url}</h3>
+      </div>
+
+      <div className="rightBarPoster">
+        <h2>How does it work?</h2>
+        <h3>
+        Display your unique QR code and URL in your bar for customers to order their drinks.
+        </h3>
+        <button className="clickerSmall" id="generatePoster" type="button">Generate Poster</button>
+      </div>
+
     </div>
   );
 };
 
-export default BarListItem;
+export default BarPoster;
