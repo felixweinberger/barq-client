@@ -51,13 +51,8 @@ class Dashboard extends Component {
   }
 
   toggleBlocked = () => {
-    const { token } = this.props;
     axios.post(`${this.url}/open`, {
       open: !this.props.isOpen
-    }, {
-      headers: {
-        authorization: `Bearer ${token}`
-      }
     })
     .then(res => {
       this.props.setOpen(res.data.open);
