@@ -47,6 +47,7 @@
 .pay__top {
   width: 100%;
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   margin-bottom: 1rem;
 }
@@ -56,6 +57,8 @@
 }
 
 .pay__cvc {
+  flex-shrink: 0;
+  padding-left: 1rem;
 }
 
 .pay__bottom {

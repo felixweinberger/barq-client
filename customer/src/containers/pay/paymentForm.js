@@ -117,7 +117,7 @@ class PaymentForm extends Component {
   createOptions = {
     style: {
       base: {
-        fontSize: '20px',
+        fontSize: '16px',
         color: 'white',
         letterSpacing: '0.025em',
         marginBottom: '8px',
