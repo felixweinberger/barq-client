@@ -103,6 +103,11 @@
   padding-left: 10px;
 }
 
+.welcomeToDash {
+  padding: 30px;
+  font-size: 25px;
+}
+
 .dashboard {
   display: flex;
   background-color: #ffffff;

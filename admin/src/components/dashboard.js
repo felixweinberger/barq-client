@@ -225,7 +225,12 @@ class Dashboard extends Component {
                 refreshHistory={this.refreshHistory}
               />
             )
-            : null}
+            : (
+              <div className="welcomeToDash">
+                <h3>Welcome to your BarQ dashboard.</h3>
+                Add a new bar or select an existing one to begin.
+              </div>
+            )}
         </div>
       </div>
     );
