@@ -328,6 +328,15 @@ th {
   background-color: #cacaca
 }
 
+.orderHistory__table {
+  border-collapse: collapse;
+  text-align: center;
+}
+
+.orderHistory__itemrow {
+  text-align: left;
+}
+
 #thOrder {
   width: 30px;
 }
@@ -336,8 +345,13 @@ th {
   width: 100px;
 }
 
+#thTime {
+  width: 100px;
+}
+
 #thItems {
   width: 500px;
+  text-align: left;
 }
 
 #thTotal {
