@@ -1,5 +1,6 @@
 import React from 'react';
 import csv from 'csvtojson';
+import Popup from 'reactjs-popup';
 
 import MenuListItem from './menuListItem';
 
@@ -62,7 +63,30 @@ class MenuContainer extends React.Component {
             : null}
         </div>
         <form className="addMenuForm">
-          <h2>Add a New Menu</h2>
+          <div className="addMenuHeaderContainer">
+            <h2 id="addMenuHeader">Add a New Menu</h2>
+            <Popup trigger={<div className="iSym">ⓘ</div>} position="top center">
+              <div className="infoPopup">
+                Please upload a&nbsp;
+                <u>CSV file</u>
+                &nbsp;of three columns:
+                <ol>
+                  <li className="infoLi">
+                    <u>Name:</u>
+                    &nbsp;the name of the individual menu item
+                  </li>
+                  <li className="infoLi">
+                    <u>Price:</u>
+                    &nbsp;the price of the item in numbers only
+                  </li>
+                  <li className="infoLi">
+                    <u>Category:</u>
+                    &nbsp;the menu category of the item
+                  </li>
+                </ol>
+              </div>
+            </Popup>
+          </div>
           <input className="addMenuInput" type="text" placeholder="Name" onChange={this.onChangeName} />
           <input className="addMenuInput" type="file" name="file" onChange={this.onFileChange} />
           <input className="clicker" id="addMenu" type="submit" value="Add Menu" onClick={this.onSubmit} />

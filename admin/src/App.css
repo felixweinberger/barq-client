@@ -204,6 +204,28 @@
   margin: 1px;
 }
 
+.addMenuHeaderContainer {
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+}
+
+.iSym {
+  font-size: 18px;
+  padding-left: 5px;
+  font-weight: bold;
+  color: #13AFA0;
+}
+
+.infoPopup {
+  text-align: left;
+}
+
+.infoLi {
+  margin: 2px;
+  padding: 0;
+}
+
 .addMenuForm {
   font-family: 'Quicksand', sans-serif;
   font-size: 12px;
