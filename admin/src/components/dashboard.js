@@ -138,7 +138,7 @@ class Dashboard extends Component {
 
   updateIban = (barId, iban) => {
     const { token } = this.props;
-    const { ownerData } = this.state;
+    const { activeBar } = this.state;
     fetch(
       `/owner/bars/${barId}/iban`, {
         method: 'POST',
@@ -150,12 +150,15 @@ class Dashboard extends Component {
       },
     )
       .then(res => res.json())
-      .then(res => this.setState({
-        ownerData: {
-          ...ownerData,
-          iban: res,
-        },
-      }));
+      .then((res) => {
+        this.setState({
+          activeBar: {
+            ...activeBar,
+            iban: res,
+          },
+        });
+        this.getOwnerData();
+      });
   }
 
   componentDidMount = () => {
