@@ -3,12 +3,10 @@
   padding-bottom: var(--footer-height);
 }
 
-.bill {
-  box-shadow: var(--primary-shadow);
-  background: rgba(255, 255, 255, 0.5);
-  color: black;
+.checkout__bill {
+  color: white;
   padding: 0.5rem 1rem;
-  margin: 2rem 2rem;
+  margin: 1rem 2rem 2rem 2rem;
   align-self: stretch;
 }
 
@@ -17,4 +15,7 @@
   justify-content: space-between;
   align-items: baseline;
   font-size: 1.25rem;
+  font-family: var(--sans-serif);
+  border-top: rgb(255, 255, 255, 0.5) 1px solid;
+  padding-top: 0.25rem;
 }

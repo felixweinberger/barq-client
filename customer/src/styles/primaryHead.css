@@ -1,5 +1,6 @@
 .primary-head {
   margin: 0 1rem;
-  font-size: 3rem;
+  font-size: 2.5rem;
   font-family: var(--sans-serif);
+  font-weight: 400;
 }

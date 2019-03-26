@@ -11,26 +11,28 @@ import '../styles/containers/queue.css';
 
 class Queue extends Component {
   componentDidMount = () => {
+    const {
+      orderId, orderStatus, order, updateStatus,
+    } = this.props;
     this.socket = io(window.location.pathname, {
       query: {
         bar: window.location.pathname,
-        orderNumber: this.props.orderId,
+        orderNumber: orderId,
       },
     });
     this.socket.emit('NEW_ORDER', {
-      orderId: this.props.orderId,
-      status: this.props.orderStatus,
-      items: this.props.order,
+      orderId,
+      status: orderStatus,
+      items: order,
     });
     this.socket.on('STATUS_UPDATE', (newStatus) => {
-      this.props.updateStatus(newStatus);
+      updateStatus(newStatus);
     });
   }
 
   componentDidUpdate = () => {
-    if (this.props.orderStatus === 'delivered') {
-      this.closeSocket();
-    }
+    const { orderStatus } = this.props;
+    if (orderStatus === 'delivered') this.closeSocket();
   }
 
   closeSocket = () => {
@@ -41,31 +43,34 @@ class Queue extends Component {
   componentWillUnmount = () => this.closeSocket();
 
   render() {
+    const {
+      order, orderId, orderStatus, updatePage, clearOrder, isMenuOpen,
+    } = this.props;
     return (
       <>
         <div className="queue">
           <SecondaryHead style={{ margin: '0' }} title="Your number" />
-          <PrimaryHead style={{ margin: '0' }} title={`#${this.props.orderId}`} />
+          <PrimaryHead style={{ margin: '0' }} title={`#${orderId}`} />
           <div className="queue__bill">
             {
-              this.props.order.map(item => (
+              order.map(item => (
                 <MenuItem key={item.name} item={item} editable={false} />
               ))
             }
           </div>
-          <PrimaryHead style={{ marginBottom: '1rem' }} title={this.props.orderStatus} />
+          <PrimaryHead style={{ marginBottom: '1rem' }} title={orderStatus} />
           <BeerAnimation />
         </div>
         {
-          this.props.orderStatus === 'delivered'
+          orderStatus === 'delivered'
           && (
             <Footer
               primaryButtonName="Order another round!"
               onPrimaryClick={() => {
-                console.log('clicked!');
-                this.props.clearOrder();
+                clearOrder();
                 window.localStorage.removeItem('order');
-                this.props.updatePage('MENU');
+                isMenuOpen()
+                  .then(isOpen => (isOpen ? updatePage('MENU') : updatePage('CLOSED')));
               }}
             />
           )

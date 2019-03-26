@@ -147,21 +147,97 @@
 }
 
 
-/* Right side of dashboard */
+/* Menu panel */
 
 .barDetails {
-  background-color: #cacaca;
+  display: flex;
   padding: 2px;
 }
 
 .menuContainer {
   background-color: #ffffff;
-  border-width: 10px;
-  border-color: #cacaca;
+  text-align: center;
+}
+
+.menuListItemHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+#deleteMenu {
+  font-size: 12px;
+  padding: 3px;
+  width: 80px;
+  margin-top: 5px;
+}
+
+.menuListItem {
+  background-color: #F5F5F5;
+  padding: 10px;
+  margin-bottom: 5px;
+  text-align: left;
+}
+
+.menuListItemDetail {
+  display: flex;
+  justify-content: space-between;
+  padding: 1px;
+  margin: 1px;
+}
+
+.addMenuForm {
+  font-family: 'Quicksand', sans-serif;
+  font-size: 12px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.addMenuInput {
+  font-family: 'Quicksand', sans-serif;
+  font-size: 12px;
+  margin: 5px;
+}
+
+#addMenu {
+  font-size: 12px;
+  padding: 3px;
+}
+
+
+/* Poster panel */
+
+.barDetailsRightPanel {
+  display: flex;
+  flex-direction: column;
+  border-left: solid #cacaca 2px;
+}
+
+.barPoster {
+  background-color: #ffffff;
+  padding-left: 20px;
+  flex: 1;
 }
 
 /* StaffContainer - defunct */
 
 .staffContainer {
-  background-color:lightgreen;
+  border-top: solid #cacaca 2px;
+  background-color: #ffffff;
+  padding-left: 20px;
+  flex: 1;
+}
+
+.codeGenerator {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 5px;
+  padding-right: 20px;
+  background-color: #cacaca
+}
+
+.staffCode {
+  font-size: 24px;
 }

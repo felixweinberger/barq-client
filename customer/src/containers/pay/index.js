@@ -1,23 +1,17 @@
 import React from 'react';
 import { Elements } from 'react-stripe-elements';
 
+import SecondaryHead from '../../ui/primaryHead';
 import InjectedPaymentForm from './paymentForm';
 
 import '../../styles/containers/pay.css';
 
-const Pay = ({
-  order,
-  updatePage,
-  updateOrder,
-  total,
-}) => (
+const Pay = props => (
   <div className="pay">
+    <SecondaryHead title="Payment" />
     <Elements>
       <InjectedPaymentForm
-        order={order}
-        total={total}
-        updatePage={updatePage}
-        updateOrder={updateOrder}
+        {...props}
       />
     </Elements>
   </div>

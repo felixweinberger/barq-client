@@ -13,4 +13,9 @@
   justify-content: space-between;
   align-items: flex-start;
   margin-right: 0.5rem;
+  flex-grow: 1;
+}
+
+.menu__info {
+  align-self: stretch;
 }

@@ -1,23 +1,29 @@
 import React from 'react';
 import Popup from 'reactjs-popup';
+
+import IconButton from './iconButton';
+import Text from './text';
+import icon from '../assets/info.png';
+
 import '../styles/popupInfo.css';
 
 const popupInfo = () => (
   <Popup
-    trigger={<button className="popup-btn" type="submit" />}
+    trigger={<IconButton iconUrl={icon} type="submit" />}
     modal
   >
     {close => (
       <div className="popup-modal">
-        <button type="submit" className="close" onClick={close}>
-          &times;
-        </button>
-        <div className="popup-title">Info on this drink</div>
         <div className="popup-content">
-          {' '}
-        Peanuts, Gluten-Free, etc.
-          <br />
-        Other info
+          <Text
+            content={`Peanuts, Gluten-Free, etc. Other info`}
+            style={{
+              fontSize: '1.5rem',
+              background: 'var(--primary-color-on',
+              padding: '1rem',
+              color: 'var(--primary-color)'
+            }}
+          />
         </div>
       </div>
     )}

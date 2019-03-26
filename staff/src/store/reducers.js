@@ -18,6 +18,9 @@ function queue (state = initialState.queue, action) {
     }
     case 'UPDATE_STATUS' : {
       if (action.status === 'delivered') return state.filter(order => order.orderId !== action.order.orderId);
+      
+      const index = state.findIndex(order => order.orderId === action.order.orderId);
+      if (action.status !== 'delivered' && index === -1) return state.concat(action.order);
       return state.map(order => {
         if(order.orderId !== action.order.orderId) return order;
         else return Object.assign({}, order, {status: action.status})
@@ -35,7 +38,12 @@ function history (state = initialState.history, action) {
       return action.queue.filter(order => order.status === 'delivered');
     }
     case 'UPDATE_STATUS' : {
-      if (action.status === 'delivered') return state.concat(Object.assign({}, action.order, {status: action.status}));
+      const index = state.findIndex(order => order.orderId === action.order.orderId);
+      if (action.status === 'delivered' && index === -1) {
+        return state.concat(Object.assign({}, action.order, {status: action.status}));
+      } else if (action.status !== 'delivered' && index !== -1) {
+        return state.filter((order, i) => i !== index);
+      }
       return state;
     }
     default: {

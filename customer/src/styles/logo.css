@@ -1,9 +1,10 @@
 .logo {
   position: relative;
-  font-size: 3rem;
+  font-size: 2rem;
   height: 5rem;
   line-height: 5rem;
   text-align: center;
+  font-weight: 400;
 }
 
 .logo__image {
@@ -13,7 +14,7 @@
   top: 0;
   left: 0;
   z-index: -1;
-
+  background: #EA0E48;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

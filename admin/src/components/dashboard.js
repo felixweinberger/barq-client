@@ -9,6 +9,7 @@ class Dashboard extends Component {
     this.state = {
       ownerData: {},
       activeBar: null,
+      staffCode: null,
     };
   }
 
@@ -58,7 +59,7 @@ class Dashboard extends Component {
   }
 
   selectBar = (barData) => {
-    this.setState({ activeBar: barData });
+    this.setState({ activeBar: barData, staffCode: null });
   }
 
   addStaffMember = (staff, barId) => {
@@ -95,6 +96,21 @@ class Dashboard extends Component {
         this.setState({ activeBar: barToUpdate });
         this.getOwnerData();
       });
+  }
+
+  generateStaffCode = (barId) => {
+    const { token } = this.props;
+    fetch(
+      `/owner/bars/${barId}/code`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+      },
+    )
+      .then(res => res.json())
+      .then(res => this.setState({ staffCode: res }));
   }
 
   addMenu = (menu, barId) => {
@@ -142,7 +158,7 @@ class Dashboard extends Component {
 
   render() {
     const { logout, token } = this.props;
-    const { activeBar, ownerData } = this.state;
+    const { activeBar, ownerData, staffCode } = this.state;
     return (
       <div>
         <div className="dashboardHeader">
@@ -162,9 +178,11 @@ class Dashboard extends Component {
             ? (
               <BarDetails
                 data={activeBar}
+                staffCode={staffCode}
                 token={token}
                 addStaffMember={this.addStaffMember}
                 deleteStaffMember={this.deleteStaffMember}
+                generateStaffCode={this.generateStaffCode}
                 addMenu={this.addMenu}
                 deleteMenu={this.deleteMenu}
               />

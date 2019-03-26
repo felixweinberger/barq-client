@@ -12,7 +12,7 @@
   font-size: 1.5rem;
   font-family: var(--sans-serif);
 
-  background: var(--secondary-color);
-  color: var(--secondary-color-on);
+  background: var(--neutral-color);
+  color: var(--neutral-color-on);
 }
 

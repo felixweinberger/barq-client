@@ -31,6 +31,7 @@ class App extends Component { // eslint-disable-line
           bar={bar}
           order={order}
           total={total}
+          isMenuOpen={this.isMenuOpen}
         />
       );
     },
@@ -43,6 +44,7 @@ class App extends Component { // eslint-disable-line
           updatePage={updatePage}
           total={total}
           order={order}
+          isMenuOpen={this.isMenuOpen}
         />
       );
     },
@@ -56,6 +58,7 @@ class App extends Component { // eslint-disable-line
           updateOrder={updateOrder}
           order={order}
           total={total}
+          isMenuOpen={this.isMenuOpen}
         />
       );
     },
@@ -71,6 +74,7 @@ class App extends Component { // eslint-disable-line
           orderStatus={orderStatus}
           updateStatus={updateStatus}
           clearOrder={clearOrder}
+          isMenuOpen={this.isMenuOpen}
         />
       );
     },
@@ -79,6 +83,10 @@ class App extends Component { // eslint-disable-line
     ),
   }
 
+  isMenuOpen = () => axios
+    .get(`${window.location.pathname}/menu`)
+    .then(res => res.data.open);
+
   componentDidMount = () => {
     axios.get(`${window.location.pathname}/menu`)
       .then((res) => {
@@ -86,12 +94,11 @@ class App extends Component { // eslint-disable-line
           updateBar, updatePage, updateOrder,
         } = this.props;
         if (res.data.menu) updateBar(res.data);
-        console.log(res.data);
-        if (!res.data.menu || res.data.open === 'false') updatePage('CLOSED');
         const cachedOrder = window.localStorage.getItem('order');
         if (cachedOrder) updateOrder(JSON.parse(cachedOrder));
         const { orderId, order } = this.props;
         if (orderId) updatePage('QUEUE');
+        else if (!res.data.menu || res.data.open === false) updatePage('CLOSED');
         else if (order.length > 0) updatePage('CHECKOUT');
       });
   }
@@ -108,7 +115,9 @@ class App extends Component { // eslint-disable-line
 }
 
 const getOrderDetails = (order, catalog) => (
-  Object.entries(order).map(([itemId, quantity]) => ({ ...catalog[itemId], quantity }))
+  Object.entries(order)
+    .filter(([, quantity]) => quantity > 0)
+    .map(([itemId, quantity]) => ({ ...catalog[itemId], quantity }))
 );
 
 const getOrderTotal = (order, catalog) => {

@@ -1,3 +1,13 @@
+:root {
+  --font: 'Quicksand', sans-serif;
+  --success-color: #13AFA0;
+  --danger-color: #EA0E48;
+  --neutral-color: #cacaca;
+  --primary-color-on: #f4f4f4;
+  --primary-color: #1e1d1a;
+}
+
+
 .orderListItem {
   position: relative;
   display: flex;
@@ -9,12 +19,14 @@
   height: 10rem;
   color: var(--secondary-color-on);
   background: var(--secondary-color);
+  overflow-Y: scroll;
 }
 
 [class^="wrapper"] {
   align-self: stretch;
   flex-grow: 1;
-  font-size: 3rem;
+  font-size: 2rem;
+  font-weight: bold;
 }
 
 .wrapper-back {
@@ -33,11 +45,13 @@
 
 .item {
   margin-bottom: 10px;
+  color: var(--primary-color-on);
+  display: block;
 }
 
 .wrapper-status {
   flex: 2 0 10%;
-  background: var(--primary-color);
+  background: var(--success-color);
   display: flex;
   flex-direction: column;
   align-items: center;

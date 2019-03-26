@@ -5,13 +5,16 @@
 }
 
 .menu__categories {
-  margin: 2rem 2rem;
+  margin: 1rem 2rem 2rem 2rem;
 }
 
 .menu__category {
   margin-bottom: 1rem;
   padding: 0.5rem 1rem;
-  box-shadow: var(--primary-shadow);
-  background: rgba(255, 255, 255, 0.5);
-  color: black;
+  margin-bottom: -0.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.menu__category:last-child {
+  border-bottom: none;
 }

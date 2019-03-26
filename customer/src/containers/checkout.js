@@ -8,22 +8,26 @@ import TextInput from '../ui/textInput';
 
 
 import '../styles/containers/checkout.css';
+import SecondaryHead from '../ui/secondaryHead';
 
-const Checkout = ({ order, total, updatePage }) => (
+const Checkout = ({
+  order, total, updatePage, isMenuOpen,
+}) => (
   <div className="checkout">
     {
       !order
         ? <Loader />
         : (
           <>
-            <div className="bill">
+            <div className="checkout__bill">
+              <SecondaryHead title="Your Order" />
               {
                 order.length === 0
                   ? <div>No items selected...</div>
                   : order.map(item => <MenuItem key={item.name} item={item} />)
               }
               <div className="checkout__total">
-                Total...
+                Total
                 <Price style={{ textAlign: 'right', fontSize: '1.25rem' }} price={total} />
               </div>
               <TextInput title="Special Wishes" />
@@ -32,7 +36,8 @@ const Checkout = ({ order, total, updatePage }) => (
               primaryButtonName="Pay"
               onPrimaryClick={() => {
                 window.localStorage.setItem('order', JSON.stringify({ items: order }));
-                updatePage('PAY');
+                isMenuOpen()
+                  .then(isOpen => (isOpen ? updatePage('PAY') : updatePage('CLOSED')));
               }}
               secondaryButtonName="Back"
               onSecondaryClick={() => updatePage('MENU')}

@@ -1,4 +1,5 @@
 import React from 'react';
+
 import '../styles/iconButton.css';
 
 const IconButton = ({
@@ -9,7 +10,7 @@ const IconButton = ({
     onClick={onClick}
     className="icon-button"
     style={{
-      backgroundImage: `url("${iconUrl}")`,
+      backgroundImage: `url(${iconUrl})`,
       height,
       width,
       ...style,

@@ -2,13 +2,14 @@
   cursor: pointer;
   flex-shrink: 0;
   
-  background-color: inherit;
+  border-radius: 50%;
+  background-color: var(--primary-color-on);
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
   
-  border: none;
+  border: var(--neutral-color) solid 1px;
   outline: none;
-  padding: 0;
+  padding: 0.5rem;
   margin: 0;
 }

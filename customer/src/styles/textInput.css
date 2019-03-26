@@ -3,8 +3,10 @@
 }
 
 .input__title {
+  font-family: var(--sans-serif);
   margin: 0;
   margin-bottom: 0.5rem;
+  font-weight: 400;
 }
 
 .input__input {
