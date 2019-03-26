@@ -1,35 +1,20 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-class StaffContainer extends Component {
-  state = {
-    staffCode: '',
-  }
-
-  onSubmit = (e) => {
-    const { token, barId } = this.props;
+const StaffContainer = ({ barId, generateStaffCode, staffCode }) => {
+  const onSubmit = (e) => {
     e.preventDefault();
-    fetch(
-      `/owner/bars/${barId}/code`, {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`,
-        },
-      },
-    )
-      .then(res => res.json())
-      .then(res => this.setState({ staffCode: res })); // eslint-disable-line no-console
-  }
-
-  render() {
-    const { staffCode } = this.state;
-    return (
-      <div className="staffContainer">
-        {staffCode}
-        <input type="submit" value="Generate code" onClick={this.onSubmit} />
+    generateStaffCode(barId);
+  };
+  return (
+    <div className="staffContainer">
+      <h2>Staff Login</h2>
+      <h3>For security purposes, we recommend that you update your staff code every week.</h3>
+      <div className="codeGenerator">
+        <button className="clicker" type="button" value="Generate code" onClick={onSubmit}>Get New Login Code</button>
+        <div className="staffCode">{staffCode}</div>
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
 
 export default StaffContainer;

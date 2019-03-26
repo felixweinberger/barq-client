@@ -28,7 +28,6 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <img src={logo} alt="BarQ Logo" />
         {this.state.user
           ? <Dashboard
               user={this.state.user}

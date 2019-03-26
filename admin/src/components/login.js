@@ -1,6 +1,9 @@
 /* eslint-disable no-console */
 import React, { Component } from 'react';
 
+import loginSplash from '../assets/LoginSplash.jpg';
+import logo from '../assets/SmallLogo.png';
+
 class LogIn extends Component {
   state = {
     email: '',
@@ -70,13 +73,20 @@ class LogIn extends Component {
     const { toggleRegister } = this.props;
     return (
       <div className="welcome">
-        <form className="welcome__login" onSubmit={this.onSubmit}>
-          <h1 className="welcome__title">BarQ</h1>
-          <input className="welcome__username" placeholder="Email" type="text" name="email" value={email} onChange={this.onChange} />
-          <input className="welcome__password" placeholder="Password" type="password" name="password" value={password} onChange={this.onChange} />
-          <input className="welcome__submit" type="submit" />
-          <button type="submit" className="welcome__toggle" onClick={toggleRegister}>Register</button>
-        </form>
+        <div className="loginContainer">
+          <img src={logo} width="180" alt="BarQ" />
+          <div className="leftLogin">
+            <form className="welcome__login">
+              <input className="loginInput" placeholder="Email" type="text" name="email" value={email} onChange={this.onChange} />
+              <input className="loginInput" placeholder="Password" type="password" name="password" value={password} onChange={this.onChange} />
+              <button className="clicker" type="button" onClick={this.onSubmit}>LET&apos;S GO</button>
+              <button className="clicker" type="button" id="signUp" onClick={toggleRegister}>Need an account?</button>
+            </form>
+          </div>
+        </div>
+        <div className="rightLogin">
+          <img src={loginSplash} width="500" alt="Splash" />
+        </div>
       </div>
     );
   }

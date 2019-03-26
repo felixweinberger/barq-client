@@ -9,6 +9,7 @@ class Dashboard extends Component {
     this.state = {
       ownerData: {},
       activeBar: null,
+      staffCode: null,
     };
   }
 
@@ -58,7 +59,7 @@ class Dashboard extends Component {
   }
 
   selectBar = (barData) => {
-    this.setState({ activeBar: barData });
+    this.setState({ activeBar: barData, staffCode: null });
   }
 
   addStaffMember = (staff, barId) => {
@@ -95,6 +96,21 @@ class Dashboard extends Component {
         this.setState({ activeBar: barToUpdate });
         this.getOwnerData();
       });
+  }
+
+  generateStaffCode = (barId) => {
+    const { token } = this.props;
+    fetch(
+      `/owner/bars/${barId}/code`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+      },
+    )
+      .then(res => res.json())
+      .then(res => this.setState({ staffCode: res }));
   }
 
   addMenu = (menu, barId) => {
@@ -136,34 +152,81 @@ class Dashboard extends Component {
       });
   }
 
+  updateIban = (barId, iban) => {
+    const { token } = this.props;
+    const { activeBar } = this.state;
+    fetch(
+      `/owner/bars/${barId}/iban`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({ iban }),
+      },
+    )
+      .then(res => res.json())
+      .then((res) => {
+        this.setState({
+          activeBar: {
+            ...activeBar,
+            iban: res,
+          },
+        });
+        this.getOwnerData();
+      });
+  }
+
+  refreshHistory = async () => {
+    const { activeBar, ownerData } = this.state;
+    const barId = activeBar._id;
+    await this.getOwnerData();
+    ownerData.bars.forEach((bar) => {
+      if (barId === bar._id) {
+        this.setState({ activeBar: bar });
+      }
+    });
+  }
+
   componentDidMount = () => {
     this.getOwnerData();
   }
 
   render() {
     const { logout, token } = this.props;
-    const { activeBar, ownerData } = this.state;
+    const { activeBar, ownerData, staffCode } = this.state;
     return (
-      <div className="dashboard">
-        <button type="submit" onClick={logout}>Log out</button>
-        <BarList
-          data={ownerData}
-          addBar={this.addBar}
-          deleteBar={this.deleteBar}
-          selectBar={this.selectBar}
-        />
-        {activeBar
-          ? (
-            <BarDetails
-              data={activeBar}
-              token={token}
-              addStaffMember={this.addStaffMember}
-              deleteStaffMember={this.deleteStaffMember}
-              addMenu={this.addMenu}
-              deleteMenu={this.deleteMenu}
-            />
-          )
-          : null}
+      <div>
+        <div className="dashboardHeader">
+          <div className="headerLogo">BarQ</div>
+          <button className="clicker" type="button" id="logout" onClick={logout}>Log out</button>
+        </div>
+
+
+        <div className="dashboard">
+          <BarList
+            data={ownerData}
+            addBar={this.addBar}
+            deleteBar={this.deleteBar}
+            selectBar={this.selectBar}
+          />
+          {activeBar
+            ? (
+              <BarDetails
+                data={activeBar}
+                staffCode={staffCode}
+                token={token}
+                addStaffMember={this.addStaffMember}
+                deleteStaffMember={this.deleteStaffMember}
+                generateStaffCode={this.generateStaffCode}
+                addMenu={this.addMenu}
+                deleteMenu={this.deleteMenu}
+                updateIban={this.updateIban}
+                refreshHistory={this.refreshHistory}
+              />
+            )
+            : null}
+        </div>
       </div>
     );
   }
