@@ -17,11 +17,12 @@ class AddBarForm extends Component {
   render() {
     const { addBar } = this.props;
     return (
-      <div>
-        <form>
-          <input type="text" placeholder="Bar name" onChange={event => this.handleChange(event, 'name')} />
-          <input type="text" placeholder="Bar currency" onChange={event => this.handleChange(event, 'currency')} />
-          <input type="submit" value="Add Bar" onClick={event => addBar(event, this.state)} />
+      <div className="addBarForm">
+        <h3>Add a New Bar</h3>
+        <form className="addBarForm">
+          <input className="addBarInput" type="text" placeholder="Name" onChange={event => this.handleChange(event, 'name')} />
+          <input className="addBarInput" type="text" placeholder="Currency" onChange={event => this.handleChange(event, 'currency')} />
+          <input className="clicker" id="addBar" type="submit" value="Add Bar" onClick={event => addBar(event, this.state)} />
         </form>
       </div>
     );

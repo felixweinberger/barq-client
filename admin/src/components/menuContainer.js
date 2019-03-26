@@ -48,21 +48,24 @@ class MenuContainer extends React.Component {
     const { data, deleteMenu, barId } = this.props;
     return (
       <div className="menuContainer">
-        <h1>Menus</h1>
-        {data
-          ? data.map(item => (
-            <MenuListItem
-              key={item._id}
-              data={item}
-              deleteMenu={deleteMenu}
-              barId={barId}
-            />
-          ))
-          : null}
-        <form>
-          <input type="text" placeholder="Name" onChange={this.onChangeName} />
-          <input type="file" name="file" onChange={this.onFileChange} />
-          <input type="submit" value="Submit" onClick={this.onSubmit} />
+        <h1>My Menus</h1>
+        <div className="menuCards">
+          {data
+            ? data.map(item => (
+              <MenuListItem
+                key={item._id}
+                data={item}
+                deleteMenu={deleteMenu}
+                barId={barId}
+              />
+            ))
+            : null}
+        </div>
+        <form className="addMenuForm">
+          <h2>Add a New Menu</h2>
+          <input className="addMenuInput" type="text" placeholder="Name" onChange={this.onChangeName} />
+          <input className="addMenuInput" type="file" name="file" onChange={this.onFileChange} />
+          <input className="clicker" id="addMenu" type="submit" value="Add Menu" onClick={this.onSubmit} />
         </form>
       </div>
     );
