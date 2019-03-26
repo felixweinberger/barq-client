@@ -24,7 +24,7 @@ const PaymentDetails = ({ barId, iban, updateIban }) => {
       <div className="rightBarPoster">
         <form className="addIBAN" onSubmit={onSubmitIban}>
           <input id="ibanTextField" type="text" placeholder="IBAN" />
-          <button className="clickerSmall" id="addIban" type="button" onClick={onSubmitIban}>Add New IBAN</button>
+          <button className="clickerSmall" id="addIban" type="submit">Add New IBAN</button>
         </form>
       </div>
     </div>
