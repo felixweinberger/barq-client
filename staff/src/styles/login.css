@@ -1,5 +1,7 @@
+
+
 body {
-  font-family: 'Merriweather', serif;
+
 }
 
 .login__wrapper {
@@ -21,19 +23,17 @@ body {
   left: 48%;
   margin-top: -70px;
   margin-left: -75px;
-  color:white;
+  color: var(--primary-color-on);
   border-radius: 5px;
   text-align: center;
   z-index: 11; 
   font-weight: bold;
-  font-family: 'Merriweather', serif;
 }
 
 
 .label {
   font-size: 25px;
-  font-family: 'Merriweather', serif;
-  color: white;
+  color: var(--primary-color-on);
   padding-bottom: 10px;
 }
 
@@ -42,8 +42,7 @@ body {
   padding: 10px 18px;
 }
 .submit {
-  font-family: 'Merriweather', serif;
-  background-color: white;
+  background-color: var(--primary-color-on);
   border-radius: 18px;
   padding: 10px 20px;
   margin-bottom: 10px;

@@ -86,7 +86,7 @@ class Dashboard extends Component {
 
   render() {
     return (
-      <div className="App">
+      <div className="dashboard">
         { this.switch[this.props.page]() }
         <PopUp page={this.props.page} isOpen={this.props.isOpen} updatePage={this.props.updatePage} toggleBlocked={this.toggleBlocked} />
       </div>  
