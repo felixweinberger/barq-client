@@ -8,22 +8,23 @@ import Grid from '@material-ui/core/Grid';
 import CardMedia from '@material-ui/core/CardMedia';
 import Divider from '@material-ui/core/Divider';
 import backgroundPic from './assets/BarQBg.png';
-
-import mock1 from './assets/mockups_iphone_xs/Selection_013_iphonexspacegrey_portrait.png';
-import mock2 from './assets/mockups_iphone_xs/Selection_015_iphonexspacegrey_portrait.png';
-import mock3 from './assets/mockups_iphone_xs/Selection_016_iphonexspacegrey_portrait.png';
+import mock1 from './assets/mockups_iphone_xs1/IMG_2876_iphonexspacegrey_portrait.png';
+import mock2 from './assets/mockups_iphone_xs1/IMG_2878_iphonexspacegrey_portrait.png';
+import mock3 from './assets/mockups_iphone_xs1/IMG_2880_iphonexspacegrey_portrait.png';
 import adminScreenshot from './assets/admin_screenshot.png';
-
 import ipad1 from './assets/mockups_idpad/Selection_018_ipadmini_white_portrait.png';
 import ipad2 from './assets/mockups_idpad/Selection_019_ipadmini_white_portrait.png';
 
 const theme = createMuiTheme({
   palette: {
     primary: {
-      main: '#56544b',
+      main: '#ea0e48',
     },
     secondary: {
       main: '#ffffff',
+    },
+    error: {
+      main: '#ea0e48',
     },
   },
   typography: {
@@ -57,7 +58,11 @@ const styles = {
     height: '100vh',
   },
   appBar: {
-    zIndex: 1,
+    background: 'transparent',
+    boxShaddow: 'none',
+  },
+  appBarSticky: {
+    color: 'primary',
   },
   paperContainer: {
     backgroundImage: `url(${backgroundPic})`,
@@ -71,19 +76,16 @@ const styles = {
     flexGrow: 1,
     height: '60vh',
     width: '20vw',
-    // minWidth: 200,
     padding: theme.spacing.unit * 3,
   },
   adminCard: {
     height: '60vh',
     width: '54vw',
-    // minWidth: 400,
     flexGrow: 1,
   },
   bartenderCard: {
     height: '80vh',
     width: '30vw',
-    // minWidth: 250,
   },
   media: {
     height: '100%',
@@ -240,8 +242,25 @@ function ProductBartender({ classes }) {
 class LandingPage extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      isTop: true,
+    };
     this.handleScroll = this.handleScroll.bind(this);
     this.myRef = React.createRef();
+  }
+
+  componentDidMount() {
+    document.addEventListener('scroll', () => {
+      const isTopThis = window.scrollY < this.myRef.current.offsetTop - 65;
+      const { isTop } = this.state;
+      if (isTopThis !== isTop) {
+        this.onScroll(isTopThis);
+      }
+    });
+  }
+
+  onScroll(isTop) {
+    this.setState({ isTop });
   }
 
     handleScroll = () => {
@@ -253,11 +272,12 @@ class LandingPage extends Component {
 
     render() {
       const { classes } = this.props;
+      const { isTop } = this.state;
       return (
         <div className={classes.root}>
           <MuiThemeProvider theme={theme}>
             <div className={classes.paperContainer}>
-              <AppBar style={{ background: 'transparent', boxShaddow: 'none' }} position="fixed">
+              <AppBar className={isTop ? classes.appBar : classes.appBarSticky} position="fixed">
                 <ToolBar>
                   <Typography variant="h4" color="secondary" className={classes.grow}>
                                 BarQ
@@ -269,6 +289,7 @@ class LandingPage extends Component {
               <WelcomePageGrid handleScroll={this.handleScroll} classes={classes} />
             </div>
             <main ref={this.myRef} className={classes.content}>
+              <div className={classes.appBarSpacer} />
               <Product classes={classes} />
               <div className={classes.appBarSpacer} />
               <Divider />
@@ -278,7 +299,6 @@ class LandingPage extends Component {
               <Divider />
               <div className={classes.appBarSpacer} />
               <ProductBartender classes={classes} />
-              {/* <div className={classes.appBarSpacer}/> */}
               <Divider />
               <div className={classes.appBarSpacer} />
             </main>
