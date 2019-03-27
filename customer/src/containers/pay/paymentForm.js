@@ -85,9 +85,9 @@ class PaymentForm extends Component {
       const isOpen = await isMenuOpen();
       if (!isOpen) return updatePage('CLOSED');
       const orderData = await this.createOrderData(total, order);
-      const { data } = await axios.post(`${window.location.pathname}/pay`, orderData);
+      const { data } = await axios.post(`/${this.props.barId}/pay`, orderData);
       if (data.status === 'paid') {
-        window.localStorage.setItem('order', JSON.stringify(data));
+        window.localStorage.setItem(this.props.barId, JSON.stringify(data));
         updateOrder(data);
         this.setState({
           paid: true,
@@ -117,17 +117,16 @@ class PaymentForm extends Component {
   createOptions = {
     style: {
       base: {
-        fontSize: '20px',
+        fontSize: '16px',
         color: 'white',
         letterSpacing: '0.025em',
-        marginBottom: '8px',
         fontFamily: 'Source Code Pro, monospace',
         '::placeholder': {
           color: '#aab7c4',
         },
       },
       invalid: {
-        color: '#9e2146',
+        color: '#EA0E48',
       },
     },
   };

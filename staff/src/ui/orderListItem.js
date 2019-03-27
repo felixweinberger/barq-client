@@ -6,7 +6,11 @@ import { updateStatus } from '../store/actions';
 
 
 class OrderListItem extends Component  {
-  statusList = ['paid', 'in preparation', 'ready for pickup', 'delivered']  
+  state = {
+    expanded: false
+  }
+
+  statusList = ['paid', 'in preparation', 'ready for pickup', 'delivered']
   onButtonClick = (e) => {
     const index = this.statusList.findIndex(status => status === this.props.status)
     let nextIndex;
@@ -21,12 +25,13 @@ class OrderListItem extends Component  {
   }
 
   render() {
+    const { expanded } = this.state;
     return (
-      <div className="orderListItem">
+      <div className={`orderListItem${expanded ? '--expanded' : ''}`}>
         <button name='back' onClick={this.onButtonClick} className="wrapper-back" value="Back">
           Back
         </button>
-        <div className="wrapper-list">
+        <div className={`wrapper-list${expanded ? '--expanded' : ''}`}>
           <h2>#{this.props.orderId}</h2> 
           {
             this.props.items.map(item => {
@@ -34,10 +39,14 @@ class OrderListItem extends Component  {
             })
           }
           <p>{this.props.specialWishes}</p>
+          <button
+            onClick={() => this.setState(state => ({ expanded: !state.expanded}))}
+            className={`arrow-button${expanded ? '--expanded' : ''}`}
+          ></button>
         </div>
         <button name='update' onClick={this.onButtonClick} className="wrapper-status">
-          Update
-          {this.props.status}
+          <p>Update</p>
+          <p>{this.props.status}</p>
         </button>
       </div>
     );

@@ -1,7 +1,10 @@
 .menu {
+  left: 0;
   position: relative;
   flex-grow: 1;
+  padding-top: var(--header-height);
   padding-bottom: var(--footer-height);
+  display: inline-block;
 }
 
 .menu__categories {

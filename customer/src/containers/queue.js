@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useEffect, forwardRef } from 'react';
 import io from 'socket.io-client';
 
 import Footer from '../ui/footer';
@@ -9,76 +9,78 @@ import SecondaryHead from '../ui/secondaryHead';
 
 import '../styles/containers/queue.css';
 
-class Queue extends Component {
-  componentDidMount = () => {
-    const {
-      orderId, orderStatus, order, updateStatus, orderSpecialWishes,
-    } = this.props;
-    this.socket = io(window.location.pathname, {
+const Queue = forwardRef((props, ref) => {
+  const {
+    order,
+    orderId,
+    orderStatus,
+    updatePage,
+    clearOrder,
+    isMenuOpen,
+    orderSpecialWishes,
+    updateStatus,
+    barId,
+  } = props;
+
+  let socket;
+
+  const closeSocket = () => {
+    socket.removeAllListeners();
+    socket.close();
+  };
+
+  useEffect(() => {
+    socket = io(`/${props.barId}`, {
       query: {
-        bar: window.location.pathname,
+        bar: `/${props.barId}`,
         orderNumber: orderId,
       },
     });
-    this.socket.emit('NEW_ORDER', {
+    socket.emit('NEW_ORDER', {
       orderId,
       status: orderStatus,
       items: order,
       specialWishes: orderSpecialWishes,
     });
-    this.socket.on('STATUS_UPDATE', (newStatus) => {
+    socket.on('STATUS_UPDATE', (newStatus) => {
       updateStatus(newStatus);
     });
-  }
+    return () => {
+      closeSocket();
+    };
+  }, []);
 
-  componentDidUpdate = () => {
-    const { orderStatus } = this.props;
-    if (orderStatus === 'delivered') this.closeSocket();
-  }
-
-  closeSocket = () => {
-    this.socket.removeAllListeners();
-    this.socket.close();
-  }
-
-  componentWillUnmount = () => this.closeSocket();
-
-  render() {
-    const {
-      order, orderId, orderStatus, updatePage, clearOrder, isMenuOpen,
-    } = this.props;
-    return (
-      <>
-        <div className="queue">
-          <SecondaryHead style={{ margin: '0' }} title="Your number" />
-          <PrimaryHead style={{ margin: '0' }} title={`#${orderId}`} />
-          <div className="queue__bill">
-            {
-              order.map(item => (
-                <MenuItem key={item.name} item={item} editable={false} />
-              ))
-            }
-          </div>
-          <PrimaryHead style={{ marginBottom: '1rem' }} title={orderStatus} />
-          <BeerAnimation />
+  return (
+    <>
+      <div ref={ref} className="queue">
+        <SecondaryHead style={{ margin: '0' }} title="Your number" />
+        <PrimaryHead style={{ margin: '0', textAlign: 'center' }} title={`#${orderId || ''}`} />
+        <div className="queue__bill">
+          {
+            order.map(item => (
+              <MenuItem key={item.name} item={item} editable={false} showPrice={false} />
+            ))
+          }
         </div>
-        {
-          orderStatus === 'delivered'
-          && (
-            <Footer
-              primaryButtonName="Order another round!"
-              onPrimaryClick={() => {
-                clearOrder();
-                window.localStorage.removeItem('order');
-                isMenuOpen()
-                  .then(isOpen => (isOpen ? updatePage('MENU') : updatePage('CLOSED')));
-              }}
-            />
-          )
-        }
-      </>
-    );
-  }
-}
+        <PrimaryHead style={{ marginBottom: '1rem', textAlign: 'center' }} title={orderStatus} />
+        <BeerAnimation />
+      </div>
+      {
+        orderStatus === 'delivered'
+        && (
+          <Footer
+            primaryButtonName="Order another round!"
+            onPrimaryClick={() => {
+              clearOrder();
+              window.localStorage.removeItem(barId);
+              isMenuOpen()
+                .then(isOpen => (isOpen ? updatePage('MENU') : updatePage('CLOSED')));
+            }}
+          />
+        )
+      }
+    </>
+  );
+});
 
 export default Queue;

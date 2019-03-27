@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, forwardRef } from 'react';
 
 import Loader from '../ui/loader';
 import MenuItem from '../ui/menuItem';
@@ -10,12 +10,13 @@ import TextInput from '../ui/textInput';
 import '../styles/containers/checkout.css';
 import SecondaryHead from '../ui/secondaryHead';
 
-const Checkout = ({
-  order, total, updatePage, isMenuOpen, updateOrder
-}) => {
+const Checkout = forwardRef((props, ref) => {
+  const {
+    order, total, updatePage, isMenuOpen, updateOrder,
+  } = props;
   const [specialWishes, setSpecialWishes] = useState('');
   return (
-    <div className="checkout">
+    <div ref={ref} className="checkout">
       {
         !order
           ? <Loader />
@@ -25,7 +26,7 @@ const Checkout = ({
                 <SecondaryHead title="Your Order" />
                 {
                   order.length === 0
-                    ? <div>No items selected...</div>
+                    ? <div>No items selected</div>
                     : order.map(item => <MenuItem key={item.name} item={item} />)
                 }
                 <div className="checkout__total">
@@ -37,7 +38,7 @@ const Checkout = ({
               <Footer
                 primaryButtonName="Pay"
                 onPrimaryClick={() => {
-                  window.localStorage.setItem('order', JSON.stringify({ items: order }));
+                  window.localStorage.setItem(props.barId, JSON.stringify({ items: order }));
                   updateOrder({ specialWishes });
                   isMenuOpen()
                     .then(isOpen => (isOpen ? updatePage('PAY') : updatePage('CLOSED')));
@@ -50,6 +51,6 @@ const Checkout = ({
     }
     </div>
   );
-};
+});
 
 export default Checkout;

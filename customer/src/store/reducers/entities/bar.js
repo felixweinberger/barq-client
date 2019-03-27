@@ -12,7 +12,6 @@ const initialState = {
 const menu = (state = initialState.menu, action) => {
   switch (action.type) {
     case 'UPDATE_BAR': {
-      console.log(action);
       return action.menu;
     }
     default: {

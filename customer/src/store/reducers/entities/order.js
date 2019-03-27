@@ -5,7 +5,7 @@ const initialState = {
   items: {},
   tipRate: 0.05,
   orderId: null,
-  status: 'unpaid',
+  status: '',
   specialWishes: '',
 };
 
@@ -54,7 +54,7 @@ const specialWishes = (state = initialState.specialWishes, action) => {
       return action.specialWishes || state;
     }
     case 'CLEAR_ORDER': {
-      return initialState.status;
+      return initialState.specialWishes;
     }
     default: {
       return state;

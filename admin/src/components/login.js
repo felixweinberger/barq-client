@@ -8,6 +8,7 @@ class LogIn extends Component {
   state = {
     email: '',
     password: '',
+    error: '',
   }
 
   componentDidMount() {
@@ -50,26 +51,32 @@ class LogIn extends Component {
   }
 
   onSubmit = async (e) => {
-    e.preventDefault();
-    const { email, password } = this.state;
-    const { setSession } = this.props;
-    const auth = btoa(`${email}:${password}`);
-    const result = await fetch(
-      '/owner', {
-        method: 'GET',
-        headers: {
-          authorization: `Basic ${auth}`,
-          'Content-Type': 'application/json',
+    try {
+      e.preventDefault();
+      const { email, password } = this.state;
+      const { setSession } = this.props;
+      const auth = btoa(`${email}:${password}`);
+      const result = await fetch(
+        '/owner', {
+          method: 'GET',
+          headers: {
+            authorization: `Basic ${auth}`,
+            'Content-Type': 'application/json',
+          },
         },
-      },
-    );
-    const json = await result.json();
-    window.localStorage.setItem('token', json.token);
-    setSession(email, json.token);
+      );
+      if (result.status === 500) throw new Error('Server error');
+      if (result.status === 401) throw new Error('Please check your credentials');
+      const json = await result.json();
+      window.localStorage.setItem('token', json.token);
+      setSession(email, json.token);
+    } catch (err) {
+      this.setState({ error: err.message });
+    }
   }
 
   render() {
-    const { email, password } = this.state;
+    const { email, password, error } = this.state;
     const { toggleRegister } = this.props;
     return (
       <div className="welcome">
@@ -79,7 +86,8 @@ class LogIn extends Component {
             <form className="welcome__login">
               <input className="loginInput" placeholder="Email" type="text" name="email" value={email} onChange={this.onChange} />
               <input className="loginInput" placeholder="Password" type="password" name="password" value={password} onChange={this.onChange} />
-              <button className="clicker" type="button" onClick={this.onSubmit}>LET&apos;S GO</button>
+              { error !== '' && <div className="loginError">{error}</div> }
+              <input className="clicker" type="submit" onClick={this.onSubmit} value="LET&apos;S GO" />
               <button className="clicker" type="button" id="signUp" onClick={toggleRegister}>Need an account?</button>
             </form>
           </div>

@@ -27,6 +27,7 @@ class App extends Component { // eslint-disable-line
       } = this.props;
       return (
         <Menu
+          key={0}
           updatePage={updatePage}
           bar={bar}
           order={order}
@@ -41,11 +42,13 @@ class App extends Component { // eslint-disable-line
       } = this.props;
       return (
         <Checkout
+          key={1}
           updatePage={updatePage}
           updateOrder={updateOrder}
           total={total}
           order={order}
           isMenuOpen={this.isMenuOpen}
+          barId={this.barId}
         />
       );
     },
@@ -55,11 +58,13 @@ class App extends Component { // eslint-disable-line
       } = this.props;
       return (
         <Pay
+          key={2}
           updatePage={updatePage}
           updateOrder={updateOrder}
           order={order}
           total={total}
           isMenuOpen={this.isMenuOpen}
+          barId={this.barId}
         />
       );
     },
@@ -69,6 +74,7 @@ class App extends Component { // eslint-disable-line
       } = this.props;
       return (
         <Queue
+          key={3}
           order={order}
           updatePage={updatePage}
           orderId={orderId}
@@ -77,29 +83,28 @@ class App extends Component { // eslint-disable-line
           updateStatus={updateStatus}
           clearOrder={clearOrder}
           isMenuOpen={this.isMenuOpen}
+          barId={this.barId}
         />
       );
     },
     CLOSED: () => (
-      <Closed />
+      <Closed key={4} />
     ),
   }
 
   isMenuOpen = () => axios
-    .get(`${window.location.pathname}/menu`)
-    .then(res => {
-      console.log(res.data);
-      return res.data.open
-    });
+    .get(`/${this.barId}/menu`)
+    .then(res => res.data.open);
 
   componentDidMount = () => {
-    axios.get(`${window.location.pathname}/menu`)
+    this.barId = window.location.pathname.replace(/\//g, '');
+    axios.get(`/${this.barId}/menu`)
       .then((res) => {
         const {
           updateBar, updatePage, updateOrder,
         } = this.props;
         if (res.data.menu) updateBar(res.data);
-        const cachedOrder = window.localStorage.getItem('order');
+        const cachedOrder = window.localStorage.getItem(this.barId);
         if (cachedOrder) updateOrder(JSON.parse(cachedOrder));
         const { orderId, order } = this.props;
         if (orderId) updatePage('QUEUE');
