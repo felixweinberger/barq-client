@@ -4,7 +4,6 @@ import {
   CardNumberElement,
   CardExpiryElement,
   CardCVCElement,
-  PostalCodeElement,
 } from 'react-stripe-elements';
 import axios from 'axios';
 
