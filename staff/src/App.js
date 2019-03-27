@@ -10,7 +10,8 @@ class App extends Component {
   state = {
     page: 'LOGIN',
     pin: '',
-    token: null
+    token: null,
+    loginMessage: '',
   }
 
   switch = {
@@ -18,7 +19,7 @@ class App extends Component {
       <Dashboard token={this.state.token} logout={this.logout} />
     ),
     LOGIN: () => (
-      <Login onChange={this.onChange} pin={this.state.pin} onSubmit={this.staffLogin}/>
+      <Login onChange={this.onChange} loginMessage={this.state.loginMessage} pin={this.state.pin} onSubmit={this.staffLogin}/>
     )
   }
 
@@ -46,6 +47,9 @@ class App extends Component {
       const { token } = res.data;
       window.localStorage.setItem('token', token);
       this.setState({ token });
+    })
+    .catch(err => {
+      this.setState({ loginMessage: err.response.data })
     })
   }
 
