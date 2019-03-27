@@ -312,6 +312,23 @@
  margin: auto;
 }
 
+.qr-popup {
+  display: flex;
+  flex-direction: row;
+}
+
+.qr-popup__left {
+  margin: 50px;
+}
+
+.qr-popup__right {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: left;
+  margin: 50px;
+}
+
 /* StaffContainer */
 
 .staffContainer {
