@@ -271,7 +271,6 @@
 /* Poster panel */
 
 .barDetailsRightPanel {
-  display: flex;
   flex-direction: column;
   border-left: solid #cacaca 2px;
 }
@@ -279,7 +278,7 @@
 .barPoster {
   background-color: #ffffff;
   padding-left: 20px;
-  flex: 1;
+  height: 250px;
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -311,7 +310,7 @@
   border-top: solid #cacaca 2px;
   background-color: #ffffff;
   padding-left: 20px;
-  flex: 1;
+  height: 125px;
   display: flex;
 }
 
@@ -366,7 +365,6 @@
 }
 
 .orderHistory {
-  flex: 1;
   padding-left: 20px;
   display: flex;
   flex-direction: column;
