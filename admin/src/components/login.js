@@ -9,6 +9,7 @@ class LogIn extends Component {
     email: '',
     password: '',
     error: '',
+    message: '',
   }
 
   componentDidMount() {
@@ -76,7 +77,9 @@ class LogIn extends Component {
   }
 
   render() {
-    const { email, password, error } = this.state;
+    const {
+      email, password, error, message,
+    } = this.state;
     const { toggleRegister } = this.props;
     return (
       <div className="welcome">
@@ -87,8 +90,9 @@ class LogIn extends Component {
               <input className="loginInput" placeholder="Email" type="text" name="email" value={email} onChange={this.onChange} />
               <input className="loginInput" placeholder="Password" type="password" name="password" value={password} onChange={this.onChange} />
               { error !== '' && <div className="loginError">{error}</div> }
+              { message !== '' && <div className="loginMessage">{message}</div> }
               <input className="clicker" type="submit" onClick={this.onSubmit} value="LET&apos;S GO" />
-              <button className="clicker" type="button" id="signUp" onClick={toggleRegister}>Need an account?</button>
+              <button className="clicker signUp" type="button" onClick={toggleRegister}>Need an account?</button>
             </form>
           </div>
         </div>

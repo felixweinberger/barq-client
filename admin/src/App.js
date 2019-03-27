@@ -36,7 +36,10 @@ class App extends Component {
               updateUser={this.updateUser}
             />
           : this.state.authPage === 'register'
-            ? <Register toggleLogin={() => this.setState({authPage: 'login'})}/>
+            ? <Register
+                toggleLogin={() => this.setState({authPage: 'login'})}
+                setSession={(user, token) => this.setState({ user, token })}
+              />
             : <Login
                 toggleRegister={() => this.setState({authPage: 'register'})}
                 setSession={(user, token) => this.setState({ user, token })}

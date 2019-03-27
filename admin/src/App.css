@@ -73,7 +73,7 @@
   cursor: default;
 }
 
-#signUp {
+.signUp {
   background-color: #13AFA0
 }
 
@@ -90,6 +90,14 @@
   background-color: #ffffff;
   border-color: #cacaca;
   border-width: 1px;
+}
+
+.loginError {
+  color: #EA0E48;
+}
+
+.loginSuccess {
+  color: #13AFA0;
 }
 
 .dashboardHeader {

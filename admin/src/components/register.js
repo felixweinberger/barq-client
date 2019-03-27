@@ -1,12 +1,16 @@
 import React, { Component } from 'react';
 
+import loginSplash from '../assets/LoginSplash.jpg';
+import logo from '../assets/SmallLogo.png';
+
 class Register extends Component {
   state = {
     email: '',
     name: '',
     password: '',
     passwordRepeat: '',
-    error: ''
+    error: '',
+    success: '',
   }
 
   get passwordMatch() {
@@ -36,6 +40,7 @@ class Register extends Component {
       );
       if (result.status === 500) throw new Error('Server error');
       if (result.status === 401) throw new Error('Email taken');
+      this.setState({ success: 'Account created!' });
     } catch (err) {
       this.setState({ error: err.message });
     }
@@ -43,22 +48,37 @@ class Register extends Component {
 
   render() {
     const {
-      email, name, password, passwordRepeat, error,
+      email, name, password, passwordRepeat, error, success,
     } = this.state;
     const { toggleLogin } = this.props;
     return (
       <div className="welcome">
-        <form className="welcome__login" onSubmit={this.onSubmit}>
-          <h1 className="welcome__title">BarQ</h1>
-          <input className="welcome__username" placeholder="Email" type="text" name="email" value={email} onChange={this.onChange} />
-          <input className="welcome__username" placeholder="Name" type="text" name="name" value={name} onChange={this.onChange} />
-          <input className="welcome__password" placeholder="Password" type="password" name="password" value={password} onChange={this.onChange} />
-          <input className="welcome__password" placeholder="Repeat Password" type="password" name="passwordRepeat" value={passwordRepeat} onChange={this.onChange} />
-          { this.passwordMatch || <div className="welcome__warning">Passwords do not match!</div>}
-          { error !== '' && <div className="loginError">{error}</div> }
-          <input className="welcome__submit" type="submit" />
-          <button type="submit" className="welcome__toggle" onClick={toggleLogin}>Log In</button>
-        </form>
+        <div className="loginContainer">
+          <img src={logo} width="180" alt="BarQ" />
+          <div className="leftLogin">
+            <form className="welcome__login" onSubmit={this.onSubmit}>
+              {
+                !success
+                && (
+                <>
+                  <input className="loginInput" placeholder="Email" type="text" name="email" value={email} onChange={this.onChange} />
+                  <input className="loginInput" placeholder="Name" type="text" name="name" value={name} onChange={this.onChange} />
+                  <input className="loginInput" placeholder="Password" type="password" name="password" value={password} onChange={this.onChange} />
+                  <input className="loginInput" placeholder="Repeat Password" type="password" name="passwordRepeat" value={passwordRepeat} onChange={this.onChange} />
+                </>
+                )
+              }
+              { this.passwordMatch || <div className="loginError">Passwords do not match!</div>}
+              { error !== '' && <div className="loginError">{error}</div> }
+              { success !== '' && <div className="loginSuccess">{success}</div> }
+              { !success && <input className="clicker" type="submit" /> }
+              <button type="submit" className="clicker signUp" onClick={toggleLogin}>Log In</button>
+            </form>
+          </div>
+        </div>
+        <div className="rightLogin">
+          <img src={loginSplash} width="500" alt="Splash" />
+        </div>
       </div>
     );
   }
