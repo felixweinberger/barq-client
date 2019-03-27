@@ -98,9 +98,9 @@ const styles = {
 function WelcomePageGrid({ handleScroll }) {
   return (
     <div style={{ width: '100vw' }}>
-      <Grid container sm alignItems="center" alignContent="center" justify="center">
+      <Grid container alignItems="center" alignContent="center" justify="center">
         <Grid item sm={8} xs={10}>
-          <div align="center" alignContent="center" alignItems="center">
+          <div align="center">
             <Typography variant="h3" color="secondary" gutterBottom component="h2">
                             Welcome to BarQ
             </Typography>
@@ -122,7 +122,7 @@ function WelcomePageGrid({ handleScroll }) {
 
 function Product({ classes }) {
   return (
-    <Grid container sm justify="center" alignItems="center">
+    <Grid container justify="center" alignItems="center">
       <Grid item md={3} sm={6} xs={8}>
         <div>
           <Typography align="center" variant="h4" color="primary" gutterBottom component="h2">
@@ -140,7 +140,7 @@ function Product({ classes }) {
           </Typography>
         </div>
       </Grid>
-      <Grid item md={3} sm={0} xs={0}>
+      <Grid item md={3} sm="auto" xs="auto">
         <div>
           <CardMedia
             className={classes.card}
@@ -148,7 +148,7 @@ function Product({ classes }) {
           />
         </div>
       </Grid>
-      <Grid item md={3} sm={0} xs={0}>
+      <Grid item md={3} sm="auto" xs="auto">
         <div>
           <CardMedia
             className={classes.card}
@@ -156,7 +156,7 @@ function Product({ classes }) {
           />
         </div>
       </Grid>
-      <Grid item md={3} sm={0} xs={0}>
+      <Grid item md={3} sm="auto" xs="auto">
         <div>
           <CardMedia
             className={classes.card}
@@ -170,7 +170,7 @@ function Product({ classes }) {
 
 function ProductAdmin({ classes }) {
   return (
-    <Grid container sm alignItems="center" justify="center">
+    <Grid container alignItems="center" justify="center">
       <Grid item md={6} sm={6} xs={8}>
         <div>
           <Typography align="center" variant="h4" color="primary" gutterBottom component="h2">
@@ -185,13 +185,12 @@ function ProductAdmin({ classes }) {
           </Typography>
         </div>
       </Grid>
-      <Grid item xs={0}>
+      <Grid item xs="auto">
         <div align="center">
           <div className={classes.appBarSpacer} />
           <CardMedia
             className={classes.adminCard}
             image={adminScreenshot}
-            style={classes.media}
           />
         </div>
       </Grid>
@@ -201,7 +200,7 @@ function ProductAdmin({ classes }) {
 
 function ProductBartender({ classes }) {
   return (
-    <Grid container sm alignItems="center" justify="center">
+    <Grid container alignItems="center" justify="center">
       <Grid item xs={4}>
         <div>
           <Typography align="center" variant="h4" color="primary" gutterBottom component="h2">
@@ -216,21 +215,19 @@ function ProductBartender({ classes }) {
           </Typography>
         </div>
       </Grid>
-      <Grid item xs={0}>
+      <Grid item xs="auto">
         <div align="center">
           <CardMedia
             className={classes.bartenderCard}
             image={ipad1}
-            style={classes.media}
           />
         </div>
       </Grid>
-      <Grid item xs={0}>
+      <Grid item xs="auto">
         <div align="center">
           <CardMedia
             className={classes.bartenderCard}
             image={ipad2}
-            style={classes.media}
           />
         </div>
       </Grid>
