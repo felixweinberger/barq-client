@@ -1,5 +1,7 @@
 .logo {
-  position: relative;
+  position: fixed;
+  left: 0;
+  right: 0;
   font-size: 2rem;
   height: var(--header-height);
   line-height: 5rem;
