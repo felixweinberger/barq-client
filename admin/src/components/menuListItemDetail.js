@@ -6,7 +6,10 @@ const MenuListItemDetail = ({ data }) => (
     {data.items ? data.items.map(item => (
       <div key={item.name} className="menuListItemDetail">
         <p>{item.name}</p>
-        <p>{item.price}</p>
+        <p>
+          €
+          {item.price}
+        </p>
       </div>
     )) : null}
   </div>

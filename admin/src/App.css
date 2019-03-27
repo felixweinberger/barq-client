@@ -57,6 +57,22 @@
   cursor: default;
 }
 
+.clickerSmall {
+  font-family: 'Quicksand', sans-serif;
+  text-decoration: none;
+  display: block;
+  border: none;
+  background-color: #EA0E48;
+  border-radius: 50px;
+  padding: 10px;
+  width: 200px;
+  margin: 5px;
+  text-align: center;
+  color: #ffffff;
+  font-size: 16px;
+  cursor: default;
+}
+
 #signUp {
   background-color: #13AFA0
 }
@@ -85,6 +101,11 @@
 .headerLogo {
   font-size: 50px;
   padding-left: 10px;
+}
+
+.welcomeToDash {
+  padding: 30px;
+  font-size: 25px;
 }
 
 .dashboard {
@@ -146,13 +167,14 @@
   padding: 3px;
 }
 
-
-/* Menu panel */
+/* Bar details */
 
 .barDetails {
   display: flex;
   padding: 2px;
 }
+
+/* Menu panel */
 
 .menuContainer {
   background-color: #ffffff;
@@ -165,11 +187,22 @@
   align-items: baseline;
 }
 
+
 #deleteMenu {
   font-size: 12px;
   padding: 3px;
-  width: 80px;
+  margin: auto;
   margin-top: 5px;
+  width: 135px;
+}
+
+#selectMenu {
+  font-size: 12px;
+  padding: 3px;
+  margin: auto;
+  margin-top: 5px;
+  width: 135px;
+  background-color: #13AFA0;
 }
 
 .menuListItem {
@@ -184,6 +217,35 @@
   justify-content: space-between;
   padding: 1px;
   margin: 1px;
+}
+
+.activeMenuCard {
+  background-color: #13AFA0;
+  padding: 5px;
+  padding-bottom: 1px;
+  margin-bottom: 5px;
+}
+
+.addMenuHeaderContainer {
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+}
+
+.iSym {
+  font-size: 18px;
+  padding-left: 5px;
+  font-weight: bold;
+  color: #13AFA0;
+}
+
+.infoPopup {
+  text-align: left;
+}
+
+.infoLi {
+  margin: 2px;
+  padding: 0;
 }
 
 .addMenuForm {
@@ -218,15 +280,39 @@
   background-color: #ffffff;
   padding-left: 20px;
   flex: 1;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 }
 
-/* StaffContainer - defunct */
+.leftBarPoster {
+  flex: 1;
+  text-align: center;
+}
+
+.midBarPoster {
+  flex: 1;
+  text-align: center;
+}
+
+.rightBarPoster {
+  flex: 1;
+  text-align: center;
+  padding: 30px;
+}
+
+#generatePoster {
+ margin: auto;
+}
+
+/* StaffContainer */
 
 .staffContainer {
   border-top: solid #cacaca 2px;
   background-color: #ffffff;
   padding-left: 20px;
   flex: 1;
+  display: flex;
 }
 
 .codeGenerator {
@@ -240,4 +326,94 @@
 
 .staffCode {
   font-size: 24px;
+}
+
+#generateStaffCode {
+  margin: auto;
+}
+
+#newStaffCode {
+  background-color: #cacaca;
+  border-radius: 50px;
+  width: 100px;
+  padding: 5px;
+  margin: auto;
+  margin-top: 10px;
+}
+
+/* Payment Details */
+
+#addIban {
+  margin: auto;
+}
+
+#existingIban {
+  background-color: #cacaca;
+  border-radius: 50px;
+  width: 200px;
+  padding: 5px;
+  margin: auto;
+}
+
+#ibanTextField {
+  width: 180px;
+  margin: 10px;
+}
+
+.paymentDetails {
+  flex: 1,auto;
+  background: #000000;
+}
+
+.orderHistory {
+  flex: 1;
+  padding-left: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+#refreshHistory {
+    font-size: 12px;
+    padding: 3px;
+    background-color: #13AFA0;
+    width: 100px;
+    align-self: flex-end;
+}
+
+th {
+  background-color: #cacaca
+}
+
+.orderHistory__table {
+  border-collapse: collapse;
+  text-align: center;
+}
+
+.orderHistory__itemrow {
+  text-align: left;
+}
+
+#thOrder {
+  width: 30px;
+}
+
+#thDate {
+  width: 100px;
+}
+
+#thTime {
+  width: 100px;
+}
+
+#thItems {
+  width: 500px;
+  text-align: left;
+}
+
+#thTotal {
+  width: 100px;
+}
+
+.tr0 {
+  background-color: #EAC0CB
 }

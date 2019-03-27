@@ -21,7 +21,7 @@ class AddBarForm extends Component {
         <h3>Add a New Bar</h3>
         <form className="addBarForm">
           <input className="addBarInput" type="text" placeholder="Name" onChange={event => this.handleChange(event, 'name')} />
-          <input className="addBarInput" type="text" placeholder="Currency" onChange={event => this.handleChange(event, 'currency')} />
+          <input className="addBarInput" type="text" placeholder="Currency" value="EUR" onChange={event => this.handleChange(event, 'currency')} />
           <input className="clicker" id="addBar" type="submit" value="Add Bar" onClick={event => addBar(event, this.state)} />
         </form>
       </div>
