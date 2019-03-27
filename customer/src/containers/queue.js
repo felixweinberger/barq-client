@@ -19,6 +19,7 @@ const Queue = forwardRef((props, ref) => {
     isMenuOpen,
     orderSpecialWishes,
     updateStatus,
+    barId,
   } = props;
 
   let socket;
@@ -29,9 +30,9 @@ const Queue = forwardRef((props, ref) => {
   };
 
   useEffect(() => {
-    socket = io(window.location.pathname, {
+    socket = io(`/${props.barId}`, {
       query: {
-        bar: window.location.pathname,
+        bar: `/${props.barId}`,
         orderNumber: orderId,
       },
     });
@@ -71,7 +72,7 @@ const Queue = forwardRef((props, ref) => {
             primaryButtonName="Order another round!"
             onPrimaryClick={() => {
               clearOrder();
-              window.localStorage.removeItem('order');
+              window.localStorage.removeItem(barId);
               isMenuOpen()
                 .then(isOpen => (isOpen ? updatePage('MENU') : updatePage('CLOSED')));
             }}

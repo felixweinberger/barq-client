@@ -38,7 +38,7 @@ const Checkout = forwardRef((props, ref) => {
               <Footer
                 primaryButtonName="Pay"
                 onPrimaryClick={() => {
-                  window.localStorage.setItem('order', JSON.stringify({ items: order }));
+                  window.localStorage.setItem(props.barId, JSON.stringify({ items: order }));
                   updateOrder({ specialWishes });
                   isMenuOpen()
                     .then(isOpen => (isOpen ? updatePage('PAY') : updatePage('CLOSED')));
