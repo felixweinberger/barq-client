@@ -5,7 +5,7 @@ class AddBarForm extends Component {
     super(props);
     this.state = {
       name: null,
-      currency: null,
+      currency: 'EUR',
     };
   }
 
