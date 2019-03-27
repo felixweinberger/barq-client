@@ -1,6 +1,7 @@
 .pay {
   flex-grow: 1;
   width: 100%;
+  margin-top: 2rem;
   padding: 2rem 2rem;
 
   display: inline-flex;

@@ -1,8 +1,6 @@
 import React, { forwardRef } from 'react';
 import { Elements } from 'react-stripe-elements';
 
-import withPose from '../withPose';
-
 import SecondaryHead from '../../ui/primaryHead';
 import InjectedPaymentForm from './paymentForm';
 
@@ -19,4 +17,4 @@ const Pay = forwardRef((props, ref) => (
   </div>
 ));
 
-export default withPose(Pay);
+export default Pay;

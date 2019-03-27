@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { PoseGroup } from 'react-pose';
 import axios from 'axios';
 
 import {
@@ -86,9 +85,7 @@ class App extends Component { // eslint-disable-line
       );
     },
     CLOSED: () => (
-      <Closed
-          key={4}
-      />
+      <Closed key={4} />
     ),
   }
 
@@ -117,9 +114,7 @@ class App extends Component { // eslint-disable-line
     return (
       <div className="App">
         <Logo logoPath="/logo.jpg" barName={name} />
-        <PoseGroup animateOnMount flipMove={false} preEnterPose="before">
-          { this.switch[page]() }
-        </PoseGroup>
+        { this.switch[page]() }
       </div>
     );
   }

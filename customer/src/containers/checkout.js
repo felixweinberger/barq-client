@@ -1,5 +1,4 @@
 import React, { useState, forwardRef } from 'react';
-import withPose from './withPose';
 
 import Loader from '../ui/loader';
 import MenuItem from '../ui/menuItem';
@@ -54,4 +53,4 @@ const Checkout = forwardRef((props, ref) => {
   );
 });
 
-export default withPose(Checkout);
+export default Checkout;

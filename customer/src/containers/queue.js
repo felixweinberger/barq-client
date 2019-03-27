@@ -1,8 +1,6 @@
 import React, { useEffect, forwardRef } from 'react';
 import io from 'socket.io-client';
 
-import withPose from './withPose';
-
 import Footer from '../ui/footer';
 import MenuItem from '../ui/menuItem';
 import BeerAnimation from '../ui/beerAnimation';
@@ -13,7 +11,14 @@ import '../styles/containers/queue.css';
 
 const Queue = forwardRef((props, ref) => {
   const {
-    order, orderId, orderStatus, updatePage, clearOrder, isMenuOpen, orderSpecialWishes, updateStatus,
+    order,
+    orderId,
+    orderStatus,
+    updatePage,
+    clearOrder,
+    isMenuOpen,
+    orderSpecialWishes,
+    updateStatus,
   } = props;
 
   let socket;
@@ -21,7 +26,7 @@ const Queue = forwardRef((props, ref) => {
   const closeSocket = () => {
     socket.removeAllListeners();
     socket.close();
-  }
+  };
 
   useEffect(() => {
     socket = io(window.location.pathname, {
@@ -40,7 +45,7 @@ const Queue = forwardRef((props, ref) => {
       updateStatus(newStatus);
     });
     return () => {
-      closeSocket()
+      closeSocket();
     };
   }, []);
 
@@ -77,4 +82,4 @@ const Queue = forwardRef((props, ref) => {
   );
 });
 
-export default withPose(Queue);
+export default Queue;

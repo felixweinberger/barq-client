@@ -1,22 +1,22 @@
 import posed from 'react-pose';
 
-const withPose = (Component, x, y) => posed(Component)({
+const withPose = Component => posed(Component)({
   before: {
-    x: '100vw'
+    x: '100vw',
   },
   enter: {
-    x: '0vw'
+    x: '0vw',
   },
   exit: {
-    x: '-100vw'
+    x: '-100vw',
   },
   transition: {
     type: 'spring',
     stiffness: 300,
     damping: 25,
     restDelta: 0.5,
-    restSpeed: 10
-  }
+    restSpeed: 10,
+  },
 });
 
 export default withPose;

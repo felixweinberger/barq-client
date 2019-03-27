@@ -1,8 +1,6 @@
 import React, { forwardRef } from 'react';
 import { sumBy } from 'lodash';
 
-import withPose from './withPose';
-
 import SecondaryHead from '../ui/secondaryHead';
 import MenuItem from '../ui/menuItem';
 import Loader from '../ui/loader';
@@ -53,4 +51,4 @@ const Menu = forwardRef((props, ref) => {
   );
 });
 
-export default withPose(Menu);
+export default Menu;
