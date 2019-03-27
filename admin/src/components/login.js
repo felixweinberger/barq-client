@@ -28,7 +28,7 @@ class LogIn extends Component {
 
   autoLogIn = async (storedToken) => {
     try {
-      const { setSession } = this.props;
+      const { setSession, toggleDashboard } = this.props;
       const result = await fetch(
         '/owner/me', {
           method: 'GET',
@@ -40,6 +40,7 @@ class LogIn extends Component {
       );
       const json = await result.json();
       setSession(json.user, storedToken);
+      toggleDashboard();
     } catch (e) {
       console.log(e);
     }
