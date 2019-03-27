@@ -1,7 +1,7 @@
 .footer {
   position: fixed;
   height: var(--footer-height);
-  width: 100vw;
+  width: 100%;
   background-color: var(--secondary-color-light);
 
   bottom: 0;
