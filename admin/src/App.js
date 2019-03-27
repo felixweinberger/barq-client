@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import './App.css';
 
 import logo from './assets/LightSmallLogo.png';
+import Landing from './Landing.js';
 import Dashboard from './components/dashboard';
 import Register from './components/register';
 import Login from './components/login';
@@ -14,6 +15,49 @@ class App extends Component {
     user: null,
     authPage: 'login',
     token: null,
+    page: 'LANDING',
+  }
+
+  renderLogin = () => (
+    <Login
+      toggleRegister={() => this.setState({page: 'REGISTER'})}
+      toggleDashboard={() => this.setState({page: 'DASHBOARD'})}
+      setSession={(user, token) => this.setState({ user, token })}
+    />
+  );
+
+  renderRegister = () => (
+    <Register
+      toggleLogin={() => this.setState({page: 'LOGIN'})}
+      toggleRegister={() => this.setState({page: 'REGISTER'})}
+      setSession={(user, token) => this.setState({ user, token })}
+    />
+  );
+
+  renderDashboard = () => (
+    <Dashboard
+      user={this.state.user}
+      token={this.state.token}
+      logout={this.logout}
+      updateUser={this.updateUser}
+    />
+  );
+
+  renderLanding = () => (
+    <Landing 
+      toggleLogin={() => this.setState({page: 'LOGIN'})}
+    />
+  );
+
+  switch = {
+    LOGIN: this.renderLogin,
+    REGISTER: this.renderRegister,
+    DASHBOARD: () => (
+      this.state.user && this.state.token
+      ? this.renderDashboard()
+      : this.renderLogin()
+    ),
+    LANDING: this.renderLanding,
   }
 
   logout = () => {
@@ -26,25 +70,10 @@ class App extends Component {
   }
 
   render() {
+    const { page } = this.state;
     return (
       <div className="App">
-        {this.state.user
-          ? <Dashboard
-              user={this.state.user}
-              token={this.state.token}
-              logout={this.logout}
-              updateUser={this.updateUser}
-            />
-          : this.state.authPage === 'register'
-            ? <Register
-                toggleLogin={() => this.setState({authPage: 'login'})}
-                setSession={(user, token) => this.setState({ user, token })}
-              />
-            : <Login
-                toggleRegister={() => this.setState({authPage: 'register'})}
-                setSession={(user, token) => this.setState({ user, token })}
-              />
-        }
+        { this.switch[page]() }
       </div>
     );
   }

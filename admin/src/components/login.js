@@ -55,7 +55,7 @@ class LogIn extends Component {
     try {
       e.preventDefault();
       const { email, password } = this.state;
-      const { setSession } = this.props;
+      const { setSession, toggleDashboard } = this.props;
       const auth = btoa(`${email}:${password}`);
       const result = await fetch(
         '/owner', {
@@ -71,6 +71,7 @@ class LogIn extends Component {
       const json = await result.json();
       window.localStorage.setItem('token', json.token);
       setSession(email, json.token);
+      toggleDashboard();
     } catch (err) {
       this.setState({ error: err.message });
     }
