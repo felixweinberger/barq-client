@@ -43,7 +43,12 @@ class Dashboard extends Component {
   }
 
   listAllOrders = () => {
-    axios.get(`${this.url}/queue`, {headers: {"Content-type": "application/json"}})
+    axios.get(`${this.url}/queue`, {
+      headers: {
+        "Content-type": "application/json",
+        authorization: `Bearer ${this.props.token}`
+      }
+    })
      .then(res => {
        const { queue } = res.data;
        this.props.updateQueue(queue)
@@ -53,6 +58,11 @@ class Dashboard extends Component {
   toggleBlocked = () => {
     axios.post(`${this.url}/open`, {
       open: !this.props.isOpen
+    }, {
+      headers: {
+        "Content-type": "application/json",
+        authorization: `Bearer ${this.props.token}`
+      }
     })
     .then(res => {
       this.props.setOpen(res.data.open);
