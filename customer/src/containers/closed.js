@@ -1,7 +1,5 @@
 import React, { forwardRef } from 'react';
 
-import withPose from './withPose';
-
 import '../styles/containers/closed.css';
 
 const Closed = forwardRef((props, ref) => (
@@ -10,4 +8,4 @@ const Closed = forwardRef((props, ref) => (
   </div>
 ));
 
-export default withPose(Closed);
+export default Closed;
