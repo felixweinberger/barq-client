@@ -251,7 +251,7 @@ class LandingPage extends Component {
 
   componentDidMount() {
     document.addEventListener('scroll', () => {
-      const isTopThis = window.scrollY < this.myRef.current.offsetTop - 65;
+      const isTopThis = this.myRef.current && window.scrollY < this.myRef.current.offsetTop - 65;
       const { isTop } = this.state;
       if (isTopThis !== isTop) {
         this.onScroll(isTopThis);
@@ -271,7 +271,7 @@ class LandingPage extends Component {
     }
 
     render() {
-      const { classes } = this.props;
+      const { classes, toggleLogin } = this.props;
       const { isTop } = this.state;
       return (
         <div className={classes.root}>
@@ -282,7 +282,7 @@ class LandingPage extends Component {
                   <Typography variant="h4" color="secondary" className={classes.grow}>
                                 BarQ
                   </Typography>
-                  <Button variant="contained" color="secondary">Sign Up/Log in</Button>
+                  <Button onClick={toggleLogin} variant="contained" color="secondary">Sign Up/Log in</Button>
                 </ToolBar>
               </AppBar>
               <div className={classes.appBarSpacer} />
