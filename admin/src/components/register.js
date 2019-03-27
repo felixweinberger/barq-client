@@ -6,6 +6,7 @@ class Register extends Component {
     name: '',
     password: '',
     passwordRepeat: '',
+    error: ''
   }
 
   get passwordMatch() {
@@ -20,24 +21,29 @@ class Register extends Component {
   }
 
   onSubmit = async (e) => {
-    e.preventDefault();
-    const { email, name, password } = this.state;
-    if (!this.passwordMatch) return;
-    const result = await fetch(
-      '/owner', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
+    try {
+      e.preventDefault();
+      const { email, name, password } = this.state;
+      if (!this.passwordMatch) return;
+      const result = await fetch(
+        '/owner', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ email, name, password }),
         },
-        body: JSON.stringify({ email, name, password }),
-      },
-    );
-    console.log('Response: ', result.status); // eslint-disable-line no-console
+      );
+      if (result.status === 500) throw new Error('Server error');
+      if (result.status === 401) throw new Error('Email taken');
+    } catch (err) {
+      this.setState({ error: err.message });
+    }
   }
 
   render() {
     const {
-      email, name, password, passwordRepeat,
+      email, name, password, passwordRepeat, error,
     } = this.state;
     const { toggleLogin } = this.props;
     return (
@@ -49,6 +55,7 @@ class Register extends Component {
           <input className="welcome__password" placeholder="Password" type="password" name="password" value={password} onChange={this.onChange} />
           <input className="welcome__password" placeholder="Repeat Password" type="password" name="passwordRepeat" value={passwordRepeat} onChange={this.onChange} />
           { this.passwordMatch || <div className="welcome__warning">Passwords do not match!</div>}
+          { error !== '' && <div className="loginError">{error}</div> }
           <input className="welcome__submit" type="submit" />
           <button type="submit" className="welcome__toggle" onClick={toggleLogin}>Log In</button>
         </form>
