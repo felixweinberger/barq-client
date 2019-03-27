@@ -98,9 +98,6 @@ class LogIn extends Component {
             </form>
           </div>
         </div>
-        <div className="rightLogin">
-          <img src={loginSplash} width="500" alt="Splash" />
-        </div>
       </div>
     );
   }
