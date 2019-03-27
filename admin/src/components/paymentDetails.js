@@ -19,7 +19,7 @@ const PaymentDetails = ({ barId, iban, updateIban }) => {
               {iban}
             </p>
           )
-          : <p p id="existingIban">No IBAN added yet</p>}
+          : <p id="existingIban">No IBAN added yet</p>}
       </div>
       <div className="rightBarPoster">
         <form className="addIBAN" onSubmit={onSubmitIban}>

@@ -64,7 +64,8 @@ class MenuContainer extends React.Component {
           ) : null}
         <div>
         {data ? data.map((item) => { //eslint-disable-line
-          if (item._id !== activeMenu._id) {
+          console.log(item, activeMenu);
+          if (!activeMenu || item._id !== activeMenu._id) {
             return (
               <MenuListItem
                 key={item._id}
