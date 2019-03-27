@@ -15,7 +15,7 @@ class Dashboard extends Component {
 
   getOwnerData = () => {
     const { token } = this.props;
-    fetch('/owner/me',
+    return fetch('/owner/me',
       {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -161,8 +161,8 @@ class Dashboard extends Component {
   }
 
   refreshHistory = async () => {
-    const { activeBar, ownerData } = this.state;
     await this.getOwnerData();
+    const { activeBar, ownerData } = this.state;
     ownerData.bars.forEach((bar) => {
       if (activeBar._id === bar._id) {
         this.setState({ activeBar: bar });

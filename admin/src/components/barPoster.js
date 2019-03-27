@@ -23,12 +23,15 @@ const BarPoster = ({ data }) => {
           className="qr-popup"
           trigger={<button className="clickerSmall" id="generatePoster" type="button">Generate Poster</button>}
           modal
+          contentStyle={{
+            width: 'auto',
+          }}
         >
           <div className="qr-popup__left">
             <h1>{data.name}</h1>
             <QRCode
               value={url}
-              size="256"
+              size={256}
             />
             <h1>{url}</h1>
           </div>
