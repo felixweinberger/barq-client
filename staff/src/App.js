@@ -16,7 +16,7 @@ class App extends Component {
 
   switch = {
     DASHBOARD: () => (
-      <Dashboard token={this.state.token} logout={this.logout} />
+      <Dashboard barId={this.barId} token={this.state.token} logout={this.logout} />
     ),
     LOGIN: () => (
       <Login onChange={this.onChange} loginMessage={this.state.loginMessage} pin={this.state.pin} onSubmit={this.staffLogin}/>
@@ -34,10 +34,10 @@ class App extends Component {
 
   staffLogin = (e) => {
    e.preventDefault();
-   const barId = window.location.pathname.slice(1);
-   const decoded = `${barId}:${this.state.pin}`
+   this.barId = window.location.pathname.replace(/\//g, '');
+   const decoded = `${this.barId}:${this.state.pin}`
    const encoded = btoa(decoded);
-    axios.get(`/staff${window.location.pathname}/code`, {
+    axios.get(`/staff/${this.barId}/code`, {
       headers: {
         "Content-type": "application/json",
         Authorization: `Basic ${encoded}`

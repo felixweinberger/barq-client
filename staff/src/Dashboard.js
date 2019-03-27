@@ -12,7 +12,7 @@ import QrCode from './containers/qrCode';
 import PopUp from './ui/popup.js';
 
 class Dashboard extends Component {
-  url = `/staff${window.location.pathname}`;
+  url = `/staff/${this.props.barId}`;
 
   switch = {
     MAIN: () => (
@@ -35,7 +35,7 @@ class Dashboard extends Component {
       />
     ),
     QRCODE: () => (
-      <QrCode />
+      <QrCode barId={this.props.barId} />
     )
   }
 
@@ -70,11 +70,11 @@ class Dashboard extends Component {
   }
   
   componentDidMount = () => {
-    const { token } = this.props;
+    const { token, barId } = this.props;
     this.listAllOrders();
-    this.socket = io(window.location.pathname, {
+    this.socket = io(`/${barId}`, {
       query: {
-        bar: window.location.pathname,
+        bar: `/${barId}`,
         token
       },
     });
