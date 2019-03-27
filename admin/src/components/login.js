@@ -1,7 +1,6 @@
 /* eslint-disable no-console */
 import React, { Component } from 'react';
 
-import loginSplash from '../assets/LoginSplash.jpg';
 import logo from '../assets/SmallLogo.png';
 
 class LogIn extends Component {
