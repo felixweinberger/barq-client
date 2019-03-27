@@ -167,7 +167,6 @@
   padding: 3px;
 }
 
-
 /* Bar details */
 
 .barDetails {
@@ -188,11 +187,22 @@
   align-items: baseline;
 }
 
+
 #deleteMenu {
   font-size: 12px;
   padding: 3px;
-  width: 80px;
+  margin: auto;
   margin-top: 5px;
+  width: 135px;
+}
+
+#selectMenu {
+  font-size: 12px;
+  padding: 3px;
+  margin: auto;
+  margin-top: 5px;
+  width: 135px;
+  background-color: #13AFA0;
 }
 
 .menuListItem {
@@ -207,6 +217,13 @@
   justify-content: space-between;
   padding: 1px;
   margin: 1px;
+}
+
+.activeMenuCard {
+  background-color: #13AFA0;
+  padding: 5px;
+  padding-bottom: 1px;
+  margin-bottom: 5px;
 }
 
 .addMenuHeaderContainer {

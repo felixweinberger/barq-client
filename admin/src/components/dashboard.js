@@ -62,57 +62,6 @@ class Dashboard extends Component {
     this.setState({ activeBar: barData, staffCode: null });
   }
 
-  addStaffMember = (staff, barId) => {
-    const { token } = this.props;
-    fetch(`/owner/bars/${barId}/staff`, {
-      method: 'POST',
-      headers: {
-        Authorization: `Bearer ${token}`,
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(staff),
-    })
-      .then(response => response.json())
-      .then(response => this.setState({
-        ownerData: response,
-        activeBar: response.bars.find(bar => bar._id === barId),
-      }));
-  }
-
-  deleteStaffMember = (barId, staffId) => {
-    const { token } = this.props;
-    const { ownerData } = this.state;
-    fetch(`/owner/bars/${barId}/staff/${staffId}`,
-      {
-        method: 'DELETE',
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
-      .then(() => {
-        const barToUpdate = ownerData.bars.find(bar => bar._id === barId);
-        const remainingStaff = barToUpdate.staff.filter(staff => staff._id !== staffId);
-        barToUpdate.staff = remainingStaff;
-        this.setState({ activeBar: barToUpdate });
-        this.getOwnerData();
-      });
-  }
-
-  generateStaffCode = (barId) => {
-    const { token } = this.props;
-    fetch(
-      `/owner/bars/${barId}/code`, {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`,
-        },
-      },
-    )
-      .then(res => res.json())
-      .then(res => this.setState({ staffCode: res }));
-  }
-
   addMenu = (menu, barId) => {
     const { token } = this.props;
     fetch(`/owner/bars/${barId}/menus`,
@@ -150,6 +99,38 @@ class Dashboard extends Component {
         this.setState({ activeBar: barToUpdate });
         this.getOwnerData();
       });
+  }
+
+  activateMenu = (barId, menuId) => {
+    const { token } = this.props;
+    fetch(`/owner/bars/${barId}/menus/${menuId}`,
+      {
+        method: 'PUT',
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then(res => res.json())
+      .then((res) => {
+        const { activeBar } = this.state;
+        const updatedActiveBar = res.bars.find(bar => bar._id === activeBar._id);
+        this.setState({ ownerData: res, activeBar: updatedActiveBar });
+      });
+  }
+
+  generateStaffCode = (barId) => {
+    const { token } = this.props;
+    fetch(
+      `/owner/bars/${barId}/code`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+      },
+    )
+      .then(res => res.json())
+      .then(res => this.setState({ staffCode: res }));
   }
 
   updateIban = (barId, iban) => {
@@ -193,7 +174,7 @@ class Dashboard extends Component {
   }
 
   render() {
-    const { logout, token } = this.props;
+    const { logout } = this.props;
     const { activeBar, ownerData, staffCode } = this.state;
     return (
       <div>
@@ -215,12 +196,10 @@ class Dashboard extends Component {
               <BarDetails
                 data={activeBar}
                 staffCode={staffCode}
-                token={token}
-                addStaffMember={this.addStaffMember}
-                deleteStaffMember={this.deleteStaffMember}
                 generateStaffCode={this.generateStaffCode}
                 addMenu={this.addMenu}
                 deleteMenu={this.deleteMenu}
+                activateMenu={this.activateMenu}
                 updateIban={this.updateIban}
                 refreshHistory={this.refreshHistory}
               />

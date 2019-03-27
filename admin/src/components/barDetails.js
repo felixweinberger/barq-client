@@ -7,30 +7,26 @@ import OrderHistory from './orderHistory';
 import PaymentDetails from './paymentDetails';
 
 const BarDetails = ({
-  token, data, addMenu, deleteMenu, addStaffMember, deleteStaffMember,
-  generateStaffCode, staffCode, updateIban, refreshHistory,
+  data, addMenu, deleteMenu, activateMenu, generateStaffCode, staffCode, updateIban, refreshHistory,
 }) => (
   <div className="barDetails">
     <MenuContainer
-      token={token}
       data={data.menus}
+      activeMenu={data.activeMenu}
       barId={data._id}
       addMenu={addMenu}
       deleteMenu={deleteMenu}
+      activateMenu={activateMenu}
     />
     <div className="barDetailsRightPanel">
       <BarPoster data={data} />
       <StaffContainer
-        token={token}
-        staffCode={staffCode}
         data={data.staff}
         barId={data._id}
-        addStaffMember={addStaffMember}
-        deleteStaffMember={deleteStaffMember}
         generateStaffCode={generateStaffCode}
+        staffCode={staffCode}
       />
       <PaymentDetails
-        token={token}
         barId={data._id}
         iban={data.iban}
         updateIban={updateIban}

@@ -46,21 +46,35 @@ class MenuContainer extends React.Component {
   }
 
   render() {
-    const { data, deleteMenu, barId } = this.props;
+    const {
+      data, deleteMenu, activateMenu, barId, activeMenu,
+    } = this.props;
     return (
       <div className="menuContainer">
         <h1>My Menus</h1>
-        <div className="menuCards">
-          {data
-            ? data.map(item => (
-              <MenuListItem
-                key={item._id}
-                data={item}
-                deleteMenu={deleteMenu}
-                barId={barId}
-              />
-            ))
-            : null}
+
+        <div className="activeMenuCard">
+          <MenuListItem
+            data={activeMenu}
+            deleteMenu={deleteMenu}
+            barId={barId}
+          />
+        </div>
+
+        <div>
+          {data.map((item) => { //eslint-disable-line
+            if (item._id !== activeMenu._id) {
+              return (
+                <MenuListItem
+                  key={item._id}
+                  data={item}
+                  deleteMenu={deleteMenu}
+                  activateMenu={activateMenu}
+                  barId={barId}
+                />
+              );
+            }
+          })}
         </div>
         <form className="addMenuForm">
           <div className="addMenuHeaderContainer">
