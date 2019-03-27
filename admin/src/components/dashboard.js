@@ -54,7 +54,7 @@ class Dashboard extends Component {
       .then(res => res.json())
       .then(res => this.setState({ ownerData: res }))
       .then(() => {
-        if (barId === activeBar._id) this.setState({ activeBar: null });
+        if (activeBar && barId === activeBar._id) this.setState({ activeBar: null });
       });
   }
 
