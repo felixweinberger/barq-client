@@ -1,4 +1,5 @@
 import React, { useState, forwardRef } from 'react';
+import { sumBy } from 'lodash';
 
 import Loader from '../ui/loader';
 import MenuItem from '../ui/menuItem';
@@ -36,7 +37,9 @@ const Checkout = forwardRef((props, ref) => {
                 <TextInput value={specialWishes} onChange={e => setSpecialWishes(e.target.value)} title="Special Wishes" />
               </div>
               <Footer
-                primaryButtonName="Pay"
+                primaryButtonType={sumBy(order, 'quantity') > 0 ? 'success' : 'neutral'}
+                primaryButtonClickable={sumBy(order, 'quantity') > 0}
+                primaryButtonName={sumBy(order, 'quantity') > 0 ? 'Pay' : 'Nothing selected'}
                 onPrimaryClick={() => {
                   window.localStorage.setItem(props.barId, JSON.stringify({ items: order }));
                   updateOrder({ specialWishes });

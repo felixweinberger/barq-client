@@ -10,15 +10,16 @@ class App extends Component {
   state = {
     page: 'LOGIN',
     pin: '',
-    token: null
+    token: null,
+    loginMessage: '',
   }
 
   switch = {
     DASHBOARD: () => (
-      <Dashboard token={this.state.token} logout={this.logout} />
+      <Dashboard barId={this.barId} token={this.state.token} logout={this.logout} />
     ),
     LOGIN: () => (
-      <Login onChange={this.onChange} pin={this.state.pin} onSubmit={this.staffLogin}/>
+      <Login onChange={this.onChange} loginMessage={this.state.loginMessage} pin={this.state.pin} onSubmit={this.staffLogin}/>
     )
   }
 
@@ -33,10 +34,10 @@ class App extends Component {
 
   staffLogin = (e) => {
    e.preventDefault();
-   const barId = window.location.pathname.slice(1);
-   const decoded = `${barId}:${this.state.pin}`
+   this.barId = window.location.pathname.replace(/\//g, '');
+   const decoded = `${this.barId}:${this.state.pin}`
    const encoded = btoa(decoded);
-    axios.get(`/staff${window.location.pathname}/code`, {
+    axios.get(`/staff/${this.barId}/code`, {
       headers: {
         "Content-type": "application/json",
         Authorization: `Basic ${encoded}`
@@ -46,6 +47,9 @@ class App extends Component {
       const { token } = res.data;
       window.localStorage.setItem('token', token);
       this.setState({ token });
+    })
+    .catch(err => {
+      this.setState({ loginMessage: err.response.data })
     })
   }
 

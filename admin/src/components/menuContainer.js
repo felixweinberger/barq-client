@@ -86,7 +86,7 @@ class MenuContainer extends React.Component {
         <form className="addMenuForm">
           <div className="addMenuHeaderContainer">
             <h2 id="addMenuHeader">Add a New Menu</h2>
-            <Popup trigger={<div className="iSym">ⓘ</div>} position="middle">
+            <Popup trigger={<div className="iSym">ⓘ</div>} position="center">
               <div className="infoPopup">
                 Please upload a&nbsp;
                 <u>CSV file</u>

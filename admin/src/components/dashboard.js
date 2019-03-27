@@ -96,8 +96,10 @@ class Dashboard extends Component {
         const barToUpdate = ownerData.bars.find(bar => bar._id === barId);
         const remainingMenus = barToUpdate.menus.filter(menu => menu._id !== menuId);
         barToUpdate.menus = remainingMenus;
+        if (barToUpdate.activeMenu && barToUpdate.activeMenu._id === menuId) {
+          barToUpdate.activeMenu = null;
+        }
         this.setState({ activeBar: barToUpdate });
-        this.getOwnerData();
       });
   }
 
@@ -160,10 +162,9 @@ class Dashboard extends Component {
 
   refreshHistory = async () => {
     const { activeBar, ownerData } = this.state;
-    const barId = activeBar._id;
     await this.getOwnerData();
     ownerData.bars.forEach((bar) => {
-      if (barId === bar._id) {
+      if (activeBar._id === bar._id) {
         this.setState({ activeBar: bar });
       }
     });

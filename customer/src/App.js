@@ -94,10 +94,7 @@ class App extends Component { // eslint-disable-line
 
   isMenuOpen = () => axios
     .get(`/${this.barId}/menu`)
-    .then((res) => {
-      console.log(res.data.open);
-      return res.data.open;
-    });
+    .then(res => res.data.open);
 
   componentDidMount = () => {
     this.barId = window.location.pathname.replace(/\//g, '');

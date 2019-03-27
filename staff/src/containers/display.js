@@ -3,7 +3,6 @@ import "../styles/display.css";
 
 const Display = ({ queue, history }) => {
   const lastItem = history[history.length - 1] ? `#${history[history.length - 1].orderId}` : '';
-  console.log(lastItem);
   return (<div className="display">
     <div className="pickup">
       <h1>Ready for pickup</h1>

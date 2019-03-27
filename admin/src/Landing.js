@@ -110,7 +110,7 @@ function WelcomePageGrid({ handleScroll }) {
                             way to order drinks at bars
               {' '}
               <br />
-                            Less queing - more drinking
+                            Wait less. Drink more.
             </Typography>
             <Button onClick={handleScroll} variant="contained" color="secondary" gutterBottom>Learn More</Button>
           </div>

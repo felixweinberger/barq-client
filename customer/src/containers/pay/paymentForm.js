@@ -109,7 +109,7 @@ class PaymentForm extends Component {
 
   handleReady = () => {
     this.readyCounter += 1;
-    if (this.readyCounter === 4) {
+    if (this.readyCounter === 3) {
       this.setState({ button: this.buttonStates.ready });
     }
   };
@@ -160,6 +160,8 @@ class PaymentForm extends Component {
                   {...this.createOptions}
                 />
               </label>
+            </div>
+            <div className="pay__bottom">
               <label className="pay__cvc">
                 CVC
                 <CardCVCElement
@@ -170,8 +172,6 @@ class PaymentForm extends Component {
                   {...this.createOptions}
                 />
               </label>
-            </div>
-            <div className="pay__bottom">
               <label className="pay__expiry">
                 Expiry date
                 <CardExpiryElement
@@ -182,7 +182,7 @@ class PaymentForm extends Component {
                   {...this.createOptions}
                 />
               </label>
-              <label className="pay__postal">
+              {/* <label className="pay__postal">
                 Postal code
                 <PostalCodeElement
                   onBlur={this.handleBlur}
@@ -191,7 +191,7 @@ class PaymentForm extends Component {
                   onReady={this.handleReady}
                   {...this.createOptions}
                 />
-              </label>
+              </label> */}
             </div>
           </div>
           <Footer

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 
-import loginSplash from '../assets/LoginSplash.jpg';
 import logo from '../assets/SmallLogo.png';
 
 class Register extends Component {
@@ -75,9 +74,6 @@ class Register extends Component {
               <button type="submit" className="clicker signUp" onClick={toggleLogin}>Log In</button>
             </form>
           </div>
-        </div>
-        <div className="rightLogin">
-          <img src={loginSplash} width="500" alt="Splash" />
         </div>
       </div>
     );

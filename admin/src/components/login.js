@@ -1,7 +1,6 @@
 /* eslint-disable no-console */
 import React, { Component } from 'react';
 
-import loginSplash from '../assets/LoginSplash.jpg';
 import logo from '../assets/SmallLogo.png';
 
 class LogIn extends Component {
@@ -97,9 +96,6 @@ class LogIn extends Component {
               <button className="clicker signUp" type="button" onClick={toggleRegister}>Need an account?</button>
             </form>
           </div>
-        </div>
-        <div className="rightLogin">
-          <img src={loginSplash} width="500" alt="Splash" />
         </div>
       </div>
     );
