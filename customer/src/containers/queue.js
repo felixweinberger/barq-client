@@ -53,7 +53,7 @@ const Queue = forwardRef((props, ref) => {
     <>
       <div ref={ref} className="queue">
         <SecondaryHead style={{ margin: '0' }} title="Your number" />
-        <PrimaryHead style={{ margin: '0', textAlign: 'center' }} title={`#${orderId}`} />
+        <PrimaryHead style={{ margin: '0', textAlign: 'center' }} title={`#${orderId || ''}`} />
         <div className="queue__bill">
           {
             order.map(item => (

@@ -5,7 +5,7 @@ const initialState = {
   items: {},
   tipRate: 0.05,
   orderId: null,
-  status: 'unpaid',
+  status: '',
   specialWishes: '',
 };
 
