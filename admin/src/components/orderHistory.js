@@ -30,7 +30,7 @@ const OrderHistory = ({ history, refreshHistory }) => (
                     </div>
                   ))}
                 </td>
-                <td>{`€ ${order.total}`}</td>
+                <td>{`€ ${order.total.toFixed(2)}`}</td>
               </tr>
             );
           }).reverse()
