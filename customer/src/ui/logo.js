@@ -4,7 +4,7 @@ import PrimaryHead from './primaryHead';
 
 import '../styles/logo.css';
 
-const Logo = ({ logoPath, barName }) => (
+const Logo = ({ barName }) => (
   <div className="logo">
     <PrimaryHead title={barName} />
     <div
