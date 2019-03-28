@@ -4,8 +4,9 @@
   right: 0;
   font-size: 2rem;
   height: var(--header-height);
-  line-height: 5rem;
-  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-weight: 400;
   z-index: 2;
 }
