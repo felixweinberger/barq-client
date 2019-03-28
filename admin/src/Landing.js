@@ -101,16 +101,11 @@ function WelcomePageGrid({ handleScroll }) {
       <Grid container alignItems="center" alignContent="center" justify="center">
         <Grid item sm={8} xs={10}>
           <div align="center">
-            <Typography variant="h3" color="secondary" gutterBottom component="h2">
-                            Welcome to BarQ
+            <Typography variant="h1" color="secondary" gutterBottom component="h2">
+                            BarQ
             </Typography>
-            <Typography variant="h6" color="secondary" gutterBottom>
-                            BarQ is
-                            a faster and more convenient
-                            way to order drinks at bars
-              {' '}
-              <br />
-                            Wait less. Drink more.
+            <Typography variant="h4" color="secondary" gutterBottom>
+                            Smarter, simpler service at your favourite bars.
             </Typography>
             <Button onClick={handleScroll} variant="contained" color="secondary" gutterBottom>Learn More</Button>
           </div>
@@ -126,16 +121,14 @@ function Product({ classes }) {
       <Grid item md={3} sm={6} xs={8}>
         <div>
           <Typography align="center" variant="h4" color="primary" gutterBottom component="h2">
-                        Easy order.
+                        Easy to order.
             {' '}
             <br />
-                        Easy pay.
+                        Easy to pay.
           </Typography>
           <Typography align="left" variant="body2" color="inherit" gutterBottom>
             {/* eslint-disable max-len */}
-                BarQ allows you to order and pay for food and drinks at your favorite bars
-                without missing the fun. No more waiting for your server or getting stuck in
-                long lines. Order from your phone and you’ll be notified when your order is ready for pickup or delivery.
+                BarQ allows you to order and pay for drinks from your phone wherever you are in the bar. No more fighting through crowds and waiting to catch a bartenders&#39; attention. Browse the menu and place your order without leaving your seat. You’ll be notified as soon as your order is ready to pick up.
             {/* eslint-disable max-len */}
           </Typography>
         </div>
@@ -174,13 +167,11 @@ function ProductAdmin({ classes }) {
       <Grid item md={6} sm={6} xs={8}>
         <div>
           <Typography align="center" variant="h4" color="primary" gutterBottom component="h2">
-                        Easy to manage.
+                        Easy to set up.
           </Typography>
           <Typography align="left" variant="body2" color="inherit" gutterBottom>
             {/* eslint-disable max-len */}
-                BarQ provides a user friendly admin interface for bar owners and managers.
-                You can create a new bar by uploading a menu and we will automatically generate
-                a QR code which links customers to your bar.
+                BarQ provides a user friendly interface for bar owners to manage different menus across multiple bars, all in one place.
             {/* eslint-disable max-len */}
           </Typography>
         </div>
@@ -204,13 +195,11 @@ function ProductBartender({ classes }) {
       <Grid item xs={4}>
         <div>
           <Typography align="center" variant="h4" color="primary" gutterBottom component="h2">
-                        Order queue.
+                        Easy to manage.
           </Typography>
           <Typography align="left" variant="body2" color="inherit" gutterBottom>
             {/* eslint-disable max-len */}
-                The order queue displays a live feed of current orders. Bartenders can update the status of orders with one
-                click. Customers will be notified when the status of their order changes. Specific items on the menu can
-                be blocked in case the item is no longer available as well as closing the bar by blocking all items.
+                A live feed of current orders shows you what to prepare next. You can update the status of orders with one click, sending live updates to let your customer know when their drink is ready.
             {/* eslint-disable max-len */}
           </Typography>
         </div>
