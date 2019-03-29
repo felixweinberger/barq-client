@@ -4,7 +4,15 @@
 ## Brief description (600 words max)
 
 ## screenshots (Copy from landing page)
-![](http://barq-client/Pictures/img1.png)
+
+Landing Page
+![Landing Page](Pictures/img1.png)
+![](Pictures/Img2.png)
+![](Pictures/img3.png)
+![](Pictures/img4.png)
+
+
+      
 
 # Getting Started (Alan)
 This is the skeleton for the BarQ front-end, including the setup of the AirBnB linter and a stylelintrc file for CSS linting. 
