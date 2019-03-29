@@ -5,16 +5,16 @@ BarQ allows you to order and pay for drinks from your phone wherever you are in 
 
 Landing Page
 
-![landing](screenshots/img1.png)
-![customer](screenshots/Img2.png)
+![landing](screenshots/landing.png)
+![customer](screenshots/customer.png)
 
 BarQ provides a user friendly interface for bar owners to manage different menus across multiple bars, all in one place.
 
-![owner](screenshots/img3.png)
+![owner](screenshots/owner.png)
 
 A live feed of current orders shows you what to prepare next. You can update the status of orders with one click, sending live updates to let your customer know when their drink is ready.
 
-![staff](screenshots/img4.png)
+![staff](screenshots/staff.png)
 
 ## Getting Started
 Each of the interfaces (Customer, Staff, and Admin) is a separate React app and expect to connect with the [BarQ Server](https://github.com/felixweinberger/barq-server).
