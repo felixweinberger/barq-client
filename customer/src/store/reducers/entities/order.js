@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import { keyBy, mapValues } from 'lodash'; // eslint-disable-line
+import { keyBy, mapValues } from 'lodash';
 
 const initialState = {
   items: {},

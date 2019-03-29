@@ -2,6 +2,8 @@ import React from 'react';
 
 import '../styles/beerAnimation.css';
 
+// Many thanks to @herrbertling for this animation
+
 const BeerAnimation = () => (
   <div className="wrapper">
     <div className="glass-wrapper">

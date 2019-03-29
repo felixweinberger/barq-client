@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import { incrementItem as actionIncrementItem } from '../../store/actions/entities';
 
 import Text from '../text';
-// import IconButton from '../iconButton';
 import Price from '../price';
 import Counter from './counter';
 import PopupInfo from '../popupInfo';
