@@ -4,6 +4,11 @@
 ## Brief description (600 words max) (Copy from landing page)
 ## screenshots (Copy from landing page)
 
+Screenshot 2019-03-29 at 15.54.38
+Screenshot 2019-03-29 at 15.54.13
+Screenshot 2019-03-29 at 15.54.50
+Screenshot 2019-03-29 at 15.54.57
+
 # Getting Started (Alan)
 This is the skeleton for the BarQ front-end, including the setup of the AirBnB linter and a stylelintrc file for CSS linting. 
 
