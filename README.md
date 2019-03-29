@@ -1,9 +1,10 @@
 # BarQ Client
 
-# Project Title (Natalia)
-## Brief description (600 words max) (Copy from landing page)
+# BarQ
+## Brief description (600 words max)
+
 ## screenshots (Copy from landing page)
-![](http://barq-client/readme/img1.png)
+![](http://barq-client/Pictures/img1.png)
 
 # Getting Started (Alan)
 This is the skeleton for the BarQ front-end, including the setup of the AirBnB linter and a stylelintrc file for CSS linting. 
