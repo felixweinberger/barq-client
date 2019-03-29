@@ -41,6 +41,23 @@ class PaymentForm extends Component {
     },
   }
 
+  createOptions = {
+    style: {
+      base: {
+        fontSize: '16px',
+        color: 'white',
+        letterSpacing: '0.025em',
+        fontFamily: 'Source Code Pro, monospace',
+        '::placeholder': {
+          color: '#aab7c4',
+        },
+      },
+      invalid: {
+        color: '#EA0E48',
+      },
+    },
+  };
+
   state = {
     paid: false,
     button: this.buttonStates.loading,
@@ -80,13 +97,14 @@ class PaymentForm extends Component {
 
     try {
       const { paying, success } = this.buttonStates;
+      const { barId } = this.props;
       this.setState({ button: paying });
       const isOpen = await isMenuOpen();
       if (!isOpen) return updatePage('CLOSED');
       const orderData = await this.createOrderData(total, order);
-      const { data } = await axios.post(`/${this.props.barId}/pay`, orderData);
+      const { data } = await axios.post(`/${barId}/pay`, orderData);
       if (data.status === 'paid') {
-        window.localStorage.setItem(this.props.barId, JSON.stringify(data));
+        window.localStorage.setItem(barId, JSON.stringify(data));
         updateOrder(data);
         this.setState({
           paid: true,
@@ -111,23 +129,6 @@ class PaymentForm extends Component {
     if (this.readyCounter === 3) {
       this.setState({ button: this.buttonStates.ready });
     }
-  };
-
-  createOptions = {
-    style: {
-      base: {
-        fontSize: '16px',
-        color: 'white',
-        letterSpacing: '0.025em',
-        fontFamily: 'Source Code Pro, monospace',
-        '::placeholder': {
-          color: '#aab7c4',
-        },
-      },
-      invalid: {
-        color: '#EA0E48',
-      },
-    },
   };
 
   render() {
@@ -181,16 +182,6 @@ class PaymentForm extends Component {
                   {...this.createOptions}
                 />
               </label>
-              {/* <label className="pay__postal">
-                Postal code
-                <PostalCodeElement
-                  onBlur={this.handleBlur}
-                  onChange={this.handleChange}
-                  onFocus={this.handleFocus}
-                  onReady={this.handleReady}
-                  {...this.createOptions}
-                />
-              </label> */}
             </div>
           </div>
           <Footer

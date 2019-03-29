@@ -80,5 +80,5 @@ const status = (state = initialState.status, action) => {
 };
 
 export default combineReducers({
-  items, orderId, status, specialWishes
+  items, orderId, status, specialWishes,
 });

@@ -12,16 +12,16 @@ const popupInfo = () => (
     trigger={<IconButton iconUrl={icon} type="submit" />}
     modal
   >
-    {close => (
+    {() => (
       <div className="popup-modal">
         <div className="popup-content">
           <Text
-            content={`Peanuts, Gluten-Free, etc. Other info`}
+            content="Peanuts, Gluten-Free, etc. Other info"
             style={{
               fontSize: '1.5rem',
-              background: 'var(--primary-color-on',
+              background: 'var(--primary-color-on)',
               padding: '1rem',
-              color: 'var(--primary-color)'
+              color: 'var(--primary-color)',
             }}
           />
         </div>
