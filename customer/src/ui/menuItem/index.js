@@ -25,7 +25,7 @@ const MenuItem = ({
   return (
     <div className="menu-item">
       <div className="menu-item__name">
-        <Text content={name} />
+        <Text style={{ wordBreak: 'break-word' }} content={name} />
         { showPrice && <Price style={{ flexBasis: '100%' }} price={price} currency={currency} /> }
       </div>
       <div className="menu__info">

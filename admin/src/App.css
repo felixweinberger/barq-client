@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css?family=Quicksand');
 
+::-webkit-scrollbar { 
+  display: none; 
+}
+
 .App {
   font-family: 'Quicksand', sans-serif;
   font-size: 12px;
