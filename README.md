@@ -45,5 +45,5 @@ Each of the interfaces (Customer, Staff, and Admin) is a separate React app and 
 - Natalia Rizzi
 - Egill Hreinsson
 - Alan Hu
-- Felix Weinberger
 - Rachel Bonny
+- Felix Weinberger
