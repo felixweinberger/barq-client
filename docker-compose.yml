@@ -8,6 +8,10 @@ services:
     # Connect to the barq network
     networks:
       - barq-server_barq-net
+      # Ensure that node_modules aren’t unnecessarily copied
+    volumes:
+     - ./admin:/app
+     - /app/node_modules
     # Set the container name
     ports:
       # Map the react app at 3000 to 3000 on host
@@ -16,6 +20,10 @@ services:
   customer:
     build: ./customer
     container_name: customer
+    # Ensure that node_modules aren’t unnecessarily copied
+    volumes:
+     - ./customer:/app
+     - /app/node_modules
     # Connect to the barq network
     networks:
       - barq-server_barq-net
@@ -26,6 +34,10 @@ services:
   admin:
     build: ./admin
     container_name: admin
+    # Ensure that node_modules aren’t unnecessarily copied
+    volumes:
+     - ./admin:/app
+     - /app/node_modules
     # Connect to the barq network
     networks:
       - barq-server_barq-net
