@@ -37,13 +37,18 @@ Steps:
 5. In the Barq-Client directory, run docker-compose up
 
 # Tech Stack
-## Customer (Alan)
+## Customer
 - React
 - Redux
 - Axios
 - Socket.io-client
 
-## Staff (Natalia)
+## Staff
+- React
+- Redux
+- Axios
+- Socket.io-client
+
 ## Admin (Egill)
 
 # Contributors
