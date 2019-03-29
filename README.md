@@ -1,4 +1,4 @@
-# BarQ Client
+# BarQ
 *Streamlined order and payments management for bars and pubs*
 
 BarQ allows you to order and pay for drinks from your phone wherever you are in the bar. No more fighting through crowds and waiting to catch a bartenders' attention. Browse the menu and place your order without leaving your seat. You’ll be notified as soon as your order is ready to pick up.
