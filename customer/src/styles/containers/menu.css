@@ -2,6 +2,7 @@
   left: 0;
   position: relative;
   flex-grow: 1;
+  width: 100vw;
   padding-top: var(--header-height);
   padding-bottom: var(--footer-height);
   display: inline-block;
