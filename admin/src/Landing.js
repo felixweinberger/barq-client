@@ -164,7 +164,16 @@ function Product({ classes }) {
 function ProductAdmin({ classes }) {
   return (
     <Grid container alignItems="center" justify="center">
-      <Grid item md={6} sm={6} xs={8}>
+      <Grid item xs="auto">
+        <div align="center">
+          <div className={classes.appBarSpacer} />
+          <CardMedia
+            className={classes.adminCard}
+            image={adminScreenshot}
+          />
+        </div>
+      </Grid>
+      <Grid item xs={4}>
         <div>
           <Typography align="center" variant="h4" color="primary" gutterBottom component="h2">
                         Easy to set up.
@@ -174,15 +183,6 @@ function ProductAdmin({ classes }) {
                 BarQ provides a user friendly interface for bar owners to manage different menus across multiple bars, all in one place.
             {/* eslint-disable max-len */}
           </Typography>
-        </div>
-      </Grid>
-      <Grid item xs="auto">
-        <div align="center">
-          <div className={classes.appBarSpacer} />
-          <CardMedia
-            className={classes.adminCard}
-            image={adminScreenshot}
-          />
         </div>
       </Grid>
     </Grid>

@@ -5,13 +5,7 @@ BarQ allows you to order and pay for drinks from your phone wherever you are in 
 
 ![landing](screenshots/landing.png)
 ![customer](screenshots/customer.png)
-
-BarQ provides a user friendly interface for bar owners to manage different menus across multiple bars, all in one place.
-
 ![owner](screenshots/owner.png)
-
-A live feed of current orders shows you what to prepare next. You can update the status of orders with one click, sending live updates to let your customer know when their drink is ready.
-
 ![staff](screenshots/staff.png)
 
 ## Getting Started
