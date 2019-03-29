@@ -74,25 +74,26 @@ const styles = {
   },
   card: {
     flexGrow: 1,
-    height: '60vh',
-    width: '20vw',
+    height: '40vh',
+    width: 'auto',
     padding: theme.spacing.unit * 3,
   },
   adminCard: {
-    height: '60vh',
-    width: '54vw',
-    flexGrow: 1,
+    height: '50vh',
+    width: 'auto',
   },
   bartenderCard: {
-    height: '80vh',
-    width: '30vw',
+    height: '70vh',
   },
   media: {
     height: '100%',
     paddingTop: '56,25%',
     marginTop: '20',
   },
-  appBarSpacer: theme.mixins.toolbar,
+  // appBarSpacer: theme.mixins.toolbar,
+  appBarSpacer: {
+    height: '5vh',
+  },
 };
 
 function WelcomePageGrid({ handleScroll }) {
@@ -118,7 +119,7 @@ function WelcomePageGrid({ handleScroll }) {
 function Product({ classes }) {
   return (
     <Grid container justify="center" alignItems="center">
-      <Grid item md={3} sm={6} xs={8}>
+      <Grid item lg={3} md={6} sm={6} xs={10}>
         <div>
           <Typography align="center" variant="h4" color="primary" gutterBottom component="h2">
                         Easy to order.
@@ -133,7 +134,7 @@ function Product({ classes }) {
           </Typography>
         </div>
       </Grid>
-      <Grid item md={3} sm="auto" xs="auto">
+      <Grid item lg={2} md={4} sm={4} xs={6}>
         <div>
           <CardMedia
             className={classes.card}
@@ -141,7 +142,7 @@ function Product({ classes }) {
           />
         </div>
       </Grid>
-      <Grid item md={3} sm="auto" xs="auto">
+      <Grid item lg={2} md={4} sm={4} xs={6}>
         <div>
           <CardMedia
             className={classes.card}
@@ -149,7 +150,7 @@ function Product({ classes }) {
           />
         </div>
       </Grid>
-      <Grid item md={3} sm="auto" xs="auto">
+      <Grid item lg={2} md={4} sm={4} xs={12}>
         <div>
           <CardMedia
             className={classes.card}
@@ -164,7 +165,7 @@ function Product({ classes }) {
 function ProductAdmin({ classes }) {
   return (
     <Grid container alignItems="center" justify="center">
-      <Grid item md={6} sm={6} xs={8}>
+      <Grid item lg={3} md={8} sm={8} xs={10}>
         <div>
           <Typography align="center" variant="h4" color="primary" gutterBottom component="h2">
                         Easy to set up.
@@ -176,9 +177,8 @@ function ProductAdmin({ classes }) {
           </Typography>
         </div>
       </Grid>
-      <Grid item xs="auto">
+      <Grid item lg={5} md={8} sm={10} xs={12}>
         <div align="center">
-          <div className={classes.appBarSpacer} />
           <CardMedia
             className={classes.adminCard}
             image={adminScreenshot}
@@ -192,7 +192,7 @@ function ProductAdmin({ classes }) {
 function ProductBartender({ classes }) {
   return (
     <Grid container alignItems="center" justify="center">
-      <Grid item xs={4}>
+      <Grid item lg={4} md={8} sm={8} xs={10}>
         <div>
           <Typography align="center" variant="h4" color="primary" gutterBottom component="h2">
                         Easy to manage.
@@ -204,7 +204,7 @@ function ProductBartender({ classes }) {
           </Typography>
         </div>
       </Grid>
-      <Grid item xs="auto">
+      <Grid item lg={3} md={6} sm={0} xs={12}>
         <div align="center">
           <CardMedia
             className={classes.bartenderCard}
@@ -212,7 +212,7 @@ function ProductBartender({ classes }) {
           />
         </div>
       </Grid>
-      <Grid item xs="auto">
+      <Grid item lg={3} md={6} sm={0} xs={12}>
         <div align="center">
           <CardMedia
             className={classes.bartenderCard}
@@ -281,10 +281,10 @@ class LandingPage extends Component {
               <Divider />
               <div className={classes.appBarSpacer} />
               <ProductAdmin classes={classes} />
-              <div className={classes.appBarSpacer} />
               <Divider />
               <div className={classes.appBarSpacer} />
               <ProductBartender classes={classes} />
+              <div className={classes.appBarSpacer} />
               <Divider />
               <div className={classes.appBarSpacer} />
             </main>
