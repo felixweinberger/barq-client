@@ -1,0 +1,35 @@
+.logo {
+  position: fixed;
+  left: 0;
+  right: 0;
+  font-size: 2rem;
+  height: var(--header-height);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 400;
+  z-index: 2;
+}
+
+.logo__image {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  background: #EA0E48;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.logo__image::after {
+  content: "";
+  background: rgba(0, 0, 0, 0.2);
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+}

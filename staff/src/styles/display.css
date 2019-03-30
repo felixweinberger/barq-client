@@ -1,0 +1,26 @@
+:root {
+  --font: 'Quicksand', sans-serif;
+  --success-color: #13AFA0;
+  --danger-color: #EA0E48;
+  --neutral-color: #cacaca;
+  --primary-color-on: #f4f4f4;
+  --primary-color: #1e1d1a;
+}
+
+
+.display {
+  display: flex;
+  padding: 4rem;
+}
+
+.pickup {
+  flex-grow: 2;
+}
+
+.right-side {
+  flex-grow: 1;
+}
+
+.last-delivered {
+  margin-bottom: 2rem;
+}

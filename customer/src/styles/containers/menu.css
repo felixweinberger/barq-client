@@ -1,0 +1,24 @@
+.menu {
+  left: 0;
+  position: relative;
+  flex-grow: 1;
+  width: 100vw;
+  padding-top: var(--header-height);
+  padding-bottom: var(--footer-height);
+  display: inline-block;
+}
+
+.menu__categories {
+  margin: 1rem 2rem 2rem 2rem;
+}
+
+.menu__category {
+  margin-bottom: 1rem;
+  padding: 0.5rem 1rem;
+  margin-bottom: -0.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.menu__category:last-child {
+  border-bottom: none;
+}

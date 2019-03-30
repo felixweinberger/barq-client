@@ -1,0 +1,29 @@
+[class^="primary-button"] {
+  display: inline-block;
+  flex: 3;
+  align-self: stretch;
+
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 0.5rem 1.5rem;
+
+  font-size: 2rem;
+  font-family: var(--sans-serif);
+  color: white;
+}
+
+.primary-button--success {
+  background: var(--success-color);
+  color: white;
+}
+
+.primary-button--danger {
+  background: var(--danger-color);
+  color: white;
+}
+
+.primary-button--neutral {
+  background: var(--neutral-color);
+  color: var(--neutral-color-on);
+}

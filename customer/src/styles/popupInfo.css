@@ -1,0 +1,32 @@
+.popup-btn {
+  background-image: url('../assets/info.png');
+  background-size: contain;
+  background-color: transparent;
+  width: 25px;
+  height: 25px;
+}
+
+
+.popup-modal > .close {
+  cursor: pointer;
+  position: absolute;
+  display: block;
+  padding: 2px 5px;
+  line-height: 20px;
+  right: -18px;
+  top: -12px;
+  font-size: 24px;
+  font-style: 'sans-serif';
+  background: #ffffff;
+  border-radius: 18px;
+  border: 1px solid #cfcece;
+}
+
+.popup-title {
+  font-family: var(--serif);
+  font-weight: 700;
+}
+
+.popup-content {
+  font-family: var(--serif);
+}

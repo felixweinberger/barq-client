@@ -1,0 +1,19 @@
+.input {
+  margin: 1rem 0;
+}
+
+.input__title {
+  font-family: var(--sans-serif);
+  margin: 0;
+  margin-bottom: 0.5rem;
+  font-weight: 400;
+}
+
+.input__input {
+  font-size: 1rem;
+  width: 100%;
+  box-shadow: var(--primary-shadow-inset);
+  height: 4rem;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+}

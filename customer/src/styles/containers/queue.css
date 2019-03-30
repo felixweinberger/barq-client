@@ -1,0 +1,17 @@
+.queue {
+  flex-grow: 1;
+  padding: 1rem 2rem;
+  padding-bottom: var(--footer-height);
+  padding-top: var(--header-height);
+  
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.queue__bill {
+  color: black;
+  padding: 0.5rem 1rem;
+  align-self: stretch;
+}

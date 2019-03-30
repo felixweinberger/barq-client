@@ -1,0 +1,5 @@
+.queue {
+  padding-bottom: 30rem;
+  display: flex;
+  flex-direction: column;
+}

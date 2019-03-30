@@ -1,0 +1,22 @@
+.checkout {
+  flex-grow: 1;
+  display: inline-block;
+  padding-top: var(--header-height);
+}
+
+.checkout__bill {
+  color: white;
+  padding: 0.5rem 1rem;
+  margin: 1rem 2rem 4rem 2rem;
+  align-self: stretch;
+}
+
+.checkout__total {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-size: 1.25rem;
+  font-family: var(--sans-serif);
+  border-top: rgb(255, 255, 255, 0.5) 1px solid;
+  padding-top: 0.25rem;
+}

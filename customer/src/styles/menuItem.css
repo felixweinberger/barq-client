@@ -1,0 +1,23 @@
+.menu-item {
+  display: flex;
+  position: relative;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.5rem;
+  margin: 0.5rem 0;
+}
+
+.menu-item__name {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-right: 0.5rem;
+  flex-grow: 1;
+}
+
+.menu__info {
+  align-self: stretch;
+  display: flex;
+  align-items: center;
+}

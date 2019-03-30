@@ -1,0 +1,446 @@
+@import url('https://fonts.googleapis.com/css?family=Quicksand');
+
+::-webkit-scrollbar { 
+  display: none; 
+}
+
+.App {
+  font-family: 'Quicksand', sans-serif;
+  font-size: 12px;
+  background-color: #ffffff;
+  color: #2F3330;
+  height: 100%;
+}
+
+.welcome {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loginContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.leftLogin {
+  flex: 2;
+  padding: 50px;
+  background-color: #cacaca;
+  border-radius: 50px;
+  margin-right: 50px;
+  margin-left: 50px;
+}
+
+.rightLogin {
+  flex: 1;
+  align-self: flex-end;
+}
+
+.welcome__login {
+  display: flex;
+  flex-direction: column;
+}
+
+.clicker {
+  font-family: 'Quicksand', sans-serif;
+  text-decoration: none;
+  display: block;
+  border: none;
+  background-color: #EA0E48;
+  border-radius: 50px;
+  padding: 15px;
+  margin: 5px;
+  text-align: center;
+  color: #ffffff;
+  font-size: 16px;
+  cursor: default;
+}
+
+.clickerSmall {
+  font-family: 'Quicksand', sans-serif;
+  text-decoration: none;
+  display: block;
+  border: none;
+  background-color: #EA0E48;
+  border-radius: 50px;
+  padding: 10px;
+  width: 200px;
+  margin: 5px;
+  text-align: center;
+  color: #ffffff;
+  font-size: 16px;
+  cursor: default;
+}
+
+.signUp {
+  background-color: #13AFA0
+}
+
+#logout {
+  max-width: 100px;
+}
+
+.loginInput {
+  font-size: 16px;
+  font-family: Quicksand;
+  padding: 10px;
+  margin: 10px;
+  border-radius: 50px;
+  background-color: #ffffff;
+  border-color: #cacaca;
+  border-width: 1px;
+}
+
+.loginError {
+  color: #EA0E48;
+}
+
+.loginSuccess {
+  color: #13AFA0;
+}
+
+.dashboardHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.headerLogo {
+  font-size: 50px;
+  padding-left: 10px;
+}
+
+.welcomeToDash {
+  padding: 30px;
+  font-size: 25px;
+}
+
+.dashboard {
+  display: flex;
+  background-color: #ffffff;
+  border-top: solid #cacaca 2px;
+  border-bottom: solid #cacaca 2px;
+}
+
+/* Left side of dashboard */
+
+.barList {
+  text-align: center;
+  background-color: #ffffff;
+  padding: 5px;
+  border-right: solid #cacaca 2px;
+}
+
+.barListItem {
+  background-color: #F5F5F5;
+  padding: 10px;
+  margin-bottom: 5px;
+  text-align: center;
+}
+
+#selectBar {
+  font-size: 12px;
+  padding: 3px;
+  background-color: #13AFA0;
+  width: 100px;
+  margin: auto;
+}
+
+#deleteBar {
+  font-size: 12px;
+  padding: 3px;
+  width: 100px;
+  margin: auto;
+  margin-top: 5px;
+}
+
+.addBarForm {
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff;
+  font-size: 14px;
+  padding: 5px;
+  text-align: center;
+}
+
+.addBarInput {
+  font-family: 'Quicksand', sans-serif;
+  font-size: 12px;
+  margin: 5px;
+}
+
+#addBar {
+  font-size: 12px;
+  padding: 3px;
+}
+
+/* Bar details */
+
+.barDetails {
+  display: flex;
+  padding: 2px;
+}
+
+/* Menu panel */
+
+.menuContainer {
+  background-color: #ffffff;
+  text-align: center;
+}
+
+.menuListItemHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+
+#deleteMenu {
+  font-size: 12px;
+  padding: 3px;
+  margin: auto;
+  margin-top: 5px;
+  width: 135px;
+}
+
+#selectMenu {
+  font-size: 12px;
+  padding: 3px;
+  margin: auto;
+  margin-top: 5px;
+  width: 135px;
+  background-color: #13AFA0;
+}
+
+.menuListItem {
+  background-color: #F5F5F5;
+  padding: 10px;
+  margin-bottom: 5px;
+  text-align: left;
+}
+
+.menuListItemDetail {
+  display: flex;
+  justify-content: space-between;
+  padding: 1px;
+  margin: 1px;
+}
+
+.activeMenuCard {
+  background-color: #13AFA0;
+  padding: 5px;
+  padding-bottom: 1px;
+  margin-bottom: 5px;
+}
+
+.addMenuHeaderContainer {
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+}
+
+.iSym {
+  font-size: 18px;
+  padding-left: 5px;
+  font-weight: bold;
+  color: #13AFA0;
+}
+
+.infoPopup {
+  text-align: left;
+}
+
+.infoLi {
+  margin: 2px;
+  padding: 0;
+}
+
+.addMenuForm {
+  font-family: 'Quicksand', sans-serif;
+  font-size: 12px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.addMenuInput {
+  font-family: 'Quicksand', sans-serif;
+  font-size: 12px;
+  margin: 5px;
+}
+
+#addMenu {
+  font-size: 12px;
+  padding: 3px;
+}
+
+
+/* Poster panel */
+
+.barDetailsRightPanel {
+  flex-direction: column;
+  border-left: solid #cacaca 2px;
+}
+
+.barPoster {
+  background-color: #ffffff;
+  padding-left: 20px;
+  height: 250px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.leftBarPoster {
+  flex: 1;
+  text-align: center;
+}
+
+.midBarPoster {
+  flex: 1;
+  text-align: center;
+}
+
+.rightBarPoster {
+  flex: 1;
+  text-align: center;
+  padding: 30px;
+}
+
+#generatePoster {
+ margin: auto;
+}
+
+.qr-popup {
+  display: flex;
+  flex-direction: row;
+}
+
+.qr-popup__left {
+  margin: 50px;
+}
+
+.qr-popup__right {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: left;
+  margin: 50px;
+}
+
+/* StaffContainer */
+
+.staffContainer {
+  border-top: solid #cacaca 2px;
+  background-color: #ffffff;
+  padding-left: 20px;
+  height: 125px;
+  display: flex;
+}
+
+.codeGenerator {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 5px;
+  padding-right: 20px;
+  background-color: #cacaca
+}
+
+.staffCode {
+  font-size: 24px;
+}
+
+#generateStaffCode {
+  margin: auto;
+}
+
+#newStaffCode {
+  background-color: #cacaca;
+  border-radius: 50px;
+  width: 100px;
+  padding: 5px;
+  margin: auto;
+  margin-top: 10px;
+}
+
+/* Payment Details */
+
+#addIban {
+  margin: auto;
+}
+
+#existingIban {
+  background-color: #cacaca;
+  border-radius: 50px;
+  width: 200px;
+  padding: 5px;
+  margin: auto;
+}
+
+#ibanTextField {
+  width: 180px;
+  margin: 10px;
+}
+
+.paymentDetails {
+  flex: 1,auto;
+  background: #000000;
+}
+
+.orderHistory {
+  padding-left: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+#refreshHistory {
+    font-size: 12px;
+    padding: 3px;
+    background-color: #13AFA0;
+    width: 100px;
+    align-self: flex-end;
+}
+
+th {
+  background-color: #cacaca
+}
+
+.orderHistory__table {
+  border-collapse: collapse;
+  text-align: center;
+}
+
+.orderHistory__itemrow {
+  text-align: left;
+}
+
+#thOrder {
+  width: 30px;
+}
+
+#thDate {
+  width: 100px;
+}
+
+#thTime {
+  width: 100px;
+}
+
+#thItems {
+  width: 500px;
+  text-align: left;
+}
+
+#thTotal {
+  width: 100px;
+}
+
+.tr0 {
+  background-color: #EAC0CB
+}

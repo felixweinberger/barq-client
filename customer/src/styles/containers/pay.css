@@ -1,0 +1,77 @@
+.pay {
+  flex-grow: 1;
+  width: 100%;
+  margin-top: 2rem;
+  padding: 2rem 2rem;
+
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  font-family: var(--serif);
+  padding-top: var(--header-height);
+  padding-bottom: calc(1rem + var(--footer-height));
+}
+
+.pay__form {
+  padding: 1rem 0;
+  width: 100%;
+  margin-top: 1rem;
+  box-shadow: var(--primary-shadow);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-self: center;
+  background: linear-gradient(to right, #7f263c 0%,#66061e 100%);
+  border-radius: 0.5rem;
+  transition: opacity 0.1s ease-in;
+  max-width: 20rem;
+}
+
+[class^="pay__"] {
+  font-size: 1.25rem;
+}
+
+.pay__form--invisible {
+  opacity: 0;
+}
+
+.pay__stripe {
+  flex-basis: 100%;
+  height: 2.25rem;
+  background: linear-gradient(to right, #333028 0%,#1e1d1a 100%);;
+  margin-bottom: 1rem;
+}
+
+.pay__info {
+  padding: 0 1.5rem;
+  width: 100%;
+}
+
+.pay__top {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.pay__number {
+  flex-grow: 3;
+}
+
+.pay__cvc {
+  flex-shrink: 0;
+}
+
+.pay__bottom {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.pay__expiry {
+}
+
+.pay__postal {
+}

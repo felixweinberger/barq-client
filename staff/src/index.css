@@ -1,0 +1,67 @@
+@import url('https://fonts.googleapis.com/css?family=Quicksand');
+
+:root {
+  --font: 'Quicksand', sans-serif;
+
+  --success-color: #13AFA0;
+  --danger-color: #EA0E48;
+  --neutral-color: #cacaca;
+  --primary-color-on: #f4f4f4;
+  --primary-color: #1e1d1a;
+
+  --header-height: 4rem;
+  --footer-height: 5rem;
+
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+  display: flex;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  flex-grow: 1;
+  display: flex;
+  background-color: var(--primary-color);
+  font-family: var(--font);
+  color: white;
+}
+
+#root {
+  margin: 0;
+  padding: 0;
+  flex-grow: 1;
+  display: flex;
+}
+
+* {
+  box-sizing: border-box;
+  border: none;
+  outline: none;
+  margin: 0;
+  padding: 0;
+  font-family: var(--font);
+  font-weight: 400;
+}
+
+input, textarea {
+  touch-action: manipulation;
+}
+
+h1 {
+  font-size: 3.5rem;
+}
+
+h2 {
+  font-size: 3rem;
+}
+
+h1, h2 {
+  font-family: var(--font);
+  font-weight: 400;
+}
+
+button {
+  font-weight: 400;
+}
