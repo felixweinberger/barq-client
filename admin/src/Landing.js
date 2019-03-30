@@ -74,23 +74,20 @@ const styles = {
   },
   card: {
     flexGrow: 1,
-    height: '40vh',
-    width: 'auto',
+    height: 400,
     padding: theme.spacing.unit * 3,
   },
   adminCard: {
-    height: '50vh',
-    width: 'auto',
+    height: 500,
   },
   bartenderCard: {
-    height: '70vh',
+    height: 500,
   },
   media: {
     height: '100%',
     paddingTop: '56,25%',
     marginTop: '20',
   },
-  // appBarSpacer: theme.mixins.toolbar,
   appBarSpacer: {
     height: '5vh',
   },
@@ -119,7 +116,7 @@ function WelcomePageGrid({ handleScroll }) {
 function Product({ classes }) {
   return (
     <Grid container justify="center" alignItems="center">
-      <Grid item lg={3} md={6} sm={6} xs={10}>
+      <Grid item lg={3} md={3} sm={6} xs={10}>
         <div>
           <Typography align="center" variant="h4" color="primary" gutterBottom component="h2">
                         Easy to order.
@@ -134,7 +131,7 @@ function Product({ classes }) {
           </Typography>
         </div>
       </Grid>
-      <Grid item lg={2} md={4} sm={4} xs={6}>
+      <Grid item lg={3} md={3} sm={4} xs={6}>
         <div>
           <CardMedia
             className={classes.card}
@@ -142,7 +139,7 @@ function Product({ classes }) {
           />
         </div>
       </Grid>
-      <Grid item lg={2} md={4} sm={4} xs={6}>
+      <Grid item lg={3} md={3} sm={4} xs={6}>
         <div>
           <CardMedia
             className={classes.card}
@@ -150,7 +147,7 @@ function Product({ classes }) {
           />
         </div>
       </Grid>
-      <Grid item lg={2} md={4} sm={4} xs={12}>
+      <Grid item lg={3} md={3} sm={4} xs={6}>
         <div>
           <CardMedia
             className={classes.card}
@@ -204,7 +201,7 @@ function ProductBartender({ classes }) {
           </Typography>
         </div>
       </Grid>
-      <Grid item lg={3} md={6} sm={0} xs={12}>
+      <Grid item lg={3} md={6} sm={6} xs={12}>
         <div align="center">
           <CardMedia
             className={classes.bartenderCard}
@@ -212,7 +209,7 @@ function ProductBartender({ classes }) {
           />
         </div>
       </Grid>
-      <Grid item lg={3} md={6} sm={0} xs={12}>
+      <Grid item lg={3} md={6} sm={6} xs={12}>
         <div align="center">
           <CardMedia
             className={classes.bartenderCard}
