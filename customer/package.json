@@ -46,5 +46,6 @@
     }
   },
   "secure": false,
-  "proxy": "http://app:3001"
+  "proxy": "http://app:3001",
+  "homepage": "http://app/public/customer"
 }

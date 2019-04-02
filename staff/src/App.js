@@ -34,7 +34,7 @@ class App extends Component {
 
   staffLogin = (e) => {
    e.preventDefault();
-   this.barId = window.location.pathname.replace(/\//g, '');
+   this.barId = window.location.pathname.replace('staff', '').replace(/\//g, '');
    const decoded = `${this.barId}:${this.state.pin}`
    const encoded = btoa(decoded);
     axios.get(`/staff/${this.barId}/code`, {
