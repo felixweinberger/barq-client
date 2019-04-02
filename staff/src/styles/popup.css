@@ -15,7 +15,7 @@
   height: 100%;
   padding: 2rem 0;
   font-size: 1rem;
-  background-image: url('/menu.png');
+  background-image: url('../assets/menu.png');
   background-size: 4rem;
   background-position: center;
   background-repeat: no-repeat;
