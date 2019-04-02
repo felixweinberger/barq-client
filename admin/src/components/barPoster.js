@@ -3,7 +3,7 @@ import QRCode from 'qrcode-react';
 import Popup from 'reactjs-popup';
 
 const BarPoster = ({ data }) => {
-  const url = `http://192.168.1.136:3002/${data._id}`;
+  const url = `barq.io/${data._id}`;
   return (
     <div className="barPoster">
 
