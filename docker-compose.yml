@@ -10,7 +10,7 @@ services:
       - barq-server_barq-net
       # Ensure that node_modules aren’t unnecessarily copied
     volumes:
-     - ./admin:/app
+     - ./staff:/app
      - /app/node_modules
     # Set the container name
     ports:

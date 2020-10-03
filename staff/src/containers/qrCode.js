@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import QRCode from 'qrcode.react';
+import QRCode from 'qrcode-react';
 import '../styles/qrcode.css';
 
 class QrCode extends Component {  
